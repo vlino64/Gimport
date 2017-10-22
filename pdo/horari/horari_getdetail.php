@@ -1,0 +1,27 @@
+<?php
+session_start();
+require_once('../bbdd/connect.php');
+require_once('../func/constants.php');
+require_once('../func/generic.php');
+require_once('../func/seguretat.php');
+$db->exec("set names utf8");
+ 
+$idalumnes   = $_REQUEST['idalumnes'];
+
+$sql  = "SELECT agm.*,ma.nom_materia,CONCAT(ma.nom_materia,' - ',gr.nom) AS matgrup FROM alumnes_grup_materia agm ";
+$sql .= "INNER JOIN grups_materies gm ON agm.idgrups_materies=gm.idgrups_materies ";
+$sql .= "INNER JOIN materia ma ON gm.id_mat_uf_pla=ma.idmateria ";
+$sql .= "INNER JOIN grups gr ON gm.id_grups=gr.idgrups ";
+$sql .= "WHERE agm.idalumnes='".$idalumnes."'";
+
+$rs = $db->query($sql);
+
+$items = array();  
+foreach($rs->fetchAll() as $row) {  
+    array_push($items, $row);  
+}  
+echo json_encode($items); 
+
+$rs->closeCursor();
+//mysql_close();
+?>

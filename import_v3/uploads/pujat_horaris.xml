@@ -1,0 +1,6895 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<document version="1.0" date="20160910" time="102327">
+
+  <general>
+
+    <schoolname>gp-Untis 2007</schoolname>
+
+    <schoolyearbegindate>20160801</schoolyearbegindate>
+
+    <schoolyearenddate>20170630</schoolyearenddate>
+
+    <header1>Horari 2005/2006</header1>
+
+    <header2>Demostració i avaluació</header2>
+
+    <footer>G. P.  N O T T E L M A N N - Software   000AlexRiquer</footer>
+
+  </general>
+
+  <timeperiods>
+
+    <timeperiod id="TP_1">
+
+      <day>1</day>
+
+      <period>1</period>
+
+      <starttime>0800</starttime>
+
+      <endtime>0845</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_2">
+
+      <day>1</day>
+
+      <period>2</period>
+
+      <starttime>0855</starttime>
+
+      <endtime>0940</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_3">
+
+      <day>1</day>
+
+      <period>3</period>
+
+      <starttime>0950</starttime>
+
+      <endtime>1035</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_4">
+
+      <day>1</day>
+
+      <period>4</period>
+
+      <starttime>1045</starttime>
+
+      <endtime>1130</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_5">
+
+      <day>1</day>
+
+      <period>5</period>
+
+      <starttime>1140</starttime>
+
+      <endtime>1225</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_6">
+
+      <day>1</day>
+
+      <period>6</period>
+
+      <starttime>1235</starttime>
+
+      <endtime>1320</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_7">
+
+      <day>1</day>
+
+      <period>7</period>
+
+      <starttime>1330</starttime>
+
+      <endtime>1415</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_8">
+
+      <day>2</day>
+
+      <period>1</period>
+
+      <starttime>0800</starttime>
+
+      <endtime>0845</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_9">
+
+      <day>2</day>
+
+      <period>2</period>
+
+      <starttime>0855</starttime>
+
+      <endtime>0940</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_10">
+
+      <day>2</day>
+
+      <period>3</period>
+
+      <starttime>0950</starttime>
+
+      <endtime>1035</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_11">
+
+      <day>2</day>
+
+      <period>4</period>
+
+      <starttime>1045</starttime>
+
+      <endtime>1130</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_12">
+
+      <day>2</day>
+
+      <period>5</period>
+
+      <starttime>1140</starttime>
+
+      <endtime>1225</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_13">
+
+      <day>2</day>
+
+      <period>6</period>
+
+      <starttime>1235</starttime>
+
+      <endtime>1320</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_14">
+
+      <day>2</day>
+
+      <period>7</period>
+
+      <starttime>1330</starttime>
+
+      <endtime>1415</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_15">
+
+      <day>3</day>
+
+      <period>1</period>
+
+      <starttime>0800</starttime>
+
+      <endtime>0845</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_16">
+
+      <day>3</day>
+
+      <period>2</period>
+
+      <starttime>0855</starttime>
+
+      <endtime>0940</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_17">
+
+      <day>3</day>
+
+      <period>3</period>
+
+      <starttime>0950</starttime>
+
+      <endtime>1035</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_18">
+
+      <day>3</day>
+
+      <period>4</period>
+
+      <starttime>1045</starttime>
+
+      <endtime>1130</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_19">
+
+      <day>3</day>
+
+      <period>5</period>
+
+      <starttime>1140</starttime>
+
+      <endtime>1225</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_20">
+
+      <day>3</day>
+
+      <period>6</period>
+
+      <starttime>1235</starttime>
+
+      <endtime>1320</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_21">
+
+      <day>3</day>
+
+      <period>7</period>
+
+      <starttime>1330</starttime>
+
+      <endtime>1415</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_22">
+
+      <day>4</day>
+
+      <period>1</period>
+
+      <starttime>0800</starttime>
+
+      <endtime>0845</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_23">
+
+      <day>4</day>
+
+      <period>2</period>
+
+      <starttime>0855</starttime>
+
+      <endtime>0940</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_24">
+
+      <day>4</day>
+
+      <period>3</period>
+
+      <starttime>0950</starttime>
+
+      <endtime>1035</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_25">
+
+      <day>4</day>
+
+      <period>4</period>
+
+      <starttime>1045</starttime>
+
+      <endtime>1130</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_26">
+
+      <day>4</day>
+
+      <period>5</period>
+
+      <starttime>1140</starttime>
+
+      <endtime>1225</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_27">
+
+      <day>4</day>
+
+      <period>6</period>
+
+      <starttime>1235</starttime>
+
+      <endtime>1320</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_28">
+
+      <day>4</day>
+
+      <period>7</period>
+
+      <starttime>1330</starttime>
+
+      <endtime>1415</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_29">
+
+      <day>5</day>
+
+      <period>1</period>
+
+      <starttime>0800</starttime>
+
+      <endtime>0845</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_30">
+
+      <day>5</day>
+
+      <period>2</period>
+
+      <starttime>0855</starttime>
+
+      <endtime>0940</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_31">
+
+      <day>5</day>
+
+      <period>3</period>
+
+      <starttime>0950</starttime>
+
+      <endtime>1035</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_32">
+
+      <day>5</day>
+
+      <period>4</period>
+
+      <starttime>1045</starttime>
+
+      <endtime>1130</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_33">
+
+      <day>5</day>
+
+      <period>5</period>
+
+      <starttime>1140</starttime>
+
+      <endtime>1225</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_34">
+
+      <day>5</day>
+
+      <period>6</period>
+
+      <starttime>1235</starttime>
+
+      <endtime>1320</endtime>
+
+    </timeperiod>
+
+    <timeperiod id="TP_35">
+
+      <day>5</day>
+
+      <period>7</period>
+
+      <starttime>1330</starttime>
+
+      <endtime>1415</endtime>
+
+    </timeperiod>
+
+  </timeperiods>
+
+  <descriptions/>
+
+  <departments/>
+
+  <rooms/>
+
+  <subjects>
+
+    <subject id="SU_català"/>
+
+    <subject id="SU_castellà"/>
+
+    <subject id="SU_anglès"/>
+
+    <subject id="SU_matemàtiques"/>
+
+    <subject id="SU_biologia i geologia"/>
+
+    <subject id="SU_tecnologia"/>
+
+    <subject id="SU_ef"/>
+
+    <subject id="SU_socials"/>
+
+    <subject id="SU_música"/>
+
+    <subject id="SU_evp"/>
+
+    <subject id="SU_religió"/>
+
+    <subject id="SU_su_tut"/>
+
+    <subject id="SU_v matemàtiques"/>
+
+    <subject id="SU_lectura"/>
+
+    <subject id="SU_física i química"/>
+
+    <subject id="SU_emprenedoria"/>
+
+    <subject id="SU_cultura clàssica"/>
+
+    <subject id="SU_francès"/>
+
+    <subject id="SU_informàtica"/>
+
+    <subject id="SU_economia"/>
+
+    <subject id="SU_llatí"/>
+
+    <subject id="SU_tecnologia pele"/>
+
+    <subject id="SU_filosofia"/>
+
+    <subject id="SU_ciències món"/>
+
+    <subject id="SU_física"/>
+
+    <subject id="SU_matemàtiques cs"/>
+
+    <subject id="SU_grec"/>
+
+    <subject id="SU_dibuix tècnic"/>
+
+    <subject id="SU_biologia"/>
+
+    <subject id="SU_economia d'empresa"/>
+
+    <subject id="SU_literatura catalana"/>
+
+    <subject id="SU_tecnologia industrial"/>
+
+    <subject id="SU_química"/>
+
+    <subject id="SU_història"/>
+
+    <subject id="SU_història de l'art"/>
+
+    <subject id="SU_geografia"/>
+
+    <subject id="SU_bloc 1"/>
+
+    <subject id="SU_bloc 2"/>
+
+    <subject id="SU_bloc 3"/>
+
+  </subjects>
+
+  <teachers>
+
+    <teacher id="TR_jaume">
+
+      <surname>Jaume Farrés</surname>
+
+    </teacher>
+
+    <teacher id="TR_josep">
+
+      <surname>Josep Maria Solà</surname>
+
+    </teacher>
+
+    <teacher id="TR_araceli">
+
+      <surname>Araceli López</surname>
+
+    </teacher>
+
+    <teacher id="TR_elisabet">
+
+      <surname>Elisabet Riera</surname>
+
+    </teacher>
+
+    <teacher id="TR_teresa">
+
+      <surname>Teresa Solé</surname>
+
+    </teacher>
+
+    <teacher id="TR_laura">
+
+      <surname>Laura Delgado</surname>
+
+    </teacher>
+
+    <teacher id="TR_dolors">
+
+      <surname>Dolors Minguell</surname>
+
+    </teacher>
+
+    <teacher id="TR_salvador">
+
+      <surname>Salvador Oliva</surname>
+
+    </teacher>
+
+    <teacher id="TR_iker">
+
+      <surname>Íker Gómez</surname>
+
+    </teacher>
+
+    <teacher id="TR_carme c">
+
+      <surname>Carme Cano</surname>
+
+    </teacher>
+
+    <teacher id="TR_joan">
+
+      <surname>Joan Farré</surname>
+
+    </teacher>
+
+    <teacher id="TR_cristina">
+
+      <surname>Cristina Mas</surname>
+
+    </teacher>
+
+    <teacher id="TR_daniel">
+
+      <surname>Daniel Sánchez</surname>
+
+    </teacher>
+
+    <teacher id="TR_jordi">
+
+      <surname>Jordi Pipó</surname>
+
+    </teacher>
+
+    <teacher id="TR_anna">
+
+      <surname>Anna Garcia</surname>
+
+    </teacher>
+
+    <teacher id="TR_alex">
+
+      <surname>Àlex Recasens</surname>
+
+    </teacher>
+
+    <teacher id="TR_sílvia">
+
+      <surname>Sílvia Torra</surname>
+
+    </teacher>
+
+    <teacher id="TR_assumpta">
+
+      <surname>Assumpta Domingo</surname>
+
+    </teacher>
+
+    <teacher id="TR_rosa">
+
+      <surname>Rosa Guillamon</surname>
+
+    </teacher>
+
+    <teacher id="TR_mireia">
+
+      <surname>Mireia Gimeno</surname>
+
+    </teacher>
+
+    <teacher id="TR_carme">
+
+      <surname>Carme Serra</surname>
+
+    </teacher>
+
+    <teacher id="TR_marta">
+
+      <surname>Marta Soler</surname>
+
+    </teacher>
+
+    <teacher id="TR_marc">
+
+      <surname>Marc Vilaseca</surname>
+
+    </teacher>
+
+    <teacher id="TR_manel">
+
+      <surname>Manel Navarro</surname>
+
+    </teacher>
+
+    <teacher id="TR_montse">
+
+      <surname>Montse Soler</surname>
+
+    </teacher>
+
+    <teacher id="TR_xavier">
+
+      <surname>Xavier Soler</surname>
+
+    </teacher>
+
+    <teacher id="TR_gemma">
+
+      <surname>Gemma Aurich</surname>
+
+    </teacher>
+
+  </teachers>
+
+  <classes>
+
+    <class id="CL_1Aeso">
+
+      <longname>1A ESO</longname>
+
+    </class>
+
+    <class id="CL_1Beso">
+
+      <longname>1B ESO</longname>
+
+    </class>
+
+    <class id="CL_2Aeso">
+
+      <longname>2A ESO</longname>
+
+    </class>
+
+    <class id="CL_2Beso">
+
+      <longname>2B ESO</longname>
+
+    </class>
+
+    <class id="CL_3Aeso">
+
+      <longname>3A ESO</longname>
+
+    </class>
+
+    <class id="CL_3Beso">
+
+      <longname>3B ESO</longname>
+
+    </class>
+
+    <class id="CL_4Aeso">
+
+      <longname>4A ESO</longname>
+
+    </class>
+
+    <class id="CL_4Beso">
+
+      <longname>4B ESO</longname>
+
+    </class>
+
+    <class id="CL_1Abat">
+
+      <longname>1A BATX</longname>
+
+    </class>
+
+    <class id="CL_1Bbat">
+
+      <longname>1B BATX</longname>
+
+    </class>
+
+    <class id="CL_2Abat">
+
+      <longname>2A BATX</longname>
+
+    </class>
+
+  </classes>
+
+  <students/>
+
+  <lessons>
+
+    <lesson id="LS_100">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_català"/>
+
+      <lesson_teacher id="TR_josep"/>
+
+      <lesson_classes id="CL_1Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_200">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_castellà"/>
+
+      <lesson_teacher id="TR_laura"/>
+
+      <lesson_classes id="CL_1Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_300">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_anglès"/>
+
+      <lesson_teacher id="TR_teresa"/>
+
+      <lesson_classes id="CL_1Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_400">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_matemàtiques"/>
+
+      <lesson_teacher id="TR_marta"/>
+
+      <lesson_classes id="CL_1Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_500">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_biologia i geologia"/>
+
+      <lesson_teacher id="TR_carme"/>
+
+      <lesson_classes id="CL_1Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_600">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_tecnologia"/>
+
+      <lesson_teacher id="TR_alex"/>
+
+      <lesson_classes id="CL_1Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_700">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_tecnologia"/>
+
+      <lesson_teacher id="TR_alex"/>
+
+      <lesson_classes id="CL_1Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_701">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_ef"/>
+
+      <lesson_teacher id="TR_manel"/>
+
+      <lesson_classes id="CL_1Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_800">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_socials"/>
+
+      <lesson_teacher id="TR_cristina"/>
+
+      <lesson_classes id="CL_1Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_900">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_ef"/>
+
+      <lesson_teacher id="TR_manel"/>
+
+      <lesson_classes id="CL_1Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_1000">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_música"/>
+
+      <lesson_teacher id="TR_xavier"/>
+
+      <lesson_classes id="CL_1Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_1100">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_evp"/>
+
+      <lesson_teacher id="TR_gemma"/>
+
+      <lesson_classes id="CL_1Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_1200">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_religió"/>
+
+      <lesson_teacher id="TR_iker"/>
+
+      <lesson_classes id="CL_1Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_1300">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_su_tut"/>
+
+      <lesson_teacher id="TR_cristina"/>
+
+      <lesson_classes id="CL_1Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_1400">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_v matemàtiques"/>
+
+      <lesson_teacher id="TR_sílvia"/>
+
+      <lesson_classes id="CL_1Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_1500">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_lectura"/>
+
+      <lesson_teacher id="TR_carme c"/>
+
+      <lesson_classes id="CL_1Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_1600">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_català"/>
+
+      <lesson_teacher id="TR_carme c"/>
+
+      <lesson_classes id="CL_1Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_1700">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_castellà"/>
+
+      <lesson_teacher id="TR_araceli"/>
+
+      <lesson_classes id="CL_1Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_1800">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_anglès"/>
+
+      <lesson_teacher id="TR_teresa"/>
+
+      <lesson_classes id="CL_1Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_1900">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_matemàtiques"/>
+
+      <lesson_teacher id="TR_marta"/>
+
+      <lesson_classes id="CL_1Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_2000">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_biologia i geologia"/>
+
+      <lesson_teacher id="TR_carme"/>
+
+      <lesson_classes id="CL_1Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_2100">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_tecnologia"/>
+
+      <lesson_teacher id="TR_alex"/>
+
+      <lesson_classes id="CL_1Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_2200">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_tecnologia"/>
+
+      <lesson_teacher id="TR_alex"/>
+
+      <lesson_classes id="CL_1Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_2201">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_ef"/>
+
+      <lesson_teacher id="TR_manel"/>
+
+      <lesson_classes id="CL_1Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_2300">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_socials"/>
+
+      <lesson_teacher id="TR_cristina"/>
+
+      <lesson_classes id="CL_1Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_2400">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_ef"/>
+
+      <lesson_teacher id="TR_manel"/>
+
+      <lesson_classes id="CL_1Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_2500">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_música"/>
+
+      <lesson_teacher id="TR_xavier"/>
+
+      <lesson_classes id="CL_1Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_2600">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_evp"/>
+
+      <lesson_teacher id="TR_gemma"/>
+
+      <lesson_classes id="CL_1Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_2700">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_religió"/>
+
+      <lesson_teacher id="TR_iker"/>
+
+      <lesson_classes id="CL_1Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_2800">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_su_tut"/>
+
+      <lesson_teacher id="TR_manel"/>
+
+      <lesson_classes id="CL_1Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_2900">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_v matemàtiques"/>
+
+      <lesson_teacher id="TR_sílvia"/>
+
+      <lesson_classes id="CL_1Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_3000">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_lectura"/>
+
+      <lesson_teacher id="TR_carme c"/>
+
+      <lesson_classes id="CL_1Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_3100">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_bloc 1"/>
+
+      <lesson_teacher id="TR_dolors"/>
+
+      <lesson_classes id="CL_2Aeso CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_3101">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_bloc 1"/>
+
+      <lesson_teacher id="TR_daniel"/>
+
+      <lesson_classes id="CL_2Aeso CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_3102">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_bloc 1"/>
+
+      <lesson_teacher id="TR_elisabet"/>
+
+      <lesson_classes id="CL_2Aeso CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_3200">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_bloc 2"/>
+
+      <lesson_teacher id="TR_daniel"/>
+
+      <lesson_classes id="CL_2Aeso CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_3201">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_bloc 2"/>
+
+      <lesson_teacher id="TR_elisabet"/>
+
+      <lesson_classes id="CL_2Aeso CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_3202">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_bloc 2"/>
+
+      <lesson_teacher id="TR_dolors"/>
+
+      <lesson_classes id="CL_2Aeso CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_3300">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_bloc 3"/>
+
+      <lesson_teacher id="TR_elisabet"/>
+
+      <lesson_classes id="CL_2Aeso CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_3301">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_bloc 3"/>
+
+      <lesson_teacher id="TR_dolors"/>
+
+      <lesson_classes id="CL_2Aeso CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_3302">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_bloc 3"/>
+
+      <lesson_teacher id="TR_daniel"/>
+
+      <lesson_classes id="CL_2Aeso CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_3400">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_anglès"/>
+
+      <lesson_teacher id="TR_elisabet"/>
+
+      <lesson_classes id="CL_2Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_3500">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_matemàtiques"/>
+
+      <lesson_teacher id="TR_rosa"/>
+
+      <lesson_classes id="CL_2Aeso CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_3501">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_matemàtiques"/>
+
+      <lesson_teacher id="TR_mireia"/>
+
+      <lesson_classes id="CL_2Aeso CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_3502">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_matemàtiques"/>
+
+      <lesson_teacher id="TR_marc"/>
+
+      <lesson_classes id="CL_2Aeso CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_3600">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_física i química"/>
+
+      <lesson_teacher id="TR_marc"/>
+
+      <lesson_classes id="CL_2Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_3700">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_tecnologia"/>
+
+      <lesson_teacher id="TR_anna"/>
+
+      <lesson_classes id="CL_2Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_3800">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_tecnologia"/>
+
+      <lesson_teacher id="TR_anna"/>
+
+      <lesson_classes id="CL_2Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_3801">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_ef"/>
+
+      <lesson_teacher id="TR_manel"/>
+
+      <lesson_classes id="CL_2Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_3900">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_socials"/>
+
+      <lesson_teacher id="TR_cristina"/>
+
+      <lesson_classes id="CL_2Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_4000">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_ef"/>
+
+      <lesson_teacher id="TR_manel"/>
+
+      <lesson_classes id="CL_2Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_4100">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_evp"/>
+
+      <lesson_teacher id="TR_gemma"/>
+
+      <lesson_classes id="CL_2Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_4200">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_religió"/>
+
+      <lesson_teacher id="TR_iker"/>
+
+      <lesson_classes id="CL_2Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_4201">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_religió"/>
+
+      <lesson_teacher id="TR_joan"/>
+
+      <lesson_classes id="CL_2Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_4300">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_su_tut"/>
+
+      <lesson_teacher id="TR_rosa"/>
+
+      <lesson_classes id="CL_2Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_4400">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_emprenedoria"/>
+
+      <lesson_teacher id="TR_cristina"/>
+
+      <lesson_classes id="CL_2Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_4401">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_emprenedoria"/>
+
+      <lesson_teacher id="TR_xavier"/>
+
+      <lesson_classes id="CL_2Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_4500">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_lectura"/>
+
+      <lesson_teacher id="TR_manel"/>
+
+      <lesson_classes id="CL_2Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_4600">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_anglès"/>
+
+      <lesson_teacher id="TR_elisabet"/>
+
+      <lesson_classes id="CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_4700">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_física i química"/>
+
+      <lesson_teacher id="TR_marc"/>
+
+      <lesson_classes id="CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_4800">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_tecnologia"/>
+
+      <lesson_teacher id="TR_anna"/>
+
+      <lesson_classes id="CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_4900">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_tecnologia"/>
+
+      <lesson_teacher id="TR_anna"/>
+
+      <lesson_classes id="CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_4901">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_ef"/>
+
+      <lesson_teacher id="TR_manel"/>
+
+      <lesson_classes id="CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_5000">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_socials"/>
+
+      <lesson_teacher id="TR_cristina"/>
+
+      <lesson_classes id="CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_5100">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_ef"/>
+
+      <lesson_teacher id="TR_manel"/>
+
+      <lesson_classes id="CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_5200">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_evp"/>
+
+      <lesson_teacher id="TR_gemma"/>
+
+      <lesson_classes id="CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_5300">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_religió"/>
+
+      <lesson_teacher id="TR_iker"/>
+
+      <lesson_classes id="CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_5301">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_religió"/>
+
+      <lesson_teacher id="TR_cristina"/>
+
+      <lesson_classes id="CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_5400">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_su_tut"/>
+
+      <lesson_teacher id="TR_dolors"/>
+
+      <lesson_classes id="CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_5500">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_emprenedoria"/>
+
+      <lesson_teacher id="TR_cristina"/>
+
+      <lesson_classes id="CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_5501">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_emprenedoria"/>
+
+      <lesson_teacher id="TR_xavier"/>
+
+      <lesson_classes id="CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_5600">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_lectura"/>
+
+      <lesson_teacher id="TR_manel"/>
+
+      <lesson_classes id="CL_2Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_5700">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_català"/>
+
+      <lesson_teacher id="TR_josep"/>
+
+      <lesson_classes id="CL_3Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_5800">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_castellà"/>
+
+      <lesson_teacher id="TR_laura"/>
+
+      <lesson_classes id="CL_3Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_5900">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_anglès"/>
+
+      <lesson_teacher id="TR_elisabet"/>
+
+      <lesson_classes id="CL_3Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_6000">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_matemàtiques"/>
+
+      <lesson_teacher id="TR_anna"/>
+
+      <lesson_classes id="CL_3Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_6100">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_biologia i geologia"/>
+
+      <lesson_teacher id="TR_mireia"/>
+
+      <lesson_classes id="CL_3Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_6200">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_física i química"/>
+
+      <lesson_teacher id="TR_carme"/>
+
+      <lesson_classes id="CL_3Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_6300">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_tecnologia"/>
+
+      <lesson_teacher id="TR_jordi"/>
+
+      <lesson_classes id="CL_3Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_6400">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_tecnologia"/>
+
+      <lesson_teacher id="TR_jordi"/>
+
+      <lesson_classes id="CL_3Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_6401">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_ef"/>
+
+      <lesson_teacher id="TR_montse"/>
+
+      <lesson_classes id="CL_3Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_6500">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_socials"/>
+
+      <lesson_teacher id="TR_joan"/>
+
+      <lesson_classes id="CL_3Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_6600">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_ef"/>
+
+      <lesson_teacher id="TR_montse"/>
+
+      <lesson_classes id="CL_3Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_6700">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_música"/>
+
+      <lesson_teacher id="TR_xavier"/>
+
+      <lesson_classes id="CL_3Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_6800">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_religió"/>
+
+      <lesson_teacher id="TR_iker"/>
+
+      <lesson_classes id="CL_3Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_6900">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_su_tut"/>
+
+      <lesson_teacher id="TR_xavier"/>
+
+      <lesson_classes id="CL_3Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_7000">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_cultura clàssica"/>
+
+      <lesson_teacher id="TR_carme c"/>
+
+      <lesson_classes id="CL_3Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_7100">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_francès"/>
+
+      <lesson_teacher id="TR_laura"/>
+
+      <lesson_classes id="CL_3Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_7200">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_català"/>
+
+      <lesson_teacher id="TR_josep"/>
+
+      <lesson_classes id="CL_3Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_7300">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_castellà"/>
+
+      <lesson_teacher id="TR_laura"/>
+
+      <lesson_classes id="CL_3Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_7400">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_anglès"/>
+
+      <lesson_teacher id="TR_teresa"/>
+
+      <lesson_classes id="CL_3Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_7500">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_matemàtiques"/>
+
+      <lesson_teacher id="TR_anna"/>
+
+      <lesson_classes id="CL_3Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_7600">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_biologia i geologia"/>
+
+      <lesson_teacher id="TR_mireia"/>
+
+      <lesson_classes id="CL_3Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_7700">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_física i química"/>
+
+      <lesson_teacher id="TR_carme"/>
+
+      <lesson_classes id="CL_3Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_7800">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_tecnologia"/>
+
+      <lesson_teacher id="TR_anna"/>
+
+      <lesson_classes id="CL_3Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_7900">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_tecnologia"/>
+
+      <lesson_teacher id="TR_anna"/>
+
+      <lesson_classes id="CL_3Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_7901">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_ef"/>
+
+      <lesson_teacher id="TR_montse"/>
+
+      <lesson_classes id="CL_3Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_8000">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_socials"/>
+
+      <lesson_teacher id="TR_joan"/>
+
+      <lesson_classes id="CL_3Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_8100">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_ef"/>
+
+      <lesson_teacher id="TR_montse"/>
+
+      <lesson_classes id="CL_3Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_8200">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_música"/>
+
+      <lesson_teacher id="TR_xavier"/>
+
+      <lesson_classes id="CL_3Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_8300">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_religió"/>
+
+      <lesson_teacher id="TR_iker"/>
+
+      <lesson_classes id="CL_3Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_8400">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_su_tut"/>
+
+      <lesson_teacher id="TR_joan"/>
+
+      <lesson_classes id="CL_3Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_8500">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_cultura clàssica"/>
+
+      <lesson_teacher id="TR_carme c"/>
+
+      <lesson_classes id="CL_3Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_8600">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_francès"/>
+
+      <lesson_teacher id="TR_laura"/>
+
+      <lesson_classes id="CL_3Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_8700">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_català"/>
+
+      <lesson_teacher id="TR_jaume"/>
+
+      <lesson_classes id="CL_4Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_8800">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_castellà"/>
+
+      <lesson_teacher id="TR_araceli"/>
+
+      <lesson_classes id="CL_4Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_8900">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_anglès"/>
+
+      <lesson_teacher id="TR_teresa"/>
+
+      <lesson_classes id="CL_4Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_9000">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_matemàtiques"/>
+
+      <lesson_teacher id="TR_assumpta"/>
+
+      <lesson_classes id="CL_4Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_9100">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_socials"/>
+
+      <lesson_teacher id="TR_carme c"/>
+
+      <lesson_classes id="CL_4Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_9200">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_ef"/>
+
+      <lesson_teacher id="TR_montse"/>
+
+      <lesson_classes id="CL_4Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_9300">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_religió"/>
+
+      <lesson_teacher id="TR_iker"/>
+
+      <lesson_classes id="CL_4Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_9400">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_su_tut"/>
+
+      <lesson_teacher id="TR_carme c"/>
+
+      <lesson_classes id="CL_4Aeso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_9500">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_català"/>
+
+      <lesson_teacher id="TR_jaume"/>
+
+      <lesson_classes id="CL_4Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_9600">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_castellà"/>
+
+      <lesson_teacher id="TR_araceli"/>
+
+      <lesson_classes id="CL_4Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_9700">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_anglès"/>
+
+      <lesson_teacher id="TR_teresa"/>
+
+      <lesson_classes id="CL_4Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_9800">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_matemàtiques"/>
+
+      <lesson_teacher id="TR_marta"/>
+
+      <lesson_classes id="CL_4Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_9900">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_socials"/>
+
+      <lesson_teacher id="TR_carme c"/>
+
+      <lesson_classes id="CL_4Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_10000">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_ef"/>
+
+      <lesson_teacher id="TR_montse"/>
+
+      <lesson_classes id="CL_4Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_10100">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_religió"/>
+
+      <lesson_teacher id="TR_iker"/>
+
+      <lesson_classes id="CL_4Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_10200">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_su_tut"/>
+
+      <lesson_teacher id="TR_montse"/>
+
+      <lesson_classes id="CL_4Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_10300">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_física i química"/>
+
+      <lesson_teacher id="TR_carme"/>
+
+      <lesson_classes id="CL_4Aeso CL_4Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_10301">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_informàtica"/>
+
+      <lesson_teacher id="TR_jordi"/>
+
+      <lesson_classes id="CL_4Aeso CL_4Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_10302">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_economia"/>
+
+      <lesson_teacher id="TR_joan"/>
+
+      <lesson_classes id="CL_4Aeso CL_4Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_10400">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_física i química"/>
+
+      <lesson_teacher id="TR_carme"/>
+
+      <lesson_classes id="CL_4Aeso CL_4Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_10401">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_música"/>
+
+      <lesson_teacher id="TR_xavier"/>
+
+      <lesson_classes id="CL_4Aeso CL_4Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_10402">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_economia"/>
+
+      <lesson_teacher id="TR_joan"/>
+
+      <lesson_classes id="CL_4Aeso CL_4Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_10500">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_biologia i geologia"/>
+
+      <lesson_teacher id="TR_mireia"/>
+
+      <lesson_classes id="CL_4Aeso CL_4Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_10501">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_emprenedoria"/>
+
+      <lesson_teacher id="TR_jordi"/>
+
+      <lesson_classes id="CL_4Aeso CL_4Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_10502">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_llatí"/>
+
+      <lesson_teacher id="TR_salvador"/>
+
+      <lesson_classes id="CL_4Aeso CL_4Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_10600">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_tecnologia pele"/>
+
+      <lesson_teacher id="TR_jordi"/>
+
+      <lesson_classes id="CL_4Aeso CL_4Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_10601">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_tecnologia"/>
+
+      <lesson_teacher id="TR_anna"/>
+
+      <lesson_classes id="CL_4Aeso CL_4Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_10602">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_francès"/>
+
+      <lesson_teacher id="TR_laura"/>
+
+      <lesson_classes id="CL_4Aeso CL_4Beso"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_10700">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_català"/>
+
+      <lesson_teacher id="TR_jaume"/>
+
+      <lesson_classes id="CL_1Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_10800">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_castellà"/>
+
+      <lesson_teacher id="TR_araceli"/>
+
+      <lesson_classes id="CL_1Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_10900">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_anglès"/>
+
+      <lesson_teacher id="TR_elisabet"/>
+
+      <lesson_classes id="CL_1Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_11000">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_filosofia"/>
+
+      <lesson_teacher id="TR_daniel"/>
+
+      <lesson_classes id="CL_1Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_11100">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_ciències món"/>
+
+      <lesson_teacher id="TR_daniel"/>
+
+      <lesson_classes id="CL_1Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_11200">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_ef"/>
+
+      <lesson_teacher id="TR_montse"/>
+
+      <lesson_classes id="CL_1Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_11300">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_su_tut"/>
+
+      <lesson_teacher id="TR_jaume"/>
+
+      <lesson_classes id="CL_1Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_11400">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_català"/>
+
+      <lesson_teacher id="TR_jaume"/>
+
+      <lesson_classes id="CL_1Bbat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_11500">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_castellà"/>
+
+      <lesson_teacher id="TR_araceli"/>
+
+      <lesson_classes id="CL_1Bbat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_11600">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_anglès"/>
+
+      <lesson_teacher id="TR_elisabet"/>
+
+      <lesson_classes id="CL_1Bbat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_11700">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_filosofia"/>
+
+      <lesson_teacher id="TR_daniel"/>
+
+      <lesson_classes id="CL_1Bbat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_11800">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_ciències món"/>
+
+      <lesson_teacher id="TR_daniel"/>
+
+      <lesson_classes id="CL_1Bbat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_11900">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_ef"/>
+
+      <lesson_teacher id="TR_montse"/>
+
+      <lesson_classes id="CL_1Bbat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_12000">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_su_tut"/>
+
+      <lesson_teacher id="TR_jaume"/>
+
+      <lesson_classes id="CL_1Bbat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_12100">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_física"/>
+
+      <lesson_teacher id="TR_marc"/>
+
+      <lesson_classes id="CL_1Abat CL_1Bbat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_12101">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_llatí"/>
+
+      <lesson_teacher id="TR_salvador"/>
+
+      <lesson_classes id="CL_1Abat CL_1Bbat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_12200">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_matemàtiques"/>
+
+      <lesson_teacher id="TR_rosa"/>
+
+      <lesson_classes id="CL_1Abat CL_1Bbat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_12201">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_matemàtiques cs"/>
+
+      <lesson_teacher id="TR_assumpta"/>
+
+      <lesson_classes id="CL_1Abat CL_1Bbat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_12202">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_grec"/>
+
+      <lesson_teacher id="TR_salvador"/>
+
+      <lesson_classes id="CL_1Abat CL_1Bbat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_12300">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_dibuix tècnic"/>
+
+      <lesson_teacher id="TR_gemma"/>
+
+      <lesson_classes id="CL_1Abat CL_1Bbat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_12301">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_biologia"/>
+
+      <lesson_teacher id="TR_mireia"/>
+
+      <lesson_classes id="CL_1Abat CL_1Bbat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_12302">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_economia d'empresa"/>
+
+      <lesson_teacher id="TR_sílvia"/>
+
+      <lesson_classes id="CL_1Abat CL_1Bbat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_12303">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_literatura catalana"/>
+
+      <lesson_teacher id="TR_josep"/>
+
+      <lesson_classes id="CL_1Abat CL_1Bbat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_12400">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_tecnologia industrial"/>
+
+      <lesson_teacher id="TR_alex"/>
+
+      <lesson_classes id="CL_1Abat CL_1Bbat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_12401">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_química"/>
+
+      <lesson_teacher id="TR_marta"/>
+
+      <lesson_classes id="CL_1Abat CL_1Bbat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_12402">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_francès"/>
+
+      <lesson_teacher id="TR_laura"/>
+
+      <lesson_classes id="CL_1Abat CL_1Bbat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_12500">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_català"/>
+
+      <lesson_teacher id="TR_josep"/>
+
+      <lesson_classes id="CL_2Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_12600">
+
+      <periods>2</periods>
+
+      <lesson_subject id="SU_castellà"/>
+
+      <lesson_teacher id="TR_araceli"/>
+
+      <lesson_classes id="CL_2Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_12700">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_anglès"/>
+
+      <lesson_teacher id="TR_teresa"/>
+
+      <lesson_classes id="CL_2Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_12800">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_filosofia"/>
+
+      <lesson_teacher id="TR_daniel"/>
+
+      <lesson_classes id="CL_2Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_12900">
+
+      <periods>3</periods>
+
+      <lesson_subject id="SU_història"/>
+
+      <lesson_teacher id="TR_joan"/>
+
+      <lesson_classes id="CL_2Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>7</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_13000">
+
+      <periods>1</periods>
+
+      <lesson_subject id="SU_su_tut"/>
+
+      <lesson_teacher id="TR_josep"/>
+
+      <lesson_classes id="CL_2Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_13100">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_física"/>
+
+      <lesson_teacher id="TR_carme"/>
+
+      <lesson_classes id="CL_2Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_13101">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_llatí"/>
+
+      <lesson_teacher id="TR_salvador"/>
+
+      <lesson_classes id="CL_2Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>6</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_13200">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_matemàtiques"/>
+
+      <lesson_teacher id="TR_assumpta"/>
+
+      <lesson_classes id="CL_2Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_13201">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_matemàtiques cs"/>
+
+      <lesson_teacher id="TR_rosa"/>
+
+      <lesson_classes id="CL_2Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_13202">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_grec"/>
+
+      <lesson_teacher id="TR_salvador"/>
+
+      <lesson_classes id="CL_2Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_13300">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_dibuix tècnic"/>
+
+      <lesson_teacher id="TR_gemma"/>
+
+      <lesson_classes id="CL_2Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_13301">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_biologia"/>
+
+      <lesson_teacher id="TR_mireia"/>
+
+      <lesson_classes id="CL_2Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_13302">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_economia d'empresa"/>
+
+      <lesson_teacher id="TR_sílvia"/>
+
+      <lesson_classes id="CL_2Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_13303">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_història de l'art"/>
+
+      <lesson_teacher id="TR_carme c"/>
+
+      <lesson_classes id="CL_2Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>3</assigned_day>
+
+          <assigned_period>2</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_13400">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_tecnologia industrial"/>
+
+      <lesson_teacher id="TR_jordi"/>
+
+      <lesson_classes id="CL_2Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_13401">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_química"/>
+
+      <lesson_teacher id="TR_marta"/>
+
+      <lesson_classes id="CL_2Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+    <lesson id="LS_13402">
+
+      <periods>4</periods>
+
+      <lesson_subject id="SU_geografia"/>
+
+      <lesson_teacher id="TR_joan"/>
+
+      <lesson_classes id="CL_2Abat"/>
+
+      <times>
+
+        <time>
+
+          <assigned_day>1</assigned_day>
+
+          <assigned_period>5</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>2</assigned_day>
+
+          <assigned_period>4</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>4</assigned_day>
+
+          <assigned_period>3</assigned_period>
+
+        </time>
+
+        <time>
+
+          <assigned_day>5</assigned_day>
+
+          <assigned_period>1</assigned_period>
+
+        </time>
+
+      </times>
+
+    </lesson>
+
+  </lessons>
+
+</document>
