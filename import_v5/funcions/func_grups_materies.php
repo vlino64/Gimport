@@ -175,7 +175,7 @@ function crea_grup_sense_materies_i_assigna_alumnes($tipus_pla,$id_pla,$nom_mate
 
 function relaciona_grups_torns_sol_saga($exportsagaxml)
     {
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 	
    $resultatconsulta=simplexml_load_file($exportsagaxml);
    if ( !$resultatconsulta ) {echo "Carrega fallida";}
@@ -245,7 +245,7 @@ function relaciona_grups_torns_sense_materies($exportsagaxml)
 
 function relaciona_grups_torns_csv()
 	{
-	include("../config.php");
+	require_once('../../bbdd/connect.php');
         
         
         
@@ -296,7 +296,7 @@ function relaciona_grups_torns_csv()
     
 function relaciona_grups_torns($exportalumnes,$exporthorarixml)
 	{
-	include("../config.php");
+	require_once('../../bbdd/connect.php');
 
 	$exportsagaxml=$_SESSION['upload_saga'];
 	$exporthorarixml=$_SESSION['upload_horaris'];
@@ -1135,7 +1135,7 @@ function neteja_item_grup_materia($cadena_grups)
 function carrega_CCFF_de_SAGA()
     {
     
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 
     $exportsagaxml=$_SESSION['upload_saga'];
     $exporthorarixml=$_SESSION['upload_horaris'];
@@ -1267,7 +1267,7 @@ function carrega_CCFF_de_SAGA()
 function carrega_plans_estudis()
     {
    
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 	
     $exportsagaxml=$_SESSION['upload_saga'];
     $exporthorarixml=$_SESSION['upload_horaris'];

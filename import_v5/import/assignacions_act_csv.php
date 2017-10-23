@@ -8,7 +8,7 @@
 * Post cond.:
 * 
 ----------------------------------------------------------------*/
-include("../config.php");
+require_once('../../bbdd/connect.php');
 include("../funcions/funcions_generals.php");
 include("../funcions/funcionsCsv.php");
 
@@ -32,7 +32,7 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 
 <?php
 	
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
    
     $relacio_grups = array();
     
@@ -86,7 +86,7 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
     
 function matricula($idAlumne,$id_grup){
     
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
     // Extreiem l'id de l'alumne a l'aplicació
     $sql = "SELECT idalumnes FROM alumnes WHERE codi_alumnes_saga = '".$idAlumne."';";
     $result=mysql_query($sql); if (!$result) {die(_ERR_SELECT_ID_PUPIL.mysql_error());}

@@ -14,7 +14,7 @@
 
 function genera_horaris_cali()
     {
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
     
     $sql = "SELECT data_inici,data_fi FROM periodes_escolars WHERE actual = 'S';";
     $result=mysql_query($sql);

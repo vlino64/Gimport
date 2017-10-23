@@ -16,7 +16,7 @@
 
 function update_professorat_gassist($arrayProfessorat)
     {
-	include("../config.php");
+	require_once('../../bbdd/connect.php');
 
 	// Crearem el csv
         $data = date("Ymd");
@@ -115,7 +115,7 @@ function update_professorat_gassist($arrayProfessorat)
 
 function update_professorat($exporthorarixml)
     {
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
     $i = 0;
     if(!extreu_fase('segona_carrega'))
         {
@@ -1047,7 +1047,7 @@ function extreuGrupsSaga($exportsagaxml,$id_alumne)
 
 function carrega_dades_families($id,$id_saga)
     {
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
     //include("../funcions/funcions_generals.php");
 
     $dades=array();
@@ -1213,7 +1213,7 @@ function carrega_dades_families($id,$id_saga)
 
 function hi_ha_germa($id_tutor)
 	{
-	include("../config.php");
+	require_once('../../bbdd/connect.php');
 	
 	//Insereix l'autoincrement que serà l'identificador unívoc de les famílies
 	$sql="SELECT id_families FROM contacte_families WHERE Valor='".$id_tutor."' LIMIT 1;";
@@ -1227,7 +1227,7 @@ function hi_ha_germa($id_tutor)
 
 function crea_families()
 	{
-	include("../config.php");
+	require_once('../../bbdd/connect.php');
 	
         //Insereix l'autoincrement que serà l'identificador unívoc de les famílies
 	$sql="INSERT INTO `families`(idfamilies) VALUE (null);";
@@ -1281,7 +1281,7 @@ function alumne_ja_existeix($user)
 function genera(&$user,&$pass,$nom,$cognom1,$cognom2)
 	
 	{
-	//include("../config.php");
+	//require_once('../../bbdd/connect.php');
 	
 	$existeix=1;
 	while ($existeix)
@@ -1322,7 +1322,7 @@ function randomPassword_numbers()
    
 function limpia_cadena($cadena,$nom,$cognom1,$cognom2)
     {
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
     
     //echo "<br> Nom sense netejar: ".$cadena;
     $cadena=mb_strtolower($cadena, 'UTF-8');
@@ -1390,7 +1390,7 @@ function esmovilsms($telefon)
 
 function select_grups_per_matricular_csv()
     {
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 
     $arr_grups_csv = extreuGrupsCsv2();
     
@@ -1442,7 +1442,7 @@ function select_grups_per_matricular_csv()
 	
 function select_grups_per_matricular($exportsagaxml)
     {
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
     $resultatconsulta=simplexml_load_file($exportsagaxml);
     if (!$resultatconsulta) {echo "Càrrega fallida.";}
     else
@@ -1495,7 +1495,7 @@ function select_grups_per_matricular($exportsagaxml)
 
 function select_grups_per_matricular_cali($exportsagaxml)
     {
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
     $resultatconsulta=simplexml_load_file($exportsagaxml);
     if (!$resultatconsulta) {echo "Càrrega fallida.";}
     else

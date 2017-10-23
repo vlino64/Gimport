@@ -15,7 +15,7 @@
 function crea_horaris_ASC_mixt()
     {
 
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 
     introduir_fase('lessons',0);    
     
@@ -190,7 +190,7 @@ function crea_horaris_ASC_mixt()
 function crea_horaris_gp_mixt($exportsagaxml,$exporthorarixml) 
     {
 
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 
     introduir_fase('lessons',0);    
     
@@ -602,7 +602,7 @@ function extreu_grup_HW($exporthorarixml,$grupHW)
     
 function comprova_desdoblament($id_professor,$idgrup_materia)
     {
-    include("../config.php");    
+    require_once('../../bbdd/connect.php');    
     // Comprova si aquest grup materia està assignat i si ho està , si és al professor que ens ha arribat
 //    echo "<br>".$id_professor." >>".$idgrup_materia;
     // Separo el grup i matèria
@@ -668,7 +668,7 @@ function comprova_desdoblament($id_professor,$idgrup_materia)
       
 function comprova_desdoblament_tmp($id_professor,$idgrup_materia)
     {
-    include("../config.php");    
+    require_once('../../bbdd/connect.php');    
     // Comprova si aquest grup materia està assignat i si ho està , si és al professor que ens ha arribat
     
     // Separo el grup i matèria
@@ -737,7 +737,7 @@ function creadesdoblament($idgrup_materia,$modul,$idProfessor)
 // rep el el grup materia del darrer desdoblament del grup afectat
         
     {
-    include("../config.php");    
+    require_once('../../bbdd/connect.php');    
     
     // Separo el grup i matèria
     $sql="SELECT id_grups,id_mat_uf_pla,data_inici,data_fi FROM grups_materies WHERE idgrups_materies='".$idgrup_materia."';";
@@ -861,7 +861,7 @@ function creadesdoblament($idgrup_materia,$modul,$idProfessor)
 // treu el darrer desdoblament del grup afectat
 //function treu_darrer_desdoblament($idgrup_materia)
 //    {
-//    include("../config.php");    
+//    require_once('../../bbdd/connect.php');    
 //    
 //    // Separo el grup i matèria
 //    $sql="SELECT id_grups,id_mat_uf_pla,data_inici,data_fi FROM grups_materies WHERE idgrups_materies='".$idgrup_materia."';";
@@ -926,7 +926,7 @@ function creadesdoblament($idgrup_materia,$modul,$idProfessor)
 //    }
 function treu_darrer_desdoblament($idgrup_materia)
     {
-    include("../config.php");    
+    require_once('../../bbdd/connect.php');    
     
     // Separo el grup i matèria
     $sql="SELECT id_grups,id_mat_uf_pla,data_inici,data_fi FROM grups_materies WHERE idgrups_materies='".$idgrup_materia."';";
@@ -1042,7 +1042,7 @@ function treuDatesUnitatsFormatives()
     {
     $intervalDies= "150 days";
     $dates = array();
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
    
     $sql = "SELECT idperiodes_escolars FROM periodes_escolars WHERE actual = 'S' ;";
     $result=mysql_query($sql);if (!$result) {die(SELECT_DIES.mysql_error());}
@@ -1066,7 +1066,7 @@ function treuDatesUnitatsFormatives()
 function crea_horaris_KW_mixt($exportsagaxml,$exporthorarixml) 
     {
 
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 
     introduir_fase('lessons',0);
     
@@ -1277,7 +1277,7 @@ function crea_horaris_KW_mixt($exportsagaxml,$exporthorarixml)
 
 function crea_horaris_HW_mixt($exportsagaxml,$exporthorarixml) 
     {
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 
     introduir_fase('lessons',0);    
     
@@ -1680,7 +1680,7 @@ function crea_horaris_HW_mixt($exportsagaxml,$exporthorarixml)
 function crea_horaris_GP_eso($exportsagaxml,$exporthorarixml) 
 	{
 	
-	include("../config.php");
+	require_once('../../bbdd/connect.php');
 	
 	introduir_fase('lessons',0);
 	
@@ -1885,7 +1885,7 @@ function crea_horaris_GP_eso($exportsagaxml,$exporthorarixml)
 function crea_horaris_PN_eso($exportsagaxml,$exporthorarixml) 
     {
 	
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 
     introduir_fase('lessons',0);
 
@@ -2087,7 +2087,7 @@ function crea_horaris_PN_eso($exportsagaxml,$exporthorarixml)
 
 function crea_horaris_gp_ccff($exportsagaxml,$exporthorarixml) 
     {
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 
     introduir_fase('lessons',0);    
     
@@ -2339,7 +2339,7 @@ function crea_horaris_gp_ccff($exportsagaxml,$exporthorarixml)
 
 function primera_uf($id_uf)
    {
-   include("../config.php");
+   require_once('../../bbdd/connect.php');
 	
    // Aquesta funció retorna el darrer nombre del codi de la unitat formativa per saber
    // Si és la primera uf d'un módul
@@ -2359,7 +2359,7 @@ function primera_uf($id_uf)
 function crea_horaris_PN_ccff($exportsagaxml,$exporthorarixml) 
 	{
 	
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 
     introduir_fase('lessons',0);    
     

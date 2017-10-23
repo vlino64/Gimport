@@ -209,7 +209,7 @@ function extreu_id($taula,$camp,$id,$codi)
 function recuperacampdedades(&$camps)
 
 	{
-//	include("../config.php");
+//	require_once('../../bbdd/connect.php');
 	
 	$sql ="SELECT Nom_info_contacte,idtipus_contacte FROM `tipus_contacte`;";
 	$result = mysql_query($sql);

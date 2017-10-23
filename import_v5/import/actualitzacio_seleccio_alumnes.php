@@ -8,7 +8,7 @@
 * Post cond.:
 * 
 ----------------------------------------------------------------*/
-include("../config.php");
+require_once('../../bbdd/connect.php');
 include("../funcions/func_prof_alum.php");
 include("../funcions/funcions_generals.php");
 include("../funcions/funcionsCsv.php");
@@ -21,8 +21,7 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 	exit();
 	}
 
-//foreach($_FILES as $campo => $texto)
-//eval("\$".$campo."='".$texto."';");
+
 
 ?>
 <html>
@@ -40,10 +39,10 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
         <form enctype="multipart/form-data" action="./main_actualitzacio_alumnes.php" method="post" name="selectAlumnes">
         <br><br><br>        
         <table class="general" width="70%" align="center"bgcolor="#ffbf6d" >
-            <tr><td align="center"><p><h3>Actualitza els alumnes als seus grups</h3><br></td></tr>
+            <tr><td align="center"><p><h3>Assigna els alumnes als seus grups i matèries</h3><br></td></tr>
             <tr><td align="center"><p><b><br>Indica d'on vols extreure aquesta informació<br></h3><br></b></td></tr>
                 <tr><td align="center"><input type="radio" name="alumnes" value="0" id="alumnes_0" /> Carreguem des del fitxer csv</td></tr>
-                <tr><td align="center"><input type="radio" name="alumnes" value="1" id="alumnes_1"  /> Carreguem des del fiter de SAGA</td></tr>
+                <tr><td align="center"><input type="radio" name="alumnes" value="1" id="alumnes_1"  /> Carreguem des del fitxer de SAGA</td></tr>
                 <tr><td align="center"><br><input name="boton" type="submit" id="boton" value="Envia la configuració"></td></tr>
         </table>
         </form>        

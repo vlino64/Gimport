@@ -11,7 +11,7 @@
 function genera_historic()
 	{
 		
-	include("../config.php");
+	require_once('../../bbdd/connect.php');
 	
 	// Crea la taula d'històrics de faltes d'alumnes si no existeix
 	$sql="CREATE TABLE IF NOT EXISTS `HIST_faltes_alumnes` ( `id_hist_alumnes` int(11) NOT NULL AUTO_INCREMENT, `id_alumne` int(11) NOT NULL,  `id_professor` int(11) NOT NULL, ";

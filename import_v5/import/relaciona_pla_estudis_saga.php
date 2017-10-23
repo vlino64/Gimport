@@ -8,7 +8,7 @@
 * Post cond.:
 * 
 ----------------------------------------------------------------*/
-include("../config.php");
+require_once('../../bbdd/connect.php');
 include("../funcions/funcions_generals.php");
 include("../funcions/funcions_historic.php");
 
@@ -36,7 +36,7 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 <body>
 <?php
 
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 //    $conexion=mysql_connect(localhost,$_USR_GASSIST,$_PASS_GASSIST);
 //    $db=mysql_select_db($_BD_GASSIST,$conexion);
 //    mysql_set_charset("utf8");	

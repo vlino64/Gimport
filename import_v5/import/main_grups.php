@@ -8,7 +8,7 @@
 * Post cond.:
 * 
 ----------------------------------------------------------------*/
-include("../config.php");
+require_once('../../bbdd/connect.php');
 include("../funcions/func_grups_materies.php");
 include("../funcions/funcions_generals.php");
 include("../funcions/funcionsCsv.php");
@@ -63,7 +63,7 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 	$exporthorarixml=$_SESSION['upload_horaris'];
         $exportsagaxml=$_SESSION['upload_saga'];
         
-	include("../config.php");
+	require_once('../../bbdd/connect.php');
 
         if ($_POST['grups'] == 0) {relaciona_grups_torns_csv(); }
         if ($_POST['grups'] == 1) {relaciona_grups_torns_sol_saga($exportsagaxml); }

@@ -8,7 +8,7 @@
 * Post cond.:
 * 
 ----------------------------------------------------------------*/
-include("../config.php");
+require_once('../../bbdd/connect.php');
 include("../funcions/func_historic.php");
 include("../funcions/funcions_generals.php");
 include("../funcions/func_prof_alum.php");

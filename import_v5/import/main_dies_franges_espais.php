@@ -8,7 +8,7 @@
 * Post cond.:
 * 
 ----------------------------------------------------------------*/
-include("../config.php");
+require_once('../../bbdd/connect.php');
 include("../funcions/func_espais_franges.php");
 include("../funcions/funcions_generals.php");
 include("../funcions/funcionsCsv.php");
@@ -37,7 +37,7 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
    // aquesta pàgina es carrega vàries vegades en funció dels continguts que s'hagin ja introduit
    // ###########################
 	
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 
     $exportsagaxml=$_SESSION['upload_saga'];
     $exporthorarixml=$_SESSION['upload_horaris'];

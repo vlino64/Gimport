@@ -8,7 +8,7 @@
 * Post cond.:
 * 
 ----------------------------------------------------------------*/
-include("../config.php");
+require_once('../../bbdd/connect.php');
 
 	$filename = "bk_".$_BD_GASSIST."_".date("d-m-Y_H-i-s").".sql";
 	$mime = "application/x-gzip";

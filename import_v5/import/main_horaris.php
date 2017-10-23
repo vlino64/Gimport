@@ -8,7 +8,7 @@
 * Post cond.:
 * 
 ----------------------------------------------------------------*/
-include("../config.php");
+require_once('../../bbdd/connect.php');
 include("../funcions/func_horaris.php");
 include("../funcions/func_espais_franges.php");
 include("../funcions/func_grups_materies.php");
@@ -37,7 +37,7 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 <body>
 <?php
 
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 
     $exportsagaxml=$_SESSION['upload_saga'];
     $exporthorarixml=$_SESSION['upload_horaris'];

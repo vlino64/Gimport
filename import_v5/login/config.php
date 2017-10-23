@@ -9,7 +9,7 @@
 ----------------------------------------------------------------*/
 ?>
 <?php
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 	//define('DB_HOST', 'localhost');
     //define('DB_USER', "$_USR_GASSIST");
     //define('DB_PASSWORD', "$_PASS_GASSIST");

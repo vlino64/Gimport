@@ -12,7 +12,7 @@
 function modificacions()
     {   
 
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
     
     // ***************************************** MODIFICACIONS 17/18 *********************************************************************************
 

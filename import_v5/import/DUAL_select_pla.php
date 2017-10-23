@@ -8,7 +8,7 @@
 * Post cond.:
 * 
 ----------------------------------------------------------------*/
-include("../config.php");
+require_once('../../bbdd/connect.php');
 include("../funcions/funcions_generals.php");
 include("../funcions/func_grups_materies.php");
 
@@ -31,7 +31,7 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 <body>
 <?php
 
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 	
       
    if (extreu_fase('modalitat_fitxer')==2)   

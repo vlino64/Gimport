@@ -8,7 +8,7 @@
 * Post cond.:
 * 
 ----------------------------------------------------------------*/
-include("../config.php");
+require_once('../../bbdd/connect.php');
 include("../funcions/func_prof_alum.php");
 include("../funcions/funcions_generals.php");
 include("../funcions/funcionsCsv.php");
@@ -69,7 +69,7 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
         }
     else 
         {
-	include("../config.php");
+	require_once('../../bbdd/connect.php');
         if ($_POST['alumnes'] == 0) {altaAlumne(); }
         if ($_POST['alumnes'] == 1) {select_alumnat(); }
         }

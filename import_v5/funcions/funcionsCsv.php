@@ -12,7 +12,7 @@
 
 function carregaFrangesDies()
     {
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 
     $sql = "SELECT idperiodes_escolars FROM periodes_escolars WHERE actual = 'S' ;";
     $result=mysql_query($sql);if (!$result) {die(SELECT_DIES.mysql_error());}
@@ -145,7 +145,7 @@ function extreuDia($dia)
     
 function creaSessionsEso($sessions, $idgrup_materia,$codi_noroom,$periode)
     {
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 
     $unitatsclasse = explode(" ",$sessions);
 
@@ -177,7 +177,7 @@ function creaSessionsEso($sessions, $idgrup_materia,$codi_noroom,$periode)
 
 function creaSessionsCCFF($sessions,$arrayUfs,$codi_noroom,$periode)
     {
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 
     $unitatsclasse = explode(" ",$sessions);
 
@@ -378,7 +378,7 @@ function extreuProfessoratCsv()
 
 function emparella_grups_actualitzacio_csv()
     {
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 
     $arr_grups_csv = extreuGrupsCsv2();
     

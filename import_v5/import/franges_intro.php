@@ -8,7 +8,7 @@
 * Post cond.:
 * 
 ----------------------------------------------------------------*/
-include("../config.php");
+require_once('../../bbdd/connect.php');
 include("../funcions/func_espais_franges.php");
 include("../funcions/funcions_generals.php");
 
@@ -33,7 +33,7 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 
 <?php
 
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 
     $recompte=$_POST['recompte'];
     $mes_franges=$_POST['mesfranges'];

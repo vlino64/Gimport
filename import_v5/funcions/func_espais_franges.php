@@ -15,7 +15,7 @@
 
 function carregaFrangesDiesKW()
     {
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 
     $sql = "SELECT idperiodes_escolars FROM periodes_escolars WHERE actual = 'S' ;";
     $result=mysql_query($sql);if (!$result) {die(SELECT_DIES.mysql_error());}
@@ -62,7 +62,7 @@ function carregaFrangesDiesKW()
 
 function extreu_codi_franja_guardies($dia,$fran)
    {
-	include("../config.php");
+	require_once('../../bbdd/connect.php');
 	
 //	$conexion=mysql_connect(localhost,$_USR_GASSIST,$_PASS_GASSIST);
 //	$db=mysql_select_db($_BD_GASSIST,$conexion);
@@ -117,7 +117,7 @@ function extreu_codi_franja_guardies($dia,$fran)
 
 function extreu_codi_franja($dia,$fran,$id_grup)
    {
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 	
     $id_torn=extreu_id('grups','idgrups','idtorn',$id_grup);
    
@@ -163,7 +163,7 @@ function carrega_dies($exporthorarixml)
 
     {
 
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 	
     $dies=array("Dilluns","Dimarts","Dimecres","Dijous","Divendres","Dissabte","Diumenge");
     $comptador=1;
@@ -187,7 +187,7 @@ function carrega_dies($exporthorarixml)
 		
 function formulari_franges_GP($exporthorarixml)
     {
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 
     print("<form method=\"post\" action=\"./franges_intro.php\" enctype=\"multipart/form-data\" id=\"profform\">");
     //echo $exporthorarixml;
@@ -286,7 +286,7 @@ function formulari_franges_GP($exporthorarixml)
 function cerca_altres_franges_gp($exporthorarixml)
    {
    
-	include("../config.php");
+	require_once('../../bbdd/connect.php');
 	
 	$conexion=mysql_connect(localhost,$_USR_GASSIST,$_PASS_GASSIST);
 	$db=mysql_select_db($_BD_GASSIST,$conexion);
@@ -392,7 +392,7 @@ function valorPresent($franges,$hora)
     
 function formulari_franges_KW($exporthorarixml)
     {
-//    include("../config.php");
+//    require_once('../../bbdd/connect.php');
 //
 //    print("<form method=\"post\" action=\"./franges_intro.php\" enctype=\"multipart/form-data\" id=\"profform\">");
 //    //echo $exporthorarixml;
@@ -504,7 +504,7 @@ function formulari_franges_KW($exporthorarixml)
         
 function formulari_franges_HW($exporthorarixml)
     {
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 
     print("<form method=\"post\" action=\"./franges_intro.php\" enctype=\"multipart/form-data\" id=\"profform\">");
     //echo $exporthorarixml;
@@ -618,7 +618,7 @@ function arregla_hora_gpuntis($hora)
 */
 function formulari_franges_PN($exportgpuntisxml)
     {
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
 	
    print("<form method=\"post\" action=\"./franges_intro.php\" enctype=\"multipart/form-data\" id=\"profform\">");
    $resultatconsulta=simplexml_load_file($exportgpuntisxml);
@@ -727,7 +727,7 @@ function form_espais2_gp($exporthorarixml)
    
 function espais_intro_GP($exporthorarixml)
     {
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
     $resultatconsulta=simplexml_load_file($exporthorarixml);
     foreach ($resultatconsulta->rooms->room as $espai)
        {
@@ -749,7 +749,7 @@ function espais_intro_GP($exporthorarixml)
 	
 function espais_intro_PN($exporthorarixml)        
     {
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
     $resultatconsulta=simplexml_load_file($exporthorarixml);    
     foreach ($resultatconsulta->aulas->aula as $espai)
 	{
@@ -768,7 +768,7 @@ function espais_intro_PN($exporthorarixml)
 
 function espais_intro_KW($exporthorarixml)
     {
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
     $resultatconsulta=simplexml_load_file($exporthorarixml);
     foreach ($resultatconsulta->AULAT->AULAF as $espai)
        {
@@ -790,7 +790,7 @@ function espais_intro_KW($exporthorarixml)
 
 function espais_intro_HW($exporthorarixml)
     {
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
     $resultatconsulta=simplexml_load_file($exporthorarixml);
     foreach ($resultatconsulta->DATOS->AULAS->AULA as $espai)
        {
@@ -814,7 +814,7 @@ function espais_intro_HW($exporthorarixml)
 function espais_intro2_gp($exporthorarixml)
     {
    
-    include("../config.php");
+    require_once('../../bbdd/connect.php');
     $resultatconsulta=simplexml_load_file($exporthorarixml);
     $sql="SELECT descripcio,codi_espai FROM espais_centre;	";
     $result=mysql_query($sql);if (!$result) {die(SELECT_espais.mysql_error());}
