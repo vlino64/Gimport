@@ -53,7 +53,7 @@ function update_professorat_gassist($arrayProfessorat)
                 //echo "S'ha insertat ".$nom;echo "<br>";
 
                 $camps=array();
-                recuperacampdedades($camps);
+               $camps =recuperacampdedades($camps,$db);
 
                 $id=extreu_id(professors,codi_professor,idprofessors,$user);
                 //echo "<br>".$id;
@@ -374,7 +374,7 @@ function intro_prof_equivalencies_gp($exporthorarixml)
 function select_professorat($exportsagaxml,$exporthorarixml)
     {
 	$camps=array();
-	recuperacampdedades($camps);
+	recuperacampdedades($camps,$db);
 
    // Desactivem tot el professorat
 	$sql="UPDATE `professors` SET `activat`='N' WHERE activat='S';";
@@ -582,7 +582,7 @@ function select_professorat($exportsagaxml,$exporthorarixml)
 function altaAlumne()
     {
     $camps=array();
-    recuperacampdedades($camps);
+   $camps =recuperacampdedades($camps,$db);
     
     $sql ="ALTER TABLE `contacte_families` CHANGE `Valor` `Valor` VARCHAR(400) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL;";
     $result=mysql_query($sql);
@@ -751,7 +751,7 @@ function select_alumnat()
     // NOMÉS S'UTILITZA PER DONAR D'ALTA DES DE FITXER DE SAGA
     $exportsagaxml=$_SESSION['upload_saga'];
     $camps=array();
-    recuperacampdedades($camps);
+   $camps =recuperacampdedades($camps,$db);
 
     // Desactivem tot l'alumnat que està activat a la base de dades. No els pasem de moment a l'històric
     // ja que volem que al desplegable apareguin
@@ -889,7 +889,7 @@ function actualitzar_alumnat($exportsagaxml)
 	{
 	
    	$camps=array();
-        recuperacampdedades($camps);
+       $camps =recuperacampdedades($camps,$db);
 
         // Desactivem tot l'alumnat que està activat a la base de dades. No els pasem de moment a l'històric
         // ja que volem que al desplegable apareguin
@@ -1144,7 +1144,7 @@ function carrega_dades_families($id,$id_saga)
                         $id_families = crea_families();
 
                         $camps=array();
-                        recuperacampdedades($camps);
+                       $camps =recuperacampdedades($camps,$db);
 
                         // Segon si té o no germans es modifica la sql	
                         $sql="INSERT INTO `alumnes_families`(idalumnes,idfamilies) ";
@@ -1251,7 +1251,7 @@ function profe_ja_existeix($user)
 	{
 	
 	$camps=array();
-	recuperacampdedades($camps);
+	recuperacampdedades($camps,$db);
 	
 	$sql="SELECT COUNT(*) FROM contacte_professor WHERE id_tipus_contacte='".$camps[login]."' AND Valor='".$user."';";
 	//echo $sql;echo"<br>";
@@ -1265,7 +1265,7 @@ function alumne_ja_existeix($user)
 	{
 	
 	$camps=array();
-	recuperacampdedades($camps);
+	recuperacampdedades($camps,$db);
 	
 	$sql="SELECT COUNT(*) FROM alumnes WHERE codi_alumnes_saga='".$user."';";
 	//echo $sql;echo"<br>";

@@ -86,7 +86,7 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 			//echo "S'ha insertat ".$nom;echo "<br>";
 			
 			$camps=array();
-			recuperacampdedades($camps);
+			recuperacampdedades($camps,$db);
 			
 			$id=extreu_id(professors,codi_professor,idprofessors,$user);
 			//echo "<br>".$id;
@@ -126,7 +126,7 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 			{
 			//echo $id_gassist."<br>";		
 			$camps=array();
-			recuperacampdedades($camps);
+			recuperacampdedades($camps,$db);
 									
 			$sql="SELECT COUNT(*) FROM contacte_professor WHERE ((id_professor=\"".$id_gassist."\") AND(id_tipus_contacte='".$camps[iden_ref]."'));";
 			//echo $sql;

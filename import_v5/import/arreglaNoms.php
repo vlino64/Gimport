@@ -13,7 +13,7 @@ include("../funcions/func_prof_alum.php");
 include("../funcions/funcions_generals.php");
 
 $camps=array();
-recuperacampdedades($camps);
+recuperacampdedades($camps,$db);
 
 $sql="SELECT idalumnes FROM alumnes ";
 //echo $sql."<br>";

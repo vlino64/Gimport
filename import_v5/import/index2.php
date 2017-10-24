@@ -52,7 +52,7 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
     if ($carrega < 2) {modificacions();}
     
     $camps=array();
-    recuperacampdedades($camps);
+   $camps =recuperacampdedades($camps,$db);
     
     $geisoft=$_POST['geisoft'];
 

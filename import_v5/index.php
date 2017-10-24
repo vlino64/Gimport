@@ -6,7 +6,7 @@ session_start();
 
 if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")) 
 		{
-		header("location: ./login/access-denied.php");
+		header("location: ./login/login-form.php");
 		exit();
 		}
 	else

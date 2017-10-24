@@ -36,7 +36,7 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 
 <?php
 		$camps=array();
-		recuperacampdedades($camps);
+		recuperacampdedades($camps,$db);
 
 		$recompte=$_POST['recompte'];
                 echo "<br>".$recompte;

@@ -206,23 +206,20 @@ function extreu_id($taula,$camp,$id,$codi)
 ////				amb el seu codi per facilitar consultes
 ////**********************************************************************
 
-function recuperacampdedades(&$camps)
+function recuperacampdedades($camps,$db)
 
 	{
-//	require_once('../../bbdd/connect.php');
-	
 	$sql ="SELECT Nom_info_contacte,idtipus_contacte FROM `tipus_contacte`;";
-	$result = mysql_query($sql);
-	if (!$result) 
-     	{
-		die(_ERR_SELECT_DATA_TYPE. mysql_error());
-		} 
-	while ($fila=mysql_fetch_row($result))
-		{
-		$camps[$fila[0]]=$fila[1];
+	$result = $db->query($sql);
+        if (!$result) {die(_ERR_SELECT_DATA_TYPE. mysql_error());} 
+	foreach($result->fetchAll() as $fila) {
+		
+		$camps[$fila['Nom_info_contacte']]=$fila['idtipus_contacte'];
 		//echo $fila[0].$fila[1]."---".$camps[$fila[0]]."<br>";
 		}
-	}
+	
+        return $camps;        
+        }
 	
 
 function munta_el_config()

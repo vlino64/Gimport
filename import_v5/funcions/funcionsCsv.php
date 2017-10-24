@@ -444,7 +444,7 @@ function comprova_matricula_grup($idAlumne,$id_grup){
 function actualitzar_alumnat_csv($relacioGrups)
     {
     $camps=array();
-    recuperacampdedades($camps);
+   $camps =recuperacampdedades($camps,$db);
     //Desactivem tots els alumnes
     
     $sql ="ALTER TABLE `contacte_families` CHANGE `Valor` `Valor` VARCHAR(400) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL;";
@@ -671,7 +671,7 @@ function alta_grup_actualitzacio($id_alumne,$id_grup)
 //function altaAlumne()
 //    {
 //    $camps=array();
-//    recuperacampdedades($camps);
+//   $camps =recuperacampdedades($camps,$db);
 //    //Desactivem tots els alumnes
 //    $sql="UPDATE `alumnes` SET activat = 'N';";
 //    //echo $sql."<br>";
