@@ -13,7 +13,7 @@
 //					DIES / FRANGES	/ ESPAIS
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2
 
-function carregaFrangesDiesKW()
+function _carregaFrangesDiesKW()
     {
     require_once('../../bbdd/connect.php');
 
@@ -60,7 +60,7 @@ function carregaFrangesDiesKW()
         }
     }
 
-function extreu_codi_franja_guardies($dia,$fran)
+function _extreu_codi_franja_guardies($dia,$fran)
    {
 	require_once('../../bbdd/connect.php');
 	
@@ -115,7 +115,7 @@ function extreu_codi_franja_guardies($dia,$fran)
    return $iddia_franja;
    }
 
-function extreu_codi_franja($dia,$fran,$id_grup)
+function _extreu_codi_franja($dia,$fran,$id_grup)
    {
     require_once('../../bbdd/connect.php');
 	
@@ -159,7 +159,7 @@ function extreu_codi_franja($dia,$fran,$id_grup)
 
 
 
-function carrega_dies($exporthorarixml)
+function _carrega_dies($exporthorarixml)
 
     {
 
@@ -185,7 +185,7 @@ function carrega_dies($exporthorarixml)
     }
 	
 		
-function formulari_franges_GP($exporthorarixml)
+function _formulari_franges_GP($exporthorarixml)
     {
     require_once('../../bbdd/connect.php');
 
@@ -283,7 +283,7 @@ function formulari_franges_GP($exporthorarixml)
     }
 /*
 //Aquesta funció comprova si s'ha n assignat altres franges hories addiconals al dissenyar les sessions
-function cerca_altres_franges_gp($exporthorarixml)
+function _cerca_altres_franges_gp($exporthorarixml)
    {
    
 	require_once('../../bbdd/connect.php');
@@ -377,7 +377,7 @@ function cerca_altres_franges_gp($exporthorarixml)
    }      
 */
 
-function valorPresent($franges,$hora)
+function _valorPresent($franges,$hora)
     {
     $j=0;
     echo "<br>>>".count($franges);
@@ -390,7 +390,7 @@ function valorPresent($franges,$hora)
     }    
     
     
-function formulari_franges_KW($exporthorarixml)
+function _formulari_franges_KW($exporthorarixml)
     {
 //    require_once('../../bbdd/connect.php');
 //
@@ -502,7 +502,7 @@ function formulari_franges_KW($exporthorarixml)
         }
      
         
-function formulari_franges_HW($exporthorarixml)
+function _formulari_franges_HW($exporthorarixml)
     {
     require_once('../../bbdd/connect.php');
 
@@ -595,7 +595,7 @@ function formulari_franges_HW($exporthorarixml)
         }
     }    
     
-function arregla_hora_gpuntis($hora)
+function _arregla_hora_gpuntis($hora)
 	{
 	if (strlen($hora)=="5") {$hora=str_pad($hora, 6, "0", STR_PAD_LEFT);}
 	$hora=substr($hora,0,2).":".substr($hora,2,2).":".substr($hora,4,2);
@@ -603,7 +603,7 @@ function arregla_hora_gpuntis($hora)
 	}
 
 
-/*function espais_ja_introduits()
+/*function _espais_ja_introduits()
    {
    
    $sql="SELECT A.hora_inici,A.hora_fi,B.nom_torn FROM franges_horaries A, torn B	";
@@ -616,7 +616,7 @@ function arregla_hora_gpuntis($hora)
 		}
    }
 */
-function formulari_franges_PN($exportgpuntisxml)
+function _formulari_franges_PN($exportgpuntisxml)
     {
     require_once('../../bbdd/connect.php');
 	
@@ -712,7 +712,7 @@ function formulari_franges_PN($exportgpuntisxml)
 
    }
 
-function form_espais2_gp($exporthorarixml)
+function _form_espais2_gp($exporthorarixml)
     {
     print("<form method=\"post\" action=\"./espais_intro2.php\" enctype=\"multipart/form-data\" id=\"espaisform\">");
     // Mostrem els espais ja introduits
@@ -725,7 +725,7 @@ function form_espais2_gp($exporthorarixml)
 
 
    
-function espais_intro_GP($exporthorarixml)
+function _espais_intro_GP($exporthorarixml)
     {
     require_once('../../bbdd/connect.php');
     $resultatconsulta=simplexml_load_file($exporthorarixml);
@@ -747,7 +747,7 @@ function espais_intro_GP($exporthorarixml)
     introduir_fase('espais',1);
     }
 	
-function espais_intro_PN($exporthorarixml)        
+function _espais_intro_PN($exporthorarixml)        
     {
     require_once('../../bbdd/connect.php');
     $resultatconsulta=simplexml_load_file($exporthorarixml);    
@@ -766,7 +766,7 @@ function espais_intro_PN($exporthorarixml)
      introduir_fase('espais',1);
     }
 
-function espais_intro_KW($exporthorarixml)
+function _espais_intro_KW($exporthorarixml)
     {
     require_once('../../bbdd/connect.php');
     $resultatconsulta=simplexml_load_file($exporthorarixml);
@@ -788,7 +788,7 @@ function espais_intro_KW($exporthorarixml)
     introduir_fase('espais',1);
     }    
 
-function espais_intro_HW($exporthorarixml)
+function _espais_intro_HW($exporthorarixml)
     {
     require_once('../../bbdd/connect.php');
     $resultatconsulta=simplexml_load_file($exporthorarixml);
@@ -811,7 +811,7 @@ function espais_intro_HW($exporthorarixml)
     } 
     
     
-function espais_intro2_gp($exporthorarixml)
+function _espais_intro2_gp($exporthorarixml)
     {
    
     require_once('../../bbdd/connect.php');

@@ -14,7 +14,7 @@
 //						GRUPS I MATÈRIES
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2
 
-function genera_tutoria($dataInici,$dataFi,$idPla,$acronimPla,$esLoe)
+function _genera_tutoria($dataInici,$dataFi,$idPla,$acronimPla,$esLoe)
     {
     $materia = $acronimPla."_Tutoria";
     if (!$esLoe)
@@ -102,7 +102,7 @@ function genera_tutoria($dataInici,$dataFi,$idPla,$acronimPla,$esLoe)
     return $materia;
    }
 
-function cali_intro_grups($exportsagaxml,$exporthorarixml)
+function _cali_intro_grups($exportsagaxml,$exporthorarixml)
     {
     // Tot es gestionarà amb el torn global
     echo "***************************************************<br>";
@@ -168,12 +168,12 @@ function cali_intro_grups($exportsagaxml,$exporthorarixml)
     header("Refresh: $sec; url=$page");
     }
 
-function clonar_modul($id_modul,$duplicat)
+function _clonar_modul($id_modul,$duplicat)
    {}
-function crea_grup_sense_materies_i_assigna_alumnes($tipus_pla,$id_pla,$nom_materia,$id_materia,$id_grup,$idg_grup)
+function _crea_grup_sense_materies_i_assigna_alumnes($tipus_pla,$id_pla,$nom_materia,$id_materia,$id_grup,$idg_grup)
    {}
 
-function relaciona_grups_torns_sol_saga($exportsagaxml)
+function _relaciona_grups_torns_sol_saga($exportsagaxml)
     {
     require_once('../../bbdd/connect.php');
 	
@@ -240,10 +240,10 @@ function relaciona_grups_torns_sol_saga($exportsagaxml)
 	
 	} 
         
-function relaciona_grups_torns_sense_materies($exportsagaxml)
+function _relaciona_grups_torns_sense_materies($exportsagaxml)
     {}
 
-function relaciona_grups_torns_csv()
+function _relaciona_grups_torns_csv()
 	{
 	require_once('../../bbdd/connect.php');
         
@@ -294,7 +294,7 @@ function relaciona_grups_torns_csv()
                 print("</form>");
     }    
     
-function relaciona_grups_torns($exportalumnes,$exporthorarixml)
+function _relaciona_grups_torns($exportalumnes,$exporthorarixml)
 	{
 	require_once('../../bbdd/connect.php');
 
@@ -351,7 +351,7 @@ function relaciona_grups_torns($exportalumnes,$exporthorarixml)
 		print("</form>");
    }   
 	
-function  crea_form_grup_CSV()
+function _crea_form_grup_CSV()
     {
     $grups = extreuGrupsCsv2();
     $pos=1;
@@ -396,7 +396,7 @@ function  crea_form_grup_CSV()
    }
    
    
-function  crea_form_grup_GP($exporthorarixml)
+function _crea_form_grup_GP($exporthorarixml)
    {
 	$resultatconsulta=simplexml_load_file($exporthorarixml);
 	if ( !$resultatconsulta ) {echo "Carrega horaris fallida";}
@@ -445,7 +445,7 @@ function  crea_form_grup_GP($exporthorarixml)
    return $pos;
    }
 
-function  crea_form_grup_ASC($exporthorarixml)
+function _crea_form_grup_ASC($exporthorarixml)
     {
     //include("./funcionsCsv.php");
     
@@ -491,7 +491,7 @@ function  crea_form_grup_ASC($exporthorarixml)
     }
    
 
-function  crea_form_grup_PN($exporthorarixml)
+function _crea_form_grup_PN($exporthorarixml)
    {
 	echo $exporthorarixml;
    $resultatconsulta=simplexml_load_file($exporthorarixml);
@@ -541,7 +541,7 @@ function  crea_form_grup_PN($exporthorarixml)
    }
    
    
-function  crea_form_grup_KW($exporthorarixml)
+function _crea_form_grup_KW($exporthorarixml)
    {
 	$resultatconsulta=simplexml_load_file($exporthorarixml);
 	if ( !$resultatconsulta ) {echo "Carrega horaris fallida";}
@@ -590,7 +590,7 @@ function  crea_form_grup_KW($exporthorarixml)
    }
    
    
-function  crea_form_grup_HW($exporthorarixml)
+function _crea_form_grup_HW($exporthorarixml)
    {
 	echo $exporthorarixml;
    $resultatconsulta=simplexml_load_file($exporthorarixml);
@@ -640,7 +640,7 @@ function  crea_form_grup_HW($exporthorarixml)
    return $pos;  
    }
 
-function extreuGrupsAlumnatCsv()
+function _extreuGrupsAlumnatCsv()
     {
     $grups = array();
     $j = 0;
@@ -665,48 +665,8 @@ function extreuGrupsAlumnatCsv()
     }
    
   
-function  crea_form_grup_ESF()
-    {
-//    $grups = extreuGrupsAlumnatCsv();
-//    $pos=1;
-//    foreach ($grups as $grup)
-//        {
-//        $sql="SELECT idtorn,nom_torn FROM torn;";
-//        $result=mysql_query($sql); if (!$result) {	die(mysql_error());}
-//        $torns=  mysql_num_rows($result);
-//        print("<tr ");
-//        print("><td><input type=\"text\" name=\"id_grup_".$pos."\" value=\"".$grup."\" SIZE=\"15\" READONLY></td>");
-//        print("<td><input type=\"text\" name=\"nom_grup_".$pos."\" value=\"(".$grup.")\" SIZE=\"15\" READONLY ></td>");
-//        print("<td><select name=\"id_torn_".$pos."\" ");
-//        print(">");
-//        print("<option value=\"0\">Cap Torn assignat</option>");
-//        while ($fila=mysql_fetch_row($result))
-//           {
-//           print("<option value=\"".$fila[0]."\" ");
-//           if ($torns==1) {print(" selected ");}        
-//           print(">".$fila[1]."</option>");
-//           }
-//        print("</select></td>");
-//        $sql="SELECT Nom_plan_estudis,idplans_estudis FROM plans_estudis;";
-//        $result=mysql_query($sql); if (!$result) {	die(mysql_error());}
-//        $torns=  mysql_num_rows($result);
-//        print("<td><select name=\"id_pla_".$pos."\" ");
-//        print(">");
-//        print("<option value=\"0\">Cap pla assignat</option>");
-//        while ($fila=mysql_fetch_row($result))
-//            {
-//            print("<option value=\"".$fila[1]."\" ");
-//            if ($torns==1) {print(" selected ");}        
-//            print(">".$fila[0]."</option>");
-//            }
-//        print("</select></td></tr>");
-//        $pos++;
-//        }      
-//         
-//   return $pos;
-   }
 
-function crea_agrupaments_GP($exporthorarixml)
+function _crea_agrupaments_GP($exporthorarixml)
    {
    $exporthorarixml=$_SESSION['upload_horaris'];
    $resultatconsulta=simplexml_load_file($exporthorarixml);
@@ -766,7 +726,7 @@ function crea_agrupaments_GP($exporthorarixml)
       }
    }
    
-function crea_agrupaments_PN($exporthorarixml)
+function _crea_agrupaments_PN($exporthorarixml)
     {
     $exporthorarixml = $_SESSION['upload_horaris'];
     $resultatconsulta=simplexml_load_file($exporthorarixml);
@@ -825,17 +785,8 @@ function crea_agrupaments_PN($exporthorarixml)
       }
    }  
    
-//function crea_agrupaments_KW($exporthorarixml)
-//   {
-//   Crearem els agrupament al generar les unitats classe. fer-ho ara és perdre recursos
-//   Per crear les unitats classe recorrerem ASIGT.
-//   De cada línia extreurem materia, grup,espai i professor, i també hores setmanals (per limitar recorreguts)
-//   Si el grup materia ja existeix es crea un nou agrupament i es genera el grup-materia
-//   Amb la informació extreta de la línia cercarem a SOLUCF la mateixa combinacio de materia, grup, espais i professor.
-//   i generarem les unitats classe
-//   }   
-//   
-function crea_agrupaments_HW($exporthorarixml)
+  
+function _crea_agrupaments_HW($exporthorarixml)
    {
     //   Partim dels horaris de les assignatures. Per cada assignatura, mirem els grups en els que es fa
     //   Amb els grups generem l'agrupament 
@@ -946,10 +897,10 @@ function crea_agrupaments_HW($exporthorarixml)
         
     }   
 
- function torna_torn_pla_HW($grup)
+ function _torna_torn_pla_HW($grup)
    {}
    
- function torna_torn($grup)
+ function _torna_torn($grup)
    {
    // Aprofitem treure el torn per veure si és un grup de docència i està en la taula equivalencies
    $sql="SELECT A.idtorn FROM grups A, equivalencies B WHERE B.grup_saga=A.codi_grup AND B.grup_gp='".$grup."';";
@@ -966,7 +917,7 @@ function crea_agrupaments_HW($exporthorarixml)
    return $id_torn;
    }
 
- function torna_pla($grup)
+ function _torna_pla($grup)
    {
    // Aprofitem treure el torn per veure si és un grup de docència i està en la taula equivalencies
    $sql="SELECT pla_saga FROM equivalencies WHERE grup_gp='".$grup."';";
@@ -976,16 +927,16 @@ function crea_agrupaments_HW($exporthorarixml)
    return $id_pla;
    }   
    
-function emparella_moduls_gp_DUAL_cali2($moduls,$materies)
+function _emparella_moduls_gp_DUAL_cali2($moduls,$materies)
     {}   
-function emparella_cali2_Logse($moduls,$materia)
+function _emparella_cali2_Logse($moduls,$materia)
     {}   
-function matricula_alumnes($idgrupmateria,$grup_saga)
+function _matricula_alumnes($idgrupmateria,$grup_saga)
     {}
-function matricula_alumnes_logse($materia)
+function _matricula_alumnes_logse($materia)
     {}
    
-function alta_materies($materia,$id_pla)
+function _alta_materies($materia,$id_pla)
     {
     
     for($i=0;$i<count($materia);$i++)
@@ -1013,7 +964,7 @@ function alta_materies($materia,$id_pla)
 
     }
 
-function alta_moduls($moduls)
+function _alta_moduls($moduls)
     {
     
 //    for($i=0;$i<count($moduls);$i++)
@@ -1066,16 +1017,16 @@ function alta_moduls($moduls)
     }   
 
 
-function emparella_moduls_gp_DUAL_cali($moduls)
+function _emparella_moduls_gp_DUAL_cali($moduls)
     {}   
-function emparella_moduls_gp_DUAL($moduls)
+function _emparella_moduls_gp_DUAL($moduls)
     {}
-function emparella_moduls_gp()
+function _emparella_moduls_gp()
     {}
-function emparella_moduls_pena()
+function _emparella_moduls_pena()
     {}
 
-function select_plaestudis_saga()
+function _select_plaestudis_saga()
 	{
 	// Carreguem tot del fitxer de SAGA
         // Prèviament haurem indicat si volem carrgar tot de nou o 
@@ -1123,7 +1074,7 @@ function select_plaestudis_saga()
 	}
 
 	
-function neteja_item_grup_materia($cadena_grups)
+function _neteja_item_grup_materia($cadena_grups)
 	{
 	//$cadena_grups="MAT3/ESO3A/ESO3B/ESO3C#4";
 	$cadena_grup=explode('#',$cadena_grups);
@@ -1132,7 +1083,7 @@ function neteja_item_grup_materia($cadena_grups)
 	}
 
    
-function carrega_CCFF_de_SAGA()
+function _carrega_CCFF_de_SAGA()
     {
     
     require_once('../../bbdd/connect.php');
@@ -1264,7 +1215,7 @@ function carrega_CCFF_de_SAGA()
         }
 //   }
 
-function carrega_plans_estudis()
+function _carrega_plans_estudis()
     {
    
     require_once('../../bbdd/connect.php');
@@ -1295,7 +1246,7 @@ function carrega_plans_estudis()
     }
     
    
-function intro_mat_GP($resultatconsulta,$id_pla)
+function _intro_mat_GP($resultatconsulta,$id_pla)
     {
     foreach ($resultatconsulta->subjects->subject as $materia)
      {
@@ -1321,7 +1272,7 @@ function intro_mat_GP($resultatconsulta,$id_pla)
      }
     }
    
- function intro_mat_PN ($resultatconsulta,$id_pla)
+ function _intro_mat_PN ($resultatconsulta,$id_pla)
     {
      foreach ($resultatconsulta->materias->materia as $materia)
          {
@@ -1347,7 +1298,7 @@ function intro_mat_GP($resultatconsulta,$id_pla)
          {die(_ERR_INSERT_SUBJECT2_CCFF . mysql_error());}									
          }
     }
-function intro_mat_KW ($resultatconsulta,$id_pla)
+function _intro_mat_KW ($resultatconsulta,$id_pla)
     {
      foreach ($resultatconsulta->NOMASIGT->NOMASIGF as $materia)
          {
@@ -1374,7 +1325,7 @@ function intro_mat_KW ($resultatconsulta,$id_pla)
          }
     }     
 
- function intro_mat_HW ($resultatconsulta,$id_pla)
+ function _intro_mat_HW ($resultatconsulta,$id_pla)
     {
      //echo "Hola";
      foreach ($resultatconsulta->DATOS->ASIGNATURAS->ASIGNATURA as $materia)

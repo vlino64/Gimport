@@ -10,7 +10,7 @@
 ----------------------------------------------------------------*/
 
 
-function carregaFrangesDies()
+function __carregaFrangesDies()
     {
     require_once('../../bbdd/connect.php');
 
@@ -83,7 +83,7 @@ function extreuGrupsCsv2()
     return $grups;
     }
     
-function extreuGrupsCsv()
+function __extreuGrupsCsv()
     {
     // Extraccio de grups del csv de ASC
     $csvFile = $_SESSION['upload_horaris'];
@@ -116,7 +116,7 @@ function extreuGrupsCsv()
     return $grups;
     }
 
-function extreuDia($dia)    
+function __extreuDia($dia)    
     {
     switch ($dia)
         {
@@ -143,7 +143,7 @@ function extreuDia($dia)
     
     }
     
-function creaSessionsEso($sessions, $idgrup_materia,$codi_noroom,$periode)
+function __creaSessionsEso($sessions, $idgrup_materia,$codi_noroom,$periode)
     {
     require_once('../../bbdd/connect.php');
 
@@ -175,7 +175,7 @@ function creaSessionsEso($sessions, $idgrup_materia,$codi_noroom,$periode)
         }    
     }
 
-function creaSessionsCCFF($sessions,$arrayUfs,$codi_noroom,$periode)
+function _creaSessionsCCFF($sessions,$arrayUfs,$codi_noroom,$periode)
     {
     require_once('../../bbdd/connect.php');
 
@@ -211,7 +211,7 @@ function creaSessionsCCFF($sessions,$arrayUfs,$codi_noroom,$periode)
         }    
     }
     
-function extreuGrupsCsvtmp()
+function _extreuGrupsCsvtmp()
     {
     $csvFile = $_SESSION['upload_horaris'];
     
@@ -252,7 +252,7 @@ function extreuGrupsCsvtmp()
 
 
     
-function netejaCsv($csvFile)
+function _netejaCsv($csvFile)
     {
     $data2= array();
     $data= array();
@@ -274,7 +274,7 @@ function netejaCsv($csvFile)
     return $data2;
     }
 
-function gestionaProfessorESO($profFila,$idgrup_materia,$es_nou_grup_materia)
+function _gestionaProfessorESO($profFila,$idgrup_materia,$es_nou_grup_materia)
     {
     $array_prof = explode(",", $profFila);
     foreach ($array_prof as $arr_prof) 
@@ -305,7 +305,7 @@ function gestionaProfessorESO($profFila,$idgrup_materia,$es_nou_grup_materia)
         }
     }    
 
-function gestionaProfessorCCFF($profFila,$arrayUfs)
+function _gestionaProfessorCCFF($profFila,$arrayUfs)
     {
     $array_prof = explode(",", $profFila);
     foreach ($array_prof as $arr_prof) 
@@ -339,7 +339,7 @@ function gestionaProfessorCCFF($profFila,$arrayUfs)
         }
     }
     
-function extreuProfessoratCsv()
+function _extreuProfessoratCsv()
     {
     $csvFile = $_SESSION['upload_horaris'];
     echo "<br>>>>>".$csvFile;
@@ -378,8 +378,8 @@ function extreuProfessoratCsv()
 
 function emparella_grups_actualitzacio_csv()
     {
-    require_once('../../bbdd/connect.php');
-
+    require_once('../../pdo/bbdd/connect.php');
+    
     $arr_grups_csv = extreuGrupsCsv2();
     
     print("<form method=\"post\" action=\"./recull_emparellaments_grups_csv.php\" enctype=\"multipart/form-data\" id=\"profform\">");
@@ -391,14 +391,14 @@ function emparella_grups_actualitzacio_csv()
     $pos=1;
     //echo "<br>".$sql;
     $sql="SELECT idgrups,nom FROM grups WHERE 1 ORDER BY nom; ";
-    $result=mysql_query($sql); if (!$result) {	die(mysql_error());}
-    while ($fila=mysql_fetch_row($result))
-        {
+    $result = $db->query($sql);
+    //if (!$result) {die(_ERR_SELECT_DATA_TYPE. mysql_error());} 
+    foreach($result->fetchAll() as $fila) {
         print("<tr ");
         if ((($pos/5)%2)=="0") 
             {print("bgcolor=\"#3f3c3c\"");}
-        print("><td><input type=\"text\" name=\"nom_grup_".$pos."\" value=\"".$fila[1]."\" SIZE=\"50\" READONLY></td>");
-        print("<td><input type=\"text\" name=\"id_grup_".$pos."\" value=\"".$fila[0]."\" SIZE=\"6\" HIDDEN></td>");
+        print("><td><input type=\"text\" name=\"nom_grup_".$pos."\" value=\"".$fila['nom']."\" SIZE=\"50\" READONLY></td>");
+        print("<td><input type=\"text\" name=\"id_grup_".$pos."\" value=\"".$fila['idgrups']."\" SIZE=\"6\" HIDDEN></td>");
 
         print("<td><select name=\"id_grup_CSV_".$pos."\" ");
         print(">");
@@ -424,7 +424,7 @@ function emparella_grups_actualitzacio_csv()
     }    
 
 
-function comprova_matricula_grup($idAlumne,$id_grup){
+function _comprova_matricula_grup($idAlumne,$id_grup){
     
     $sql = "SELECT idgrups_materies FROM grups_materies WHERE id_grups = ".$id_grup.";";
     $result=mysql_query($sql);
@@ -636,7 +636,7 @@ function actualitzar_alumnat_csv($relacioGrups)
 
     }     
 
-function extreuGrup($relacioGrups,$grup)
+function _extreuGrup($relacioGrups,$grup)
     {
     foreach ($relacioGrups as $grups)
         {
@@ -646,7 +646,7 @@ function extreuGrup($relacioGrups,$grup)
     return 0;
     }
     
-function alta_grup_actualitzacio($id_alumne,$id_grup)
+function _alta_grup_actualitzacio($id_alumne,$id_grup)
     {
     $sql = "SELECT idgrups_materies FROM grups_materies WHERE id_grups='".$id_grup."';";
 //    echo "<br>>>>".$sql;
@@ -668,7 +668,7 @@ function alta_grup_actualitzacio($id_alumne,$id_grup)
     }
 
     
-//function altaAlumne()
+//function _altaAlumne()
 //    {
 //    $camps=array();
 //   $camps =recuperacampdedades($camps,$db);
@@ -849,7 +849,7 @@ function extreuAlumnatCsv()
     return $alumnat;    
     }    
     
-function extreuMateriesCsv()
+function _extreuMateriesCsv()
     {
     $csvFile = $_SESSION['upload_horaris'];
 

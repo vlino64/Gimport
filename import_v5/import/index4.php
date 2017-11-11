@@ -8,8 +8,9 @@
 * Post cond.:
 * 
 ----------------------------------------------------------------*/
-require_once('../../bbdd/connect.php');
+require_once('../../pdo/bbdd/connect.php');
 include("../funcions/funcions_generals.php");
+ini_set("display_errors",1);
 
 
 session_start();
@@ -35,41 +36,41 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 <?php
 
 	$geisoft=$_POST['geisoft'];//echo "<br>>>> ".$geisoft;
-	introduir_fase('app_horaris',$geisoft);
-        if (extreu_fase('app_horaris')==5) {unlink('../uploads/pujat_horaris.xml');}
+	
+        if (extreu_fase('app_horaris',$db)==5) {unlink('../uploads/pujat_horaris.xml');}
 	
 	$segona=$_POST['segona'];
         if ( $segona == "") {$segona = 0;}
-	introduir_fase('segona_carrega',$segona);
-        if (extreu_fase('segona_carrega') AND (extreu_fase('carrega')==1)) 
+	introduir_fase('segona_carrega',$segona,$db);
+        if (extreu_fase('segona_carrega',$db) AND (extreu_fase('carrega',$db)==1)) 
             {
-            introduir_fase('alumnat',1);introduir_fase('professorat',0);introduir_fase('grups',0);
-            introduir_fase('materies',0);introduir_fase('dies_espais_franges',0);introduir_fase('dies_setmana',1);
-            introduir_fase('franges',0);introduir_fase('espais',0);introduir_fase('lessons',1);
-            introduir_fase('assig_alumnes',0);
+            introduir_fase('alumnat',1,$db);introduir_fase('professorat',0,$db);introduir_fase('grups',0,$db);
+            introduir_fase('materies',0,$db);introduir_fase('dies_espais_franges',0,$db);introduir_fase('dies_setmana',1,$db);
+            introduir_fase('franges',0,$db);introduir_fase('espais',0,$db);introduir_fase('lessons',1,$db);
+            introduir_fase('assig_alumnes',0,$db);
             }
-   
-	$fitxers=$_POST['fitxerorg'];
-        if ( $fitxers == "") {$fitxers = 0;}
-	introduir_fase('modalitat_fitxer',$fitxers);
+        
+        // Totes les càrregues a partir de 2018/19 seran duals
+        // Es carrega el valor a la base de dades    
+	introduir_fase('modalitat_fitxer',2,$db);
 	
 	$aprofitar=$_POST['carrega2'];
         if ( $aprofitar == "") {$aprofitar = 0;}
-	introduir_fase('aprofitar_horaris',$aprofitar);
+	introduir_fase('aprofitar_horaris',$aprofitar,$db);
 	
 	// Si es tracta d'una segona càrrega, desmarca tots els passos excepte alumnat
-	if ((extreu_fase('segona_carrega')) && (extreu_fase('carrega')!=2)) 
+	if ((extreu_fase('segona_carrega',$db)) && (extreu_fase('carrega',$db)!=2)) 
 		{
-		introduir_fase('professorat',0);introduir_fase('grups',0);
-                introduir_fase('alumne_grups',0);
-		introduir_fase('materies',0);introduir_fase('dies_espais_franges',0);introduir_fase('dies_setmana',0);
-		introduir_fase('franges',0);introduir_fase('espais',0);introduir_fase('lessons',0);introduir_fase('assig_alumnes',0);
+		introduir_fase('professorat',0,$db);introduir_fase('grups',0,$db);
+                introduir_fase('alumne_grups',0,$db);
+		introduir_fase('materies',0,$db);introduir_fase('dies_espais_franges',0,$db);introduir_fase('dies_setmana',0,$db);
+		introduir_fase('franges',0,$db);introduir_fase('espais',0,$db);introduir_fase('lessons',0,$db);introduir_fase('assig_alumnes',0,$db);
 		}
 	
         $tmp_name = $_FILES["archivo"]["tmp_name"];
 	if ($tmp_name =="")
 		{
-		echo "Utilitzarem un fitxer ESO carregat anteriorment.<br>";
+		echo "Utilitzarem un fitxer carregat anteriorment.<br>";
 		$_SESSION['upload_horaris'] = '../uploads/pujat_horaris.xml';
 		}
 	else
@@ -91,11 +92,6 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 		//now, TOTALLY rewrite the file
 		fwrite($fp,$str,strlen($str));
 		}
-	
-
-
-        
-  
 	
 	die("<script>location.href = './menu.php'</script>");
 

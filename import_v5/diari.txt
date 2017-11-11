@@ -1,0 +1,16 @@
+ABANS DE DISTRIBUIR
+===================
+* Els require once ha de canviar pdo per tutoria
+* Posar a index2.php la password de vlino 2018/19
+
+
+TASQUES
+=======
+Recollida de dades.
+
+
+	
+
+
+
+

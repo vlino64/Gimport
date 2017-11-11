@@ -8,7 +8,7 @@
 * Post cond.:
 * 
 ----------------------------------------------------------------*/
-require_once('../../bbdd/connect.php');
+
 include("../funcions/func_prof_alum.php");
 include("../funcions/funcions_generals.php");
 include("../funcions/funcionsCsv.php");
@@ -44,6 +44,7 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
                 <tr><td align="center"><input type="radio" name="alumnes" value="0" id="alumnes_0" /> Carreguem des del fitxer csv</td></tr>
                 <tr><td align="center"><input type="radio" name="alumnes" value="1" id="alumnes_1"  /> Carreguem des del fitxer de SAGA</td></tr>
                 <tr><td align="center"><br><input name="boton" type="submit" id="boton" value="Envia la configuració"></td></tr>
+                <tr><td align="center">&nbsp;</td></tr>
         </table>
         </form>        
     

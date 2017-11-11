@@ -9,12 +9,10 @@
 ----------------------------------------------------------------*/
 	//Start session
 	session_start();
-
-
 	//Include database connection details
 	require_once('../../pdo/bbdd/connect.php');
 	include('../funcions/funcions_generals.php');
-        
+//        ini_set("display_errors", 1);
         $db->exec("set names utf8");
         
 	//Array to store validation errors
@@ -62,7 +60,7 @@
 	
 	//Create query
 	$qry="SELECT idcarrecs FROM carrecs WHERE nom_carrec='SUPERADMINISTRADOR';";
-	$result=$db->query($qry);
+        $result = $db->query($qry);
         foreach ($result -> fetchAll() as $fila) {}
 	$idsuper= $fila['idcarrecs'];
 //	echo "<br>".$idsuper;

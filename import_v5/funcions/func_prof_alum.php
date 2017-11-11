@@ -14,7 +14,7 @@
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2
 
 
-function update_professorat_gassist($arrayProfessorat)
+function _update_professorat_gassist($arrayProfessorat)
     {
 	require_once('../../bbdd/connect.php');
 
@@ -113,7 +113,7 @@ function update_professorat_gassist($arrayProfessorat)
     }    
 
 
-function update_professorat($exporthorarixml)
+function _update_professorat($exporthorarixml)
     {
     require_once('../../bbdd/connect.php');
     $i = 0;
@@ -369,9 +369,7 @@ function update_professorat($exporthorarixml)
     update_professorat_gassist($arrayProfessorat);
     }
 
-function intro_prof_equivalencies_gp($exporthorarixml)
-    {}      
-function select_professorat($exportsagaxml,$exporthorarixml)
+function _select_professorat($exportsagaxml,$exporthorarixml)
     {
 	$camps=array();
 	recuperacampdedades($camps,$db);
@@ -579,7 +577,7 @@ function select_professorat($exportsagaxml,$exporthorarixml)
     }   
 
 
-function altaAlumne()
+function _altaAlumne()
     {
     $camps=array();
    $camps =recuperacampdedades($camps,$db);
@@ -746,7 +744,7 @@ function altaAlumne()
         die("<script>location.href = './menu.php'</script>");
     }    
     
-function select_alumnat()
+function _select_alumnat()
     {
     // NOMÉS S'UTILITZA PER DONAR D'ALTA DES DE FITXER DE SAGA
     $exportsagaxml=$_SESSION['upload_saga'];
@@ -1017,7 +1015,7 @@ function actualitzar_alumnat($exportsagaxml)
 		}
 
 
-function extreuGrupsSaga($exportsagaxml,$id_alumne)
+function _extreuGrupsSaga($exportsagaxml,$id_alumne)
     {
     $string_grups = "";
     $resultatconsulta=simplexml_load_file($exportsagaxml);
@@ -1045,7 +1043,7 @@ function extreuGrupsSaga($exportsagaxml,$id_alumne)
 // Aquesta funció és per regenerar tota la informació de les families en funció del contingut de saga
 // Tot el contingut anterior s'esborrarà
 
-function carrega_dades_families($id,$id_saga)
+function _carrega_dades_families($id,$id_saga)
     {
     require_once('../../bbdd/connect.php');
     //include("../funcions/funcions_generals.php");
@@ -1211,7 +1209,7 @@ function carrega_dades_families($id,$id_saga)
     //mysql_close($conexion);
 	}
 
-function hi_ha_germa($id_tutor)
+function _hi_ha_germa($id_tutor)
 	{
 	require_once('../../bbdd/connect.php');
 	
@@ -1225,7 +1223,7 @@ function hi_ha_germa($id_tutor)
 	return $germa;
 	}
 
-function crea_families()
+function _crea_families()
 	{
 	require_once('../../bbdd/connect.php');
 	
@@ -1247,7 +1245,7 @@ function crea_families()
         return $idfamilies;        
 	}
 
-function profe_ja_existeix($user)
+function _profe_ja_existeix($user)
 	{
 	
 	$camps=array();
@@ -1278,7 +1276,7 @@ function alumne_ja_existeix($user)
 	}        
 
 
-function genera(&$user,&$pass,$nom,$cognom1,$cognom2)
+function _genera(&$user,&$pass,$nom,$cognom1,$cognom2)
 	
 	{
 	//require_once('../../bbdd/connect.php');
@@ -1296,7 +1294,7 @@ function genera(&$user,&$pass,$nom,$cognom1,$cognom2)
 //	echo $user."<br>";
 	}
 
-function randomPassword() 
+function _randomPassword() 
 	{
     $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
     $pass = array(); //remember to declare $pass as an array
@@ -1308,7 +1306,7 @@ function randomPassword()
     return implode($pass); //turn the array into a string
 	}
 
-function randomPassword_numbers() 
+function _randomPassword_numbers() 
 	{
     $alphabet = "0123456789";
     $pass = array(); //remember to declare $pass as an array
@@ -1320,7 +1318,7 @@ function randomPassword_numbers()
     return implode($pass); //turn the array into a string
 	}
    
-function limpia_cadena($cadena,$nom,$cognom1,$cognom2)
+function _limpia_cadena($cadena,$nom,$cognom1,$cognom2)
     {
     require_once('../../bbdd/connect.php');
     
@@ -1371,7 +1369,7 @@ function limpia_cadena($cadena,$nom,$cognom1,$cognom2)
     return $cadena;
     }   
 
-function limpia_telefonos($cadena)
+function _limpia_telefonos($cadena)
 	{
     $cadena = str_replace('-', '', $cadena);
     $cadena = str_replace(' ', '', $cadena);
@@ -1379,7 +1377,7 @@ function limpia_telefonos($cadena)
     return $cadena;
 	}
 
-function esmovilsms($telefon)
+function _esmovilsms($telefon)
     {}
 
    
@@ -1388,7 +1386,7 @@ function esmovilsms($telefon)
 // 				ASSISGNACIÓ ALUMNES A GRUPS MATÈRIA
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2
 
-function select_grups_per_matricular_csv()
+function _select_grups_per_matricular_csv()
     {
     require_once('../../bbdd/connect.php');
 
@@ -1440,7 +1438,7 @@ function select_grups_per_matricular_csv()
     }    
     
 	
-function select_grups_per_matricular($exportsagaxml)
+function _select_grups_per_matricular($exportsagaxml)
     {
     require_once('../../bbdd/connect.php');
     $resultatconsulta=simplexml_load_file($exportsagaxml);
@@ -1493,7 +1491,7 @@ function select_grups_per_matricular($exportsagaxml)
 
     }
 
-function select_grups_per_matricular_cali($exportsagaxml)
+function _select_grups_per_matricular_cali($exportsagaxml)
     {
     require_once('../../bbdd/connect.php');
     $resultatconsulta=simplexml_load_file($exportsagaxml);
@@ -1549,7 +1547,7 @@ function select_grups_per_matricular_cali($exportsagaxml)
     }    
     
     
-function mostra_grups($exportsagaxml)
+function _mostra_grups($exportsagaxml)
     {
     $resultatconsulta=simplexml_load_file($exportsagaxml);
     $resultatconsulta2=simplexml_load_file($exportsagaxml);  

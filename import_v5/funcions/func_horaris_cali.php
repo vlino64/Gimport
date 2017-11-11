@@ -12,7 +12,7 @@
 // 					CREACIÓ D'HORARIS INSTITUT CAL.LIPOLIS
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2
 
-function genera_horaris_cali()
+function _genera_horaris_cali()
     {
     require_once('../../bbdd/connect.php');
     
@@ -199,7 +199,7 @@ $sec="0";
 header("Refresh: $sec; url=$page");		
 }
 
-function creaHorari($classe,$idGrupMateria,$idgrup)
+function _creaHorari($classe,$idGrupMateria,$idgrup)
     {
     foreach ($classe->times->time as $franges)
         {
@@ -258,7 +258,7 @@ function creaHorari($classe,$idGrupMateria,$idgrup)
         }
     }    
         
-function assigna_profe($idGrupMateria,$codiProfe)
+function _assigna_profe($idGrupMateria,$codiProfe)
     {
     $idProfessor = extreu_id('equivalencies','codi_prof_gp','prof_ga',$codiProfe);
     
@@ -319,7 +319,7 @@ function assigna_profe($idGrupMateria,$codiProfe)
     
     }
     
-function creaMateriaGenerica($materia,$acronimPla)
+function _creaMateriaGenerica($materia,$acronimPla)
     {
     $arrayMateria = explode("-",$materia);
     $materiaGenerica = $acronimPla."_".$arrayMateria[1];
@@ -327,7 +327,7 @@ function creaMateriaGenerica($materia,$acronimPla)
     }
     
     
-function generaGrupMateriaLoe($i,$idUf,$idGrup,$acronimPla,$idPla,$dataInici,$dataFi)
+function _generaGrupMateriaLoe($i,$idUf,$idGrup,$acronimPla,$idPla,$dataInici,$dataFi)
     {
     // Generem el grup materia i el retornem: primer comprovem que no existeixi ja
     
@@ -375,7 +375,7 @@ function generaGrupMateriaLoe($i,$idUf,$idGrup,$acronimPla,$idPla,$dataInici,$da
     
     }
 
-function generaGrupMateriaNoLoe($materia,$idGrup,$acronimPla,$idPla,$dataInici,$dataFi,$tutoria)
+function _generaGrupMateriaNoLoe($materia,$idGrup,$acronimPla,$idPla,$dataInici,$dataFi,$tutoria)
     {
     // Una materia genèrica és el seu nom sense el grup al que pertany
     if (!$tutoria) {$materiaGenerica = creaMateriaGenerica($materia,$acronimPla);}
@@ -431,7 +431,7 @@ function generaGrupMateriaNoLoe($materia,$idGrup,$acronimPla,$idPla,$dataInici,$
     }
     
     
-function esbrinaLOE_cali($idPla)
+function _esbrinaLOE_cali($idPla)
     {
     $sql = "SELECT COUNT(*) FROM plans_estudis WHERE Acronim_pla_estudis LIKE  '%".$idPla."%'  AND Nom_plan_estudis LIKE  '%LOE%';";
     //echo $sql."<br>";

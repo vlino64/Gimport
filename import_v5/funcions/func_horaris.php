@@ -12,7 +12,7 @@
 // 					CREACIÓ D'HORARIS
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2
 
-function crea_horaris_ASC_mixt()
+function _crea_horaris_ASC_mixt()
     {
 
     require_once('../../bbdd/connect.php');
@@ -187,7 +187,7 @@ function crea_horaris_ASC_mixt()
     }
 
 
-function crea_horaris_gp_mixt($exportsagaxml,$exporthorarixml) 
+function _crea_horaris_gp_mixt($exportsagaxml,$exporthorarixml) 
     {
 
     require_once('../../bbdd/connect.php');
@@ -345,7 +345,10 @@ function crea_horaris_gp_mixt($exportsagaxml,$exporthorarixml)
                                $franja=$franges->assigned_period;
                                $horainici=$franges->assigned_starttime;
                                $horafi=$franges->assigned_endtime;
-
+//**********************
+// No mancaria valorar si tot és correcte. 
+// Si el dia i la franja són normals i no es tracta d'una segona càrrega                              
+//*********************                               
                                if(extreu_fase('segona_carrega'))
                                   {
                                   $sql="SELECT id_taula_franges FROM franges_tmp WHERE id_xml_horaris='".$franja."';" ;
@@ -578,7 +581,7 @@ function crea_horaris_gp_mixt($exportsagaxml,$exporthorarixml)
             header("Refresh: $sec; url=$page");		
         }
 
-function extreu_grup_HW($exporthorarixml,$grupHW)
+function _extreu_grup_HW($exporthorarixml,$grupHW)
     {
     $resultatconsulta4=simplexml_load_file($exporthorarixml);
     if  ( !$resultatconsulta4 ) {echo "Carrega fallida Saga >> ".$exporthorarixml;}
@@ -600,7 +603,7 @@ function extreu_grup_HW($exporthorarixml,$grupHW)
 // l'altre mig grup. per tant s'haurien de crear tres arupaments diferents per la mateixa materìa i professor. 
 // Per tant tres grups materia    
     
-function comprova_desdoblament($id_professor,$idgrup_materia)
+function _comprova_desdoblament($id_professor,$idgrup_materia)
     {
     require_once('../../bbdd/connect.php');    
     // Comprova si aquest grup materia està assignat i si ho està , si és al professor que ens ha arribat
@@ -666,7 +669,7 @@ function comprova_desdoblament($id_professor,$idgrup_materia)
     else {return $idGrupMateria;}
     }        
       
-function comprova_desdoblament_tmp($id_professor,$idgrup_materia)
+function _comprova_desdoblament_tmp($id_professor,$idgrup_materia)
     {
     require_once('../../bbdd/connect.php');    
     // Comprova si aquest grup materia està assignat i si ho està , si és al professor que ens ha arribat
@@ -733,7 +736,7 @@ function comprova_desdoblament_tmp($id_professor,$idgrup_materia)
     }    
     
     
-function creadesdoblament($idgrup_materia,$modul,$idProfessor)
+function _creadesdoblament($idgrup_materia,$modul,$idProfessor)
 // rep el el grup materia del darrer desdoblament del grup afectat
         
     {
@@ -859,7 +862,7 @@ function creadesdoblament($idgrup_materia,$modul,$idProfessor)
     }
     
 // treu el darrer desdoblament del grup afectat
-//function treu_darrer_desdoblament($idgrup_materia)
+//function _treu_darrer_desdoblament($idgrup_materia)
 //    {
 //    require_once('../../bbdd/connect.php');    
 //    
@@ -924,7 +927,7 @@ function creadesdoblament($idgrup_materia,$modul,$idProfessor)
 //    
 //    
 //    }
-function treu_darrer_desdoblament($idgrup_materia)
+function _treu_darrer_desdoblament($idgrup_materia)
     {
     require_once('../../bbdd/connect.php');    
     
@@ -993,7 +996,7 @@ function treu_darrer_desdoblament($idgrup_materia)
     return $fila3[0];
     }
 
-function genera_nom_desdoblament($vector)    
+function _genera_nom_desdoblament($vector)    
     {
 //    echo "<br>vector que arriba".$vector[0]." ".$vector[1]." ".$vector[2];
     if (substr($vector[1],0,4) != "DESD")
@@ -1038,7 +1041,7 @@ function genera_nom_desdoblament($vector)
     
     }    
         
-function treuDatesUnitatsFormatives()
+function _treuDatesUnitatsFormatives()
     {
     $intervalDies= "150 days";
     $dates = array();
@@ -1063,7 +1066,7 @@ function treuDatesUnitatsFormatives()
     }
         
         
-function crea_horaris_KW_mixt($exportsagaxml,$exporthorarixml) 
+function _crea_horaris_KW_mixt($exportsagaxml,$exporthorarixml) 
     {
 
     require_once('../../bbdd/connect.php');
@@ -1275,7 +1278,7 @@ function crea_horaris_KW_mixt($exportsagaxml,$exporthorarixml)
     }}
 
 
-function crea_horaris_HW_mixt($exportsagaxml,$exporthorarixml) 
+function _crea_horaris_HW_mixt($exportsagaxml,$exporthorarixml) 
     {
     require_once('../../bbdd/connect.php');
 
@@ -1677,7 +1680,7 @@ function crea_horaris_HW_mixt($exportsagaxml,$exporthorarixml)
     }
     
 
-function crea_horaris_GP_eso($exportsagaxml,$exporthorarixml) 
+function _crea_horaris_GP_eso($exportsagaxml,$exporthorarixml) 
 	{
 	
 	require_once('../../bbdd/connect.php');
@@ -1783,6 +1786,12 @@ function crea_horaris_GP_eso($exportsagaxml,$exporthorarixml)
                      $franja=$franges->assigned_period;
                      $horainici=$franges->assigned_starttime;
                      $horafi=$franges->assigned_endtime;
+
+//**********************
+// No mancaria valorar si tot és correcte? 
+// Si el dia i la franja són normals i no es tracta d'una segona càrrega                              
+//*********************                               
+
                      
                      if(extreu_fase('segona_carrega'))
                         {
@@ -1882,7 +1891,7 @@ function crea_horaris_GP_eso($exportsagaxml,$exporthorarixml)
 		
 
 
-function crea_horaris_PN_eso($exportsagaxml,$exporthorarixml) 
+function _crea_horaris_PN_eso($exportsagaxml,$exporthorarixml) 
     {
 	
     require_once('../../bbdd/connect.php');
@@ -2001,7 +2010,7 @@ function crea_horaris_PN_eso($exportsagaxml,$exporthorarixml)
                                         {
                                         // Comprovem si existeix ja una assignació d'aquest grup matèria per si fos un desdoblament
                                         $id_grup_materia_original = $id_grup_materia;
-                                        $comprovacio = comprova_desdoblament($id_professor,$idgrup_materia);
+                                        $comprovacio = comprova_desdoblament($id_professor,$id_grup_materia);
                                         if ($comprovacio == 1 ) 
                                             {
                                             //echo "<br>Id grup materia abans: ".$idgrup_materia_original;
@@ -2085,7 +2094,7 @@ function crea_horaris_PN_eso($exportsagaxml,$exporthorarixml)
     }
 	
 
-function crea_horaris_gp_ccff($exportsagaxml,$exporthorarixml) 
+function _crea_horaris_gp_ccff($exportsagaxml,$exporthorarixml) 
     {
     require_once('../../bbdd/connect.php');
 
@@ -2337,7 +2346,7 @@ function crea_horaris_gp_ccff($exportsagaxml,$exporthorarixml)
     }
    
 
-function primera_uf($id_uf)
+function _primera_uf($id_uf)
    {
    require_once('../../bbdd/connect.php');
 	
@@ -2356,7 +2365,7 @@ function primera_uf($id_uf)
    }
       
       
-function crea_horaris_PN_ccff($exportsagaxml,$exporthorarixml) 
+function _crea_horaris_PN_ccff($exportsagaxml,$exporthorarixml) 
 	{
 	
     require_once('../../bbdd/connect.php');

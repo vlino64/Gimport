@@ -9,7 +9,7 @@
     public static function getInstance() {
       if (!isset(self::$instance)) {
         $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
-        self::$instance = new PDO('mysql:host=localhost;dbname=cooper_actual', 'toni_2016', 'toni_2016', $pdo_options);
+        self::$instance = new PDO('mysql:host=localhost;dbname=cooper_actual', 'root', 'vlino', $pdo_options);
         //self::$instance = new PDO('mysql:host=localhost;dbname=cooper_prova', 'toni_2016', 'toni_2016', $pdo_options);
         //self::$instance -> exec("SET CHARACTER SET utf8");
       }

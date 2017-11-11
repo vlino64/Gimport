@@ -27,6 +27,9 @@
                                             <td colspan=2 align="center"><b><br>Per poder accedir a aquesta aplicaci&oacute; necessites permisos de superadministrador</b></td>
                                         </tr>
                                         <tr>
+                                            <td colspan=2 align="center">&nbsp;</td>
+                                        </tr>                                        
+                                        <tr>
                                             <td width="112" align="right"><b>Login</b></td>
                                             <td width="188"><input name="login" type="text" class="textfield" id="login" /></td>
                                         </tr>

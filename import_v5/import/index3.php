@@ -9,9 +9,7 @@
 * 
 ----------------------------------------------------------------*/
 session_start();
-require_once('../../bbdd/connect.php');
-include("../funcions/funcions_generals.php");
-include("../funcions/func_prof_alum.php");
+ini_set("display_errors",1);
 
 //Check whether the session variable SESS_MEMBER is present or not
 if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")) 
@@ -58,10 +56,7 @@ function mostrarReferencia2()
 
 function mostrarReferencia3()
 	{
-	if ((document.fcontacto.fitxerorg[0].checked == true) || (document.fcontacto.fitxerorg[1].checked == true)  || (document.fcontacto.fitxerorg[2].checked == true))
-		{
-		document.getElementById('pujaono').style.display='block';
-		}
+	document.getElementById('pujaono').style.display='block';
 	} 
  
  function mostrarReferencia4()
@@ -76,22 +71,11 @@ function mostrarReferencia3()
 		document.getElementById('submit').style.display='block';
 		}
 	} 
- 
- 
- 
 </script>
-
-
 </head>
 
 <body>
-
 <?php
-	
-
-
-
-
 	$tmp_name = $_FILES["archivo"]["tmp_name"];
 	if ($tmp_name =="")
 		{
@@ -115,14 +99,6 @@ function mostrarReferencia3()
 		$str=str_replace($find,$replace,$str);
 		fwrite($fp,$str,strlen($str));
 		}
-	
-   
-   
-   
-
-   //echo "<br>>>> ".$carrega;
-
-
     ?>
 
     <form enctype="multipart/form-data" action="./index4.php" method="post" name="fcontacto">
@@ -143,14 +119,14 @@ function mostrarReferencia3()
     <table class="general" width="70%" align="center" bgcolor="#ffbf6d">
             <tr><td align="center"><p>Fitxers d'horaris<br /></td></tr>
             <tr><td align="center">
-       <input type="radio" name="segona" value="0" id="segona_0" onclick="mostrarReferencia2();" /> Primera càrrega<br>
-            <input type="radio" name="segona" value="1" id="segona_1" onclick="mostrarReferencia2();"  /> Segona càrrega i posteriors<br>
+       <input type="radio" name="segona" value="0" id="segona_0" onclick="mostrarReferencia3();" /> Primera càrrega<br>
+       <input type="radio" name="segona" value="1" id="segona_1" onclick="mostrarReferencia3();"  /> Segona càrrega i posteriors. <font color="blue"><sub>(Si disposes d'un segon fitxer d'horaris)</sub></font><br>
             </td></tr>
     </table>
     </div>
     <br>
 
-
+<!--
     <div id="fitxers" style="display:none;">
     <table class="general" width="70%" align="center" bgcolor="#ffbf6d">
             <tr><td align="center"><p>Quin és el contingut del fitxer ?<br /></td></tr>
@@ -161,7 +137,7 @@ function mostrarReferencia3()
             </td></tr>
     </table>
     </div>
-
+-->
 
     <!-- #############   UN FITXER pujaonoeso ################ -->
     <table class="general" width="70%" align="center" bgcolor="#ffbf6d" >
@@ -169,10 +145,15 @@ function mostrarReferencia3()
     <p> Indica el que vulguis fer</p>
     <input type="radio" name="carrega2" value="1" id="carrega_0" onclick="mostrarReferencia4()" > <b>Utilitzar un fitxer d'horaris carregat prèviament. </b> 
 
-                    <?php 
-                    $dia=date("d F Y ",filemtime('../uploads/pujat_horaris.xml'));
-                    $hora=date("H:i:s.",filemtime('../uploads/pujat_horaris.xml'));
-                    print("<font color=\"red\">Es tracta  d'un fitxer carregat ".$dia." a les ".$hora."</font>" ); 
+                    <?php
+                    if (file_exists('../uploads/pujat_horaris.xml')){
+                        $dia=date("d F Y ",filemtime('../uploads/pujat_horaris.xml'));
+                        $hora=date("H:i:s.",filemtime('../uploads/pujat_horaris.xml'));
+                        print("<font color=\"red\">Es tracta  d'un fitxer carregat ".$dia." a les ".$hora."</font>" );
+                    }
+                    else {
+                        print("<font color=\"red\">No hi ha fitxer previ</font>" );
+                    }                     
                     ?>
 
     <br>

@@ -162,11 +162,16 @@ if ((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER'] != "access_o
                             <p> Indica el que vulguis fer ...</p>
                             <input type="radio" name="carrega2" value="1" id="carrega_0" onclick="mostrarReferencia4()" > <b>Utilitzar un fitxer csv d'alumnes carregat prèviament. </b> 
 
-<?php
-$dia = date("d F Y ", filemtime('../uploads/alumnes.csv'));
-$hora = date("H:i:s.", filemtime('../uploads/alumnes.csv'));
-print("<font color=\"red\">Es tracta  d'un fitxer carregat " . $dia . " a les " . $hora . "</font>");
-?>
+                <?php
+                    if (file_exists('../uploads/alumnes.csv')){
+                        $dia=date("d F Y ",filemtime('../uploads/alumnes.csv'));
+                        $hora=date("H:i:s.",filemtime('../uploads/alumnes.csv'));
+                        print("<font color=\"red\">Es tracta  d'un fitxer carregat ".$dia." a les ".$hora."</font>" );
+                    }
+                    else {
+                        print("<font color=\"red\">No hi ha fitxer previ</font>" );
+                    } 
+                ?>
 
                             <br>
                             <input type="radio" name="carrega2" value="0" id="carrega_1" onclick="mostrarReferencia4()" > <b>Carregar un fitxer nou csv d'alumnes</b>.<br>
@@ -183,6 +188,7 @@ print("<font color=\"red\">Es tracta  d'un fitxer carregat " . $dia . " a les " 
                 <tr><td align="center"><div id="subgeisoft5" style="display:none;">
                             <input name="boton" type="button" id="boton" onClick="location.href='./actualitzacio_seleccio_alumnes.php'" value="Actualitza alumnat">
                         </div></td></tr>
+                <tr><td>&nbsp;</td></tr>
             </table>
 
             <div id="subgeisoft2" style="display:none;">

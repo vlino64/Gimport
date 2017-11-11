@@ -15,20 +15,15 @@
 //**********************************************************************
 
 
-function neteja($taula)
+function neteja($taula,$db)
 
 	{
-	$result = mysql_query("SHOW TABLES LIKE '".$taula."'");
-        $tableExists = mysql_num_rows($result) > 0;
+	$result = $db->query("SHOW TABLES LIKE '".$taula."'");
+        $tableExists = $result->rowCount() > 0;
         if ($tableExists)
             {
             $sql="DELETE FROM ".$taula.";";
-            echo "<br>".$sql;
-            $result=mysql_query($sql);
-            if (!$result) 
-		{
-		die(_ERR_DELETE_TABLE." > ".$taula." > ".mysql_error());
-		}
+            $result=$db->query($sql);
             //echo "Esborrada taula ".$taula."<br>";;
             }
         }
@@ -39,138 +34,134 @@ function neteja($taula)
 ////**********************************************************************
 
 
-function buidatge($modalitat)
+function buidatge($modalitat,$db)
 
 	{
 	switch ($modalitat)
 		{
 		case "desdediesfrangesespais":
-			neteja('guardies');
-			neteja('unitats_classe');
-			neteja('dies_franges');
-			neteja('franges_horaries');
-                        neteja('franges_tmp');
-			neteja('dies_setmana');
-			neteja('espais_centre');
+			neteja('guardies',$db);
+			neteja('unitats_classe',$db);
+			neteja('dies_franges',$db);
+			neteja('franges_horaries',$db);
+                        neteja('franges_tmp',$db);
+			neteja('dies_setmana',$db);
+			neteja('espais_centre',$db);
 			break;
 
 		case "desdecreahoraris":
-			neteja('grups_materies');
-			neteja('unitats_classe');
-			neteja('guardies');
+			neteja('grups_materies',$db);
+			neteja('unitats_classe',$db);
+			neteja('guardies',$db);
 			break;		
 		
 		case "desdeassignacioalumnes":
-			neteja('alumnes_grup_materia');
+			neteja('alumnes_grup_materia',$db);
 			break;		
 	
 		case "desdemateries":
-			neteja('prof_agrupament');
-			neteja('alumnes_grup_materia');
-			neteja('unitats_classe');
-			neteja('grups_materies');
-			neteja('materia');
-			neteja('moduls_ufs');
-			neteja('moduls');
-			neteja('unitats_formatives');
-			neteja('moduls_materies_ufs');
+			neteja('prof_agrupament',$db);
+			neteja('alumnes_grup_materia',$db);
+			neteja('unitats_classe',$db);
+			neteja('grups_materies',$db);
+			neteja('materia',$db);
+			neteja('moduls_ufs',$db);
+			neteja('moduls',$db);
+			neteja('unitats_formatives',$db);
+			neteja('moduls_materies_ufs',$db);
 			//neteja('plans_estudis');
 			break;
 	
 		case "desdegrups":
-			neteja('prof_agrupament');
-			neteja('alumnes_grup_materia');
-			neteja('guardies');
-			neteja('unitats_classe');
-			neteja('grups_materies');
-			neteja('grups');
+			neteja('prof_agrupament',$db);
+			neteja('alumnes_grup_materia',$db);
+			neteja('guardies',$db);
+			neteja('unitats_classe',$db);
+			neteja('grups_materies',$db);
+			neteja('grups',$db);
 			break;
 
 		case "materies_ufs":
-                        neteja('materia');
-			neteja('moduls_ufs');
-			neteja('moduls');
-			neteja('unitats_formatives');
-			neteja('moduls_materies_ufs');
+                        neteja('materia',$db);
+			neteja('moduls_ufs',$db);
+			neteja('moduls',$db);
+			neteja('unitats_formatives',$db);
+			neteja('moduls_materies_ufs',$db);
 
 			break;                    
 
                 case "ufs_mantenint_materies":
-			neteja('moduls_ufs');
-			neteja('moduls');
+			neteja('moduls_ufs',$db);
+			neteja('moduls',$db);
                         
 			$sql="SELECT idunitats_formatives FROM unitats_formatives;";
-                        $result=mysql_query($sql);if (!$result) {	die(_ERR_SELECT_MATERIA.mysql_error());}
-			while ($fila = mysql_fetch_row($result)){
+                        $result=$db->query($sql);
+			foreach ($result->fetchAll() as $fila){
                             $sql="SELECT id_mat_uf_pla FROM moduls_materies_ufs WHERE id_mat_uf_pla = ".$fila[0].";";
-                            $result=mysql_query($sql);if (!$result) {	die(_ERR_SELECT_MATERIA.mysql_error());}
-                            $present = mysql_num_rows($result);
+                            $result=$db->query($sql);
+                            $present = $result->rowCount();
                             if ($present > 0){
                                 $sql2 = "SELECT idgrups_materies FROM grups_materies WHERE id_mat_uf_pla = ".$fila[0].";";
-                                $result2=mysql_query($sql2);if (!$result2) {	die(_ERR_SELECT_MATERIA.mysql_error());}
-                                while ($fila2 = mysql_fetch_row($result2)){
+                                $result2=$db->query($sql2);
+                                foreach ($result2->fetchAll() as $fila2){
                                     $sql3 = "DELETE FROM alumnes_grup_materia WHERE idgrups_materies = $fila2[0];"; 
-                                    $result3=mysql_query($sql3);if (!$result2) {	die(_ERR_DELETE_MATERIA_ALUM.mysql_error());}
+                                    $result3=$db->query($sql3);
                                     
                                     $sql3 = "DELETE FROM prof_agrupament WHERE idagrups_materies = $fila2[0];"; 
-                                    $result3=mysql_query($sql3);if (!$result2) {	die(_ERR_DELETE_MATERIA_PROF.mysql_error());}                                    
+                                    $result3=$db->query($sql3);
 
                                     $sql3 = "DELETE FROM grups_materies WHERE idgrups_materies = $fila2[0];"; 
-                                    $result3=mysql_query($sql3);if (!$result2) {	die(_ERR_DELETE_MATERIA_GRUP.mysql_error());}
+                                    $result3=$db->query($sql3);
                                     
                                 }                                
                             }
                             $sql3 = "DELETE FROM moduls_materies_ufs WHERE id_mat_uf_pla = $fila[0];"; 
-                            $result3=mysql_query($sql3);if (!$result2) {	die(_ERR_DELETE_UF1.mysql_error());}
+                            $result3=$db->query($sql3);
                             
                         }                    
-                        neteja('unitats_formatives');
+                        neteja('unitats_formatives',$db);
                         break;
                     
                     
                 case "materies":
 			$sql="SELECT idmateria FROM materia;";
-                        $result=mysql_query($sql);
-                        if (!$result) {	die(_ERR_SELECT_MATERIA.mysql_error());}
-			while ($fila = mysql_fetch_row($result)){
+                        $result=$db->query($sql);
+			foreach ($result->fetchAll() as $fila){
                             $sql2 = "DELETE FROM moduls_materies_ufs WHERE id_mat_uf_pla = ".$fila[0].";";
-                            $result2=mysql_query($sql2);
-                            if (!$result2) {	die(_ERR_DELETE_MATERIA1.mysql_error());}
-                           
+                            $result2=$db->query($sql2);
                             $sql2 = "DELETE FROM materia WHERE idmateria = ".$fila[0].";";
-                            $result2=mysql_query($sql2);
-                            if (!$result2) {	die(_ERR_DELETE_MATERIA2.mysql_error());}
+                            $result2=$db->query($sql2);
                         }
                         break;
                         
 		case "total":
-			neteja('professor_carrec');
-			neteja('prof_agrupament');
-			neteja('guardies');
-			neteja('unitats_classe');
-			neteja('dies_franges');
-			neteja('dies_setmana');
-			neteja('franges_horaries');
-                        neteja('franges_tmp');
-			neteja('espais_centre');	
-			neteja('materia');
-                        neteja('moduls_ufs');
-                        neteja('moduls');
-                        neteja('unitats_formatives');
-                        neteja('alumnes_grup_materia');
-			neteja('grups_materies');
-			neteja('moduls_materies_ufs');
-			neteja('grups');
-			neteja('contacte_alumne');
-			neteja('alumnes_families');
-			neteja('contacte_families');
-			neteja('families');
-                        neteja('ccc_taula_principal');
-			neteja('alumnes');
-			neteja('contacte_professor');
-			neteja('professors');
-			neteja('equivalencies');
-                        neteja('plans_estudis');
+			neteja('professor_carrec',$db);
+			neteja('prof_agrupament',$db);
+			neteja('guardies',$db);
+			neteja('unitats_classe',$db);
+			neteja('dies_franges',$db);
+			neteja('dies_setmana',$db);
+			neteja('franges_horaries',$db);
+                        neteja('franges_tmp',$db);
+			neteja('espais_centre',$db);	
+			neteja('materia',$db);
+                        neteja('moduls_ufs',$db);
+                        neteja('moduls',$db);
+                        neteja('unitats_formatives',$db);
+                        neteja('alumnes_grup_materia',$db);
+			neteja('grups_materies',$db);
+			neteja('moduls_materies_ufs',$db);
+			neteja('grups',$db);
+			neteja('contacte_alumne',$db);
+			neteja('alumnes_families',$db);
+			neteja('contacte_families',$db);
+			neteja('families',$db);
+                        neteja('ccc_taula_principal',$db);
+			neteja('alumnes',$db);
+			neteja('contacte_professor',$db);
+			neteja('professors',$db);
+			neteja('equivalencies',$db);
+                        neteja('plans_estudis',$db);
 			break;
 			
 		}
@@ -187,7 +178,7 @@ function buidatge($modalitat)
 //// $id -> Camp a extreure	
 //// $codi -> Valor qeu s'ha de cerca al camp per fer la cerca
 
-function extreu_id($taula,$camp,$id,$codi)
+function _extreu_id($taula,$camp,$id,$codi)
 	{
 	$sql="SELECT ".$id." FROM ".$taula." WHERE ".$camp."='".$codi."';";
 //	echo "extreu ".$sql."<br>";
@@ -222,30 +213,7 @@ function recuperacampdedades($camps,$db)
         }
 	
 
-function munta_el_config()
-	{
-	include("../../bbdd/connect.php");
-   	
-	$file = fopen("../config.php","w")or die("can't open file");
-	fclose($file);
-	
-	$file = fopen("../config.php","w")or die("can't open file");
-	fwrite($file,"<?php\n");
-	fwrite($file,"// Aquest fitxer s'ha generat automàticament\n");
-	fwrite($file,"// Els canvis que puguis introduir, es perdran en regenerar-se\n");
-	fwrite($file,"// ==========================================================\n");
-	fwrite($file,"          \n");
-   fwrite($file,"          \n");
-   fwrite($file,"\$connexio = @mysql_connect('localhost','".DB_USER."','".DB_PASS."');\n");
-   fwrite($file,"if (!\$connexio) {\n");
-	fwrite($file,"die('Could not connect: ' . mysql_error());}\n");
-   fwrite($file,"mysql_select_db('".DB_NAME."', \$connexio);\n");
-   fwrite($file,"mysql_set_charset(\"utf8\");\n");
-   fwrite($file,"?>");
-	fclose($file);
-	}
-
-function copia_bd($user,$pass,$basedd)
+function _copia_bd($user,$pass,$basedd)
 	{
 	$filename = "bk_".$basedd."_".date("d-m-Y_H-i-s").".sql";
 	$mime = "application/x-gzip";
@@ -261,7 +229,7 @@ function copia_bd($user,$pass,$basedd)
 	}
 
 
-function data_correcta($data_fi)
+function _data_correcta($data_fi)
 	
 	{
 	$data=explode("-",$data_fi);
@@ -270,7 +238,7 @@ function data_correcta($data_fi)
 	
 	}
 
-function neteja_apostrofs(&$cadena)
+function _neteja_apostrofs(&$cadena)
 
 	{
 	$elements = array("`", "'");
@@ -283,42 +251,39 @@ function neteja_apostrofs(&$cadena)
 ////				 FUNCIONS DESTINADES AL GESTIÓ DE LES FASES DEL PROCÈS
 //// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2
 
-function extreu_fase($camp)
+function extreu_fase($camp,$db)
 	{
 		
 	$sql00="SELECT estat FROM fases WHERE fase='".$camp."';"; 
-	$result00=mysql_query($sql00);
-        if (!$result00) {die(_ERR_EXTRO_FASE . mysql_error());}
-	$estat=  mysql_fetch_row($result00);
-        return $estat[0];
+	$result00=$db->query($sql00);
+        foreach ($result00->fetchAll() as $fila) {$estat=  $fila['estat'];}
+        return $estat;
         
 	}
 
-function introduir_fase($camp,$valor)
+function introduir_fase($camp,$valor,$db)
 	{
-	
 	$sql01="UPDATE fases SET estat='".$valor."' WHERE fase='".$camp."';"; 
 	//echo "<br>".$sql01;
-	$result01=mysql_query($sql01);
-	if (!$result01) {die(_ERR_INTRO_FASE . mysql_error());}
+	$result01 = $db->query($sql01);
 	}
 
 
-function nova_taula_fases()
+function nova_taula_fases($db)
 	{
 	
 	
 	$sql="DROP TABLE IF EXISTS fases";
-	$result=mysql_query($sql);
+	$result = $db->query($sql);
 	
-   $sql="CREATE TABLE IF NOT EXISTS `fases` (";
-   $sql.="`id` int(11) NOT NULL AUTO_INCREMENT,";
-   $sql.="`fase` varchar(50) NOT NULL,";
-   $sql.="`estat` int(11) NOT NULL,";
-   $sql.="`comentaris` varchar(100) NOT NULL,";
-   $sql.="PRIMARY KEY (`id`)";
-   $sql.=") ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
-	$result=mysql_query($sql);
+        $sql="CREATE TABLE IF NOT EXISTS `fases` (";
+        $sql.="`id` int(11) NOT NULL AUTO_INCREMENT,";
+        $sql.="`fase` varchar(50) NOT NULL,";
+        $sql.="`estat` int(11) NOT NULL,";
+        $sql.="`comentaris` varchar(100) NOT NULL,";
+        $sql.="PRIMARY KEY (`id`)";
+        $sql.=") ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
+	$result = $db->query($sql);
 	
 	$sql="INSERT INTO `fases` (`id`, `fase`, `estat`,`comentaris`) VALUES ";
 	$sql.="(1, 'geisoft', 0,'Utilitzem o no geisoft'),";
@@ -344,17 +309,17 @@ function nova_taula_fases()
 	$sql.="(22, 'assig_alumnes',0,'Assignació d alumnes a grups/matèries');";
 	
 	//echo $sql;
-	$result=mysql_query($sql);
+	$result = $db->query($sql);
 	}
 
-function nova_taula_equivalencies()
+function nova_taula_equivalencies($db)
 	{
 		
 	$sql="DROP TABLE IF EXISTS equivalencies";
-	$result=mysql_query($sql);
+	$result = $db->query($sql);
 	
 	$sql="DROP TABLE IF EXISTS grups_tmp";
-	$result=mysql_query($sql);
+	$result = $db->query($sql);
 	
 	$sql="CREATE TABLE IF NOT EXISTS `equivalencies` (  `id` int(11) NOT NULL AUTO_INCREMENT, ";
 	$sql.="`grup_gp` varchar(100) DEFAULT NULL,";
@@ -370,8 +335,7 @@ function nova_taula_equivalencies()
 	$sql.="`altres` varchar(60) DEFAULT NULL,";
 	$sql.="PRIMARY KEY (`id`)";
 	$sql.=") ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
-	$result=mysql_query($sql);
-	if (!$result) {die(_ERR_NEW_TABLE_EQUIV . mysql_error());}
+	$result = $db->query($sql);
 	
 	}   
    
