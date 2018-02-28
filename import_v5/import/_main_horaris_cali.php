@@ -39,7 +39,7 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 
     require_once('../../bbdd/connect.php');
     
-    carrega_CCFF_de_SAGA();
+    carrega_CCFF_de_SAGA($db);
     
     genera_horaris_cali();
 		

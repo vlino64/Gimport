@@ -36,7 +36,7 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 <?php
 
 	$geisoft=$_POST['geisoft'];//echo "<br>>>> ".$geisoft;
-	
+	introduir_fase('app_horaris',$geisoft,$db);
         if (extreu_fase('app_horaris',$db)==5) {unlink('../uploads/pujat_horaris.xml');}
 	
 	$segona=$_POST['segona'];
@@ -55,6 +55,7 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 	introduir_fase('modalitat_fitxer',2,$db);
 	
 	$aprofitar=$_POST['carrega2'];
+        echo $aprofitar." >> ".$_POST['carrega2'];
         if ( $aprofitar == "") {$aprofitar = 0;}
 	introduir_fase('aprofitar_horaris',$aprofitar,$db);
 	
@@ -80,7 +81,11 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 		$exporthorarixml="../uploads/pujat_horaris.xml";
 		$_SESSION['upload_horaris'] = '../uploads/pujat_horaris.xml';
 		move_uploaded_file($tmp_name,$exporthorarixml);
-		
+                $today = date("d-m-Y");$time = date("H-i-s");
+                $newname = $exporthorarixml."_".$today."_".$time;
+                if (!copy($exporthorarixml, $newname)) {
+                    echo "failed to copy";
+                }		
 		//Netegem el fitxer d'apostrofs
 		$str=implode("\n",file('../uploads/pujat_horaris.xml'));
 		$fp=fopen('../uploads/pujat_horaris.xml','w');

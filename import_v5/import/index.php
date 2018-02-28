@@ -8,6 +8,8 @@
  * Post cond.:
  * 
   ---------------------------------------------------------------- */
+require_once('../../pdo/bbdd/connect.php');
+include("../funcions/funcions_generals.php");
 
 session_start();
 //Check whether the session variable SESS_MEMBER is present or not
@@ -126,8 +128,21 @@ if ((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER'] != "access_o
 
     <body>
 
+        <?php
+        //copia_bd($db);
+        ?>
+
+
         <form enctype="multipart/form-data" action="./index2.php" method="post" name="fcontacto">
             <br><br><br>
+            <table class="general" width="70%" align="center"bgcolor="#ffbf6d" >
+                <tr><td align="center"><b>Carregar permanències a 1 de setembre</b><br>
+                        Aquesta opció va dirigida als centres que utilitzen el lector d'empremta 
+                    per fer el regsitre d'entrada i sortida de professorat</td></tr>
+                <tr><td align="center"><input type=button onClick="location.href='../carregaPermanencies/index.php'" value="Carrega permanències" ><br><br> </td></tr>
+            </table>
+            <br>
+
             <table class="general" width="70%" align="center"bgcolor="#ffbf6d" >
                 <tr><td align="center"><p>Utilitzes la gestió centralitzada d'usuaris de GEISoft:<br /></td></tr>
                 <tr><td align="center"><input type="radio" name="geisoft" value="0" id="geisoft_0" onclick="mostrarReferencia();" /> No
@@ -162,16 +177,15 @@ if ((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER'] != "access_o
                             <p> Indica el que vulguis fer ...</p>
                             <input type="radio" name="carrega2" value="1" id="carrega_0" onclick="mostrarReferencia4()" > <b>Utilitzar un fitxer csv d'alumnes carregat prèviament. </b> 
 
-                <?php
-                    if (file_exists('../uploads/alumnes.csv')){
-                        $dia=date("d F Y ",filemtime('../uploads/alumnes.csv'));
-                        $hora=date("H:i:s.",filemtime('../uploads/alumnes.csv'));
-                        print("<font color=\"red\">Es tracta  d'un fitxer carregat ".$dia." a les ".$hora."</font>" );
-                    }
-                    else {
-                        print("<font color=\"red\">No hi ha fitxer previ</font>" );
-                    } 
-                ?>
+                            <?php
+                            if (file_exists('../uploads/alumnes.csv')) {
+                                $dia = date("d F Y ", filemtime('../uploads/alumnes.csv'));
+                                $hora = date("H:i:s.", filemtime('../uploads/alumnes.csv'));
+                                print("<font color=\"red\">Es tracta  d'un fitxer carregat " . $dia . " a les " . $hora . "</font>");
+                            } else {
+                                print("<font color=\"red\">No hi ha fitxer previ</font>");
+                            }
+                            ?>
 
                             <br>
                             <input type="radio" name="carrega2" value="0" id="carrega_1" onclick="mostrarReferencia4()" > <b>Carregar un fitxer nou csv d'alumnes</b>.<br>
@@ -186,7 +200,7 @@ if ((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER'] != "access_o
 
             <table class="general" width="70%" align="center" bgcolor="#ffbf6d" >
                 <tr><td align="center"><div id="subgeisoft5" style="display:none;">
-                            <input name="boton" type="button" id="boton" onClick="location.href='./actualitzacio_seleccio_alumnes.php'" value="Actualitza alumnat">
+                            <input name="boton" type="button" id="boton" onClick="location.href = './actualitzacio_seleccio_alumnes.php'" value="Actualitza alumnat">
                         </div></td></tr>
                 <tr><td>&nbsp;</td></tr>
             </table>
@@ -199,7 +213,7 @@ if ((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER'] != "access_o
                     <tr colspan="2" align="center">
                         <td align="center">
                             <br>
-<?php echo "ARXIU D'ALUMNES A CARREGAR"; ?>
+                            <?php echo "ARXIU D'ALUMNES A CARREGAR"; ?>
                             <input name="archivo" type="file" id="archivo">
                             <br><br><input name="boton" type="submit" id="boton" value="<?php echo "PUJAR"; ?>">
                             </form>

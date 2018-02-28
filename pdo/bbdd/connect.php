@@ -5,8 +5,15 @@
     private function __construct() {}
 
     private function __clone() {}
-
+    
+       
+    
     public static function getInstance() {
+        
+        define("DB", "cooper_actual");
+        define("USER", "root");
+        define("PASS", "vlino");
+        
       if (!isset(self::$instance)) {
         $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
         self::$instance = new PDO('mysql:host=localhost;dbname=cooper_actual', 'root', 'vlino', $pdo_options);

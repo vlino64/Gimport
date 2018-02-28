@@ -2,11 +2,95 @@ ABANS DE DISTRIBUIR
 ===================
 * Els require once ha de canviar pdo per tutoria
 * Posar a index2.php la password de vlino 2018/19
+* La primera actualització de curs, que no copii els fitxers de la carpeta uploads 
+* Modificar el connect.php de pdo per poder fer el backup. Definir les dades de la connexió
+* Activar la cópia de seguretat a index.php:132
+* Treure el fitxer restaura.php de l'arrel d'import_v5
 
 
 TASQUES
 =======
-Recollida de dades.
+OK  Recollida de dades          
+OK  Actualització d'alumnes des de csv
+OK  Actualització d'alumnes des de saga
+OK  Backup i desat a upload
+OK  Modificacions
+OK  Que l'actualització d'alumnes també generi un fitxer i en faci una cópia
+OK  Desa tot el que puja. En fa una cópia amb data i hora
+
+PROFESSORAT
+OK  Professorat SAGA sense GEISoft
+OK  Professorat SAGA amb GEISoft
+OK  Professorat GPuntis sense GEISoft
+OK  Professorat GPuntis amb GEISoft
+OK  Professorat Peñalara sense GEISoft
+OK  Professorat Peñalara amb GEISoft
+OK  Professorat Horwin sense GEISoft
+OK  Professorat Horwin amb GEISoft
+OK  Professorat Kronowin sense GEISoft
+OK  Professorat Kronowin amb GEISoft
+OK  Professorat aSc sense GEISoft
+OK  Professorat aSc amb GEISoft
+
+GRUPS
+OK  Grups només saga
+OK  Grups GPuntis
+OK  Grups Peñalara
+OK  Grups Kronowin
+OK  Grups Horwin
+OK  Grups aSc
+
+MATÈRIES
+OK  Matèries només saga
+OK  Matèries GPuntis
+OK  Matèries Peñalara
+OK  Matèries Kronowin
+OK  Matèries Horwin
+OK  Matèries aSc
+
+OK  Emplenar a 1 de setembre
+
+FRANGES I ESPAIS
+OK  Franges i espais només saga
+OK  Franges i espais GPuntis
+OK  Franges i espais Peñalara
+OK  Franges i espais Kronowin
+OK  Franges i espais Horwin
+OK  Franges i espais aSc
+
+
+
+    Professorat, Grups >> segona càrrega
+    Tot el tema callipolis
+    Segona càrrega
+
+
+
+ANOTACIONS
+==========
+Consulta
+    $result=$db->prepare($sql);
+    $result->execute();
+
+Bucle per processar consulta
+    $result = $db->prepare($sql);
+    $result->execute();
+    foreach ($result->fetchAll() as $fila) 
+
+
+
+Extreure resutat d'un registre
+    $fila =$result->fetch();
+    echo $fila['campConsulta'];
+
+Comptar files
+    $files =$result->rowCount();;
+
+Llista d'errors
+    ini_set("display_errors", 1);
+
+
+
 
 
 	

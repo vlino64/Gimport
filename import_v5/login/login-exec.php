@@ -60,14 +60,14 @@
 	
 	//Create query
 	$qry="SELECT idcarrecs FROM carrecs WHERE nom_carrec='SUPERADMINISTRADOR';";
-        $result = $db->query($qry);
+        $result=$db->prepare($qry);$result->execute();
         foreach ($result -> fetchAll() as $fila) {}
 	$idsuper= $fila['idcarrecs'];
 //	echo "<br>".$idsuper;
 		
 	$qry="SELECT id_professor FROM contacte_professor WHERE id_tipus_contacte='".$camps['login']."' AND valor='".$login."';";
 //        echo "<br>".$qry;
-	$result=$db->query($qry);
+	$result=$db->prepare($qry);$result->execute();
         if (!$result) {die(_ERR_SELECT_PROF.mysql_error());	}
         foreach ($result -> fetchAll() as $fila){}
         $idprofessor = $fila['id_professor'];
@@ -76,14 +76,14 @@
 	$qry="SELECT id_professor FROM contacte_professor WHERE id_tipus_contacte='".$camps['contrasenya']."' AND valor='".md5($_POST['password'])."' ";
 	$qry.="AND id_professor='".$idprofessor."'";
       
-	$result=$db->query($qry);
+	$result=$db->prepare($qry);$result->execute();
         if (!$result) {die(_ERR_SELECT_ID_PROF.mysql_error());	}
 	$present = $result->rowCount();
         
         if ($result->rowCount() == 1)
 		{
 		$qry="SELECT idprofessor_carrec FROM professor_carrec WHERE idprofessors='".$idprofessor."' AND idcarrecs='".$idsuper."'";
-		$result= $db->query($qry);
+		$result=$db->prepare($qry);$result->execute();
 		if($result->fetchColumn() >= 1)
 			{
 			//Login Successful

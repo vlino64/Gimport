@@ -8,10 +8,11 @@
 * Post cond.:
 * 
 ----------------------------------------------------------------*/
-require_once('../../bbdd/connect.php');
+require_once('../../pdo/bbdd/connect.php');
 include("../funcions/func_prof_alum.php");
 include("../funcions/funcions_generals.php");
 include("../funcions/funcionsCsv.php");
+ini_set("display_errors", 1);
 
 session_start();
 //Check whether the session variable SESS_MEMBER is present or not
@@ -34,11 +35,8 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 
 <body>
 <?php
-
-	require_once('../../bbdd/connect.php');
-	
 	$exporthorarixml=$_SESSION['upload_horaris'];
-	update_professorat($exporthorarixml);
+	update_professorat($exporthorarixml,$db);
 		
 ?>
 </body>

@@ -18,12 +18,12 @@
 function neteja($taula,$db)
 
 	{
-	$result = $db->query("SHOW TABLES LIKE '".$taula."'");
+	$result = $db->prepare("SHOW TABLES LIKE '".$taula."'");$result->execute();
         $tableExists = $result->rowCount() > 0;
         if ($tableExists)
             {
             $sql="DELETE FROM ".$taula.";";
-            $result=$db->query($sql);
+            $result=$db->prepare($sql);$result->execute();
             //echo "Esborrada taula ".$taula."<br>";;
             }
         }
@@ -90,47 +90,48 @@ function buidatge($modalitat,$db)
 
 			break;                    
 
-                case "ufs_mantenint_materies":
-			neteja('moduls_ufs',$db);
-			neteja('moduls',$db);
-                        
-			$sql="SELECT idunitats_formatives FROM unitats_formatives;";
-                        $result=$db->query($sql);
-			foreach ($result->fetchAll() as $fila){
-                            $sql="SELECT id_mat_uf_pla FROM moduls_materies_ufs WHERE id_mat_uf_pla = ".$fila[0].";";
-                            $result=$db->query($sql);
-                            $present = $result->rowCount();
-                            if ($present > 0){
-                                $sql2 = "SELECT idgrups_materies FROM grups_materies WHERE id_mat_uf_pla = ".$fila[0].";";
-                                $result2=$db->query($sql2);
-                                foreach ($result2->fetchAll() as $fila2){
-                                    $sql3 = "DELETE FROM alumnes_grup_materia WHERE idgrups_materies = $fila2[0];"; 
-                                    $result3=$db->query($sql3);
-                                    
-                                    $sql3 = "DELETE FROM prof_agrupament WHERE idagrups_materies = $fila2[0];"; 
-                                    $result3=$db->query($sql3);
+//                case "ufs_mantenint_materies":
+//			neteja('moduls_ufs',$db);
+//			neteja('moduls',$db);
+//                        
+//			$sql="SELECT idunitats_formatives FROM unitats_formatives;";
+//                        $result=$db->prepare($sql);$result->execute();
+//			foreach ($result->fetchAll() as $fila){
+//                            $sql="SELECT id_mat_uf_pla FROM moduls_materies_ufs WHERE id_mat_uf_pla = ".$fila[0].";";
+//                            $result=$db->prepare($sql);$result->execute();
+//                            $present = $result->rowCount();
+//                            if ($present > 0){
+//                                $sql2 = "SELECT idgrups_materies FROM grups_materies WHERE id_mat_uf_pla = ".$fila[0].";";
+//                                $result2=$db->prepare($sql2);$result2->execute();
+//                                foreach ($result2->fetchAll() as $fila2){
+//                                    $sql3 = "DELETE FROM alumnes_grup_materia WHERE idgrups_materies = $fila2[0];"; 
+//                                    $result3=$db->prepare($sql3);$result3->execute();
+//                                    
+//                                    $sql3 = "DELETE FROM prof_agrupament WHERE idagrups_materies = $fila2[0];"; 
+//                                    $result3=$db->prepare($sql3);$result3->execute();
+//
+//                                    $sql3 = "DELETE FROM grups_materies WHERE idgrups_materies = $fila2[0];"; 
+//                                    $result3=$db->prepare($sql3);$result3->execute();
+//                                    
+//                                }                                
+//                            }
+//                            $sql3 = "DELETE FROM moduls_materies_ufs WHERE id_mat_uf_pla = $fila[0];"; 
+//                            $result3=$db->prepare($sql3);$result3->execute();
+//                            
+//                        }                    
+//                        neteja('unitats_formatives',$db);
+//                        break;
 
-                                    $sql3 = "DELETE FROM grups_materies WHERE idgrups_materies = $fila2[0];"; 
-                                    $result3=$db->query($sql3);
-                                    
-                                }                                
-                            }
-                            $sql3 = "DELETE FROM moduls_materies_ufs WHERE id_mat_uf_pla = $fila[0];"; 
-                            $result3=$db->query($sql3);
-                            
-                        }                    
-                        neteja('unitats_formatives',$db);
-                        break;
-                    
+                        
                     
                 case "materies":
 			$sql="SELECT idmateria FROM materia;";
-                        $result=$db->query($sql);
+                        $result=$db->prepare($sql);$result->execute();
 			foreach ($result->fetchAll() as $fila){
                             $sql2 = "DELETE FROM moduls_materies_ufs WHERE id_mat_uf_pla = ".$fila[0].";";
-                            $result2=$db->query($sql2);
+                            $result2=$db->prepare($sql2);$result2->execute();
                             $sql2 = "DELETE FROM materia WHERE idmateria = ".$fila[0].";";
-                            $result2=$db->query($sql2);
+                            $result2=$db->prepare($sql2);$result2->execute();
                         }
                         break;
                         
@@ -178,17 +179,14 @@ function buidatge($modalitat,$db)
 //// $id -> Camp a extreure	
 //// $codi -> Valor qeu s'ha de cerca al camp per fer la cerca
 
-function _extreu_id($taula,$camp,$id,$codi)
+function extreu_id($taula,$camp,$id,$codi,$db)
 	{
 	$sql="SELECT ".$id." FROM ".$taula." WHERE ".$camp."='".$codi."';";
-//	echo "extreu ".$sql."<br>";
-	$result=mysql_query($sql);
-	if (!$result) 
-		{
-		die(_ERR_SELECT_ID . mysql_error());
-		}
-	$fila=  mysql_fetch_row($result);
-	return $fila[0];
+	//echo "extreu ".$sql."<br>";
+	$result=$db->prepare($sql);
+        $result->execute();
+        $fila =$result->fetch();
+	return $fila[$id];
 	}
 
 ////**********************************************************************
@@ -201,8 +199,7 @@ function recuperacampdedades($camps,$db)
 
 	{
 	$sql ="SELECT Nom_info_contacte,idtipus_contacte FROM `tipus_contacte`;";
-	$result = $db->query($sql);
-        if (!$result) {die(_ERR_SELECT_DATA_TYPE. mysql_error());} 
+	$result=$db->prepare($sql);$result->execute();
 	foreach($result->fetchAll() as $fila) {
 		
 		$camps[$fila['Nom_info_contacte']]=$fila['idtipus_contacte'];
@@ -212,22 +209,16 @@ function recuperacampdedades($camps,$db)
         return $camps;        
         }
 	
-
-function _copia_bd($user,$pass,$basedd)
+function copia_bd()
 	{
-	$filename = "bk_".$basedd."_".date("d-m-Y_H-i-s").".sql";
-	$mime = "application/x-gzip";
+        
+        require_once('../../pdo/bbdd/connect.php');
 
-	header( "Content-Type: " . $mime );
-	header( 'Content-Disposition: attachment; filename="' . $filename . '"' );
-
-	$cmd = "mysqldump -u $user --password=$pass $basedd";   
-
-	passthru( $cmd );
-	return;
-
+        $filename = "../uploads/bk_".DB."_".date("d-m-Y_H-i-s").".sql";
+        $cmd = "mysqldump -u ".USER." --password=".PASS." ".DB." > $filename";
+        //echo $cmd;
+        exec($cmd);
 	}
-
 
 function _data_correcta($data_fi)
 	
@@ -238,7 +229,7 @@ function _data_correcta($data_fi)
 	
 	}
 
-function _neteja_apostrofs(&$cadena)
+function neteja_apostrofs(&$cadena)
 
 	{
 	$elements = array("`", "'");
@@ -255,7 +246,7 @@ function extreu_fase($camp,$db)
 	{
 		
 	$sql00="SELECT estat FROM fases WHERE fase='".$camp."';"; 
-	$result00=$db->query($sql00);
+	$result00=$db->prepare($sql00);$result00->execute();
         foreach ($result00->fetchAll() as $fila) {$estat=  $fila['estat'];}
         return $estat;
         
@@ -265,7 +256,8 @@ function introduir_fase($camp,$valor,$db)
 	{
 	$sql01="UPDATE fases SET estat='".$valor."' WHERE fase='".$camp."';"; 
 	//echo "<br>".$sql01;
-	$result01 = $db->query($sql01);
+	$result01 = $db->prepare($sql01);
+        $result01->execute();
 	}
 
 
@@ -274,7 +266,7 @@ function nova_taula_fases($db)
 	
 	
 	$sql="DROP TABLE IF EXISTS fases";
-	$result = $db->query($sql);
+	$result=$db->prepare($sql);$result->execute();
 	
         $sql="CREATE TABLE IF NOT EXISTS `fases` (";
         $sql.="`id` int(11) NOT NULL AUTO_INCREMENT,";
@@ -283,7 +275,7 @@ function nova_taula_fases($db)
         $sql.="`comentaris` varchar(100) NOT NULL,";
         $sql.="PRIMARY KEY (`id`)";
         $sql.=") ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
-	$result = $db->query($sql);
+	$result=$db->prepare($sql);$result->execute();
 	
 	$sql="INSERT INTO `fases` (`id`, `fase`, `estat`,`comentaris`) VALUES ";
 	$sql.="(1, 'geisoft', 0,'Utilitzem o no geisoft'),";
@@ -309,17 +301,17 @@ function nova_taula_fases($db)
 	$sql.="(22, 'assig_alumnes',0,'Assignació d alumnes a grups/matèries');";
 	
 	//echo $sql;
-	$result = $db->query($sql);
+	$result=$db->prepare($sql);$result->execute();
 	}
 
 function nova_taula_equivalencies($db)
 	{
 		
 	$sql="DROP TABLE IF EXISTS equivalencies";
-	$result = $db->query($sql);
+	$result=$db->prepare($sql);$result->execute();
 	
 	$sql="DROP TABLE IF EXISTS grups_tmp";
-	$result = $db->query($sql);
+	$result=$db->prepare($sql);$result->execute();
 	
 	$sql="CREATE TABLE IF NOT EXISTS `equivalencies` (  `id` int(11) NOT NULL AUTO_INCREMENT, ";
 	$sql.="`grup_gp` varchar(100) DEFAULT NULL,";
@@ -335,7 +327,7 @@ function nova_taula_equivalencies($db)
 	$sql.="`altres` varchar(60) DEFAULT NULL,";
 	$sql.="PRIMARY KEY (`id`)";
 	$sql.=") ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
-	$result = $db->query($sql);
+	$result=$db->prepare($sql);$result->execute();
 	
 	}   
    

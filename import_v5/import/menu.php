@@ -78,10 +78,10 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 		}
 	else
 		{
-		$fitxerProfessorat = $_SESSION['professorat.csv'];
+		//$fitxerProfessorat = $_SESSION[''];
                 print("<img src=\"../images/checked.gif\">");
 		print("&nbsp;&nbsp;	El professorat ja ha estat actualitzat<br>");
-		print("<sub><a href=\"../uploads/".$fitxerProfessorat."\">Descarrega't el csv amb els usuaris i passwords</a></sub><br><br>");
+		print("<sub><a href=\"../uploads/professorat.csv\">Descarrega't el csv amb els usuaris i passwords</a></sub><br><br>");
 				
 		}
 	
@@ -240,10 +240,10 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
             print("<br><img src=\"../images/unchecked.gif\">&nbsp;<input type=button onClick=\"location.href='./main_alum.php'\" value=\">> Carrega/actualitza alumnes \" ><br>");
         }
 	else {
-            $fitxerAlumnat = $_SESSION['alumnat.csv'];
+            //$fitxerAlumnat = $_SESSION['alumnat.csv'];
             print("<img src=\"../images/checked.gif\">");
             print("&nbsp;&nbsp;	L'alumnat i les dades de famílies ja han estat actualitzades<br>");
-            print("<sub><a href=\"../uploads/".$fitxerAlumnat."\">Descarrega't el csv amb els usuaris i passwords</a></sub><br><br>");
+            print("<sub><a href=\"../uploads/alumnat.csv\">Descarrega't el csv amb els usuaris i passwords</a></sub><br><br>");
 	}
 
 	// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -251,12 +251,13 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 	// @@@@@@@@@@@@@@@@@@@@@@@@@@@
 	// BLOC D'ASSIGNACIÓ D'ALUMNES
 	// @@@@@@@@@@@@@@@@@@@@@@@@@@@	
+        
         if (!$callipolis){
-            if (!extreu_fase('assig_alumnes',$db)){
-                print("<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=button onClick=\"location.href='./main_seleccio_alumnes.php'\" value=\">> Assigna alumnes als grups \" ><br>");
-                print("<sub><b>Aquesta opció permet executar-se vàries vegades. Es poden assignar uns quants grups i en retornar a aquest menú, re-executar-ho</b></sub><br>");
-                print("<sub><b>Hem d'anar amb compte de no repetir grups</b></sub><br>");
-            }
+           
+            print("<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=button onClick=\"location.href='./main_seleccio_alumnes.php'\" value=\">> Assigna alumnes als grups \" ><br>");
+            print("<sub><b>Aquesta opció permet executar-se vàries vegades. Es poden assignar uns quants grups i en retornar a aquest menú, re-executar-ho</b></sub><br>");
+            print("<sub><b>Hem d'anar amb compte de no repetir grups</b></sub><br>");
+            
         }
         else 
             {

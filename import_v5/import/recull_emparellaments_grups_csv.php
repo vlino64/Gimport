@@ -8,9 +8,11 @@
 * Post cond.:
 * 
 ----------------------------------------------------------------*/
+require_once('../../pdo/bbdd/connect.php');
 include("../funcions/funcions_generals.php");
 include("../funcions/funcionsCsv.php");
 include("../funcions/func_prof_alum.php");
+ini_set("display_errors", 1);
 
 session_start();
 //Check whether the session variable SESS_MEMBER is present or not
@@ -31,9 +33,6 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 <body>
 
 <?php
-	
-
-	
 
     $recompte=$_POST['recompte'];
     $j = 0;
@@ -53,12 +52,6 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
             $j++;
             }
         }
-    actualitzar_alumnat_csv($relacioGrups);    
-//	introduir_fase('assig_alumnes',1);
-//	$page = "./menu.php";
-//	$sec="0";
-//	header("Refresh: $sec; url=$page");
-
-
+    actualitzar_alumnat_csv($relacioGrups,$db);    
 ?>
 </body>

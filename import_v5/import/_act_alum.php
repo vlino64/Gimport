@@ -75,7 +75,7 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 				$nom_complet=$user;
 				$pass="";
 				
-				genera($user,$pass,$nom,$cognom1,$cognom2);
+				genera($user,$pass,$nom,$cognom1,$cognom2,true,$db);
 				// En aquest cas no utiltzem a generació del password. Agafem com password el nom d'usuari
 				// i que actualitzen la password qun facin login
 				$pass=md5($user);

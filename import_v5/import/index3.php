@@ -9,6 +9,9 @@
 * 
 ----------------------------------------------------------------*/
 session_start();
+require_once('../../pdo/bbdd/connect.php');
+include("../funcions/funcions_generals.php");
+
 ini_set("display_errors",1);
 
 //Check whether the session variable SESS_MEMBER is present or not
@@ -76,7 +79,12 @@ function mostrarReferencia3()
 
 <body>
 <?php
-	$tmp_name = $_FILES["archivo"]["tmp_name"];
+        $aprofitar=$_POST['carrega2'];
+//        echo $aprofitar." >> ".$_POST['carrega2'];
+        if ( $aprofitar == "") {$aprofitar = 0;}
+	introduir_fase('aprofitar_saga',$aprofitar,$db);
+
+        $tmp_name = $_FILES["archivo"]["tmp_name"];
 	if ($tmp_name =="")
 		{
 		//echo "Utilitzarem un fitxer carregat anteriorment.<br>";
@@ -90,7 +98,11 @@ function mostrarReferencia3()
 		$exportsagaxml="../uploads/pujat_saga.xml";
 		$_SESSION['upload_saga'] = '../uploads/pujat_saga.xml';
 		move_uploaded_file($tmp_name,$exportsagaxml);
-		
+                $today = date("d-m-Y");$time = date("H-i-s");
+                $newname = $exportsagaxml."_".$today."_".$time;
+                if (!copy($exportsagaxml, $newname)) {
+                    echo "failed to copy";
+                }		
 		//Netegem el fitxer d'apostrofs
 		$str=implode("\n",file('../uploads/pujat_saga.xml'));
 		$fp=fopen('../uploads/pujat_saga.xml','w');
