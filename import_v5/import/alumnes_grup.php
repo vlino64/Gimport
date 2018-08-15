@@ -8,10 +8,6 @@
 * Post cond.:
 * 
 ----------------------------------------------------------------*/
-require_once('../../bbdd/connect.php');
-include("../funcions/func_prof_alum.php");
-include("../funcions/funcions_generals.php");
-
 
 session_start();
 //Check whether the session variable SESS_MEMBER is present or not
@@ -44,15 +40,15 @@ $exportsagaxml=$_SESSION['upload_saga'];
     
     foreach ($resultatconsulta -> grups -> grup as $grup)
         {
-        if (!strcmp($id_grup,$grup[id]))
+        if (!strcmp($id_grup,$grup['id']))
             {
             foreach ($grup -> alumnes -> alumne as $alumne)
                 {
                 foreach ($resultatconsulta2 -> alumnes -> alumne as $alumne2)
                     {
-                    if (!strcmp($alumne[id],$alumne2[id]))
+                    if (!strcmp($alumne[id],$alumne2['id']))
                         {
-                        echo "<br>".$alumne2[cognom1]." ".$alumne2[cognom2].", ".$alumne2[nom];
+                        echo "<br>".$alumne2['cognom1']." ".$alumne2['cognom2'].", ".$alumne2['nom'];
                         break;
                         }
                     }

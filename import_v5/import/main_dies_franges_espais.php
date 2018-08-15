@@ -100,7 +100,7 @@ if ((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER'] != "access_o
                     if (!extreu_fase('espais', $db)) {
                         form_espais2_gp($exporthorarixml, $db);
                     }
-                    if ((extreu_fase('espais', $db)) AND ( !extreu_fase('franges'))) {
+                    if ((extreu_fase('espais', $db)) AND ( !extreu_fase('franges',$db))) {
                         formulari_franges_GP($exporthorarixml,$db);
                     }
                     break;

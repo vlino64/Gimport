@@ -75,10 +75,10 @@ if ((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER'] != "access_o
 
             // Carreguem tot com si fossin matèries    
         } else if (($_POST['saga'] == 2) OR ( $_POST['saga'] == 3)) {
+            // Ja comprova a intro_mat.php si és o no segona càrrega
             $page = "./intro_mat.php";
             $sec = "0";
             header("Refresh: $sec; url=$page");
-
             // Carreguem des del fitxer de SAGA    
         } else if ($_POST['saga'] == 0) {
             select_plaestudis_saga();
@@ -87,11 +87,17 @@ if ((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER'] != "access_o
 //            buidatge("ufs_mantenint_materies");
             // Carreguem tot de nou
             if ($_POST['saga'] == 4) {
-                buidatge("desdemateries", $db);
+                // Si és una segona carrega
+                if (!extreu_fase('segona_carrega', $db)) {
+                    buidatge("desdemateries", $db);
+                }
                 carrega_CCFF_de_SAGA($db);
             } else if ($_POST['saga'] == 6) {
+                if (!extreu_fase('segona_carrega', $db)) {
+                    buidatge("desdediesfrangesespais", $db);
+                    
+                }
                 buidatge("materies", $db);
-                buidatge("desdediesfrangesespais", $db);
                 $sql = "DELETE FROM equivalencies WHERE materia_saga IS NOT NULL AND materia_gp IS NOT NULL;";
                 $result = $db->prepare($sql);
                 $result->execute();

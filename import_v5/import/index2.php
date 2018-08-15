@@ -152,7 +152,7 @@ if ($carrega == 3) {
             <form enctype="multipart/form-data" action="./index3.php" method="post" name="fcontacto">
                 <br><br><br>
                 <table class="general" width="70%" align="center" bgcolor="#ffbf6d">
-                    <tr><td align="center"><p>Per completar algunes informacions hauries de carregar el fitxer de SAGA <br>que teniu generat del curs passat<br /></td></tr>
+                    <tr><td align="center"><p>Per completar algunes informacions hauries de carregar el fitxer de SAGA <br>(Exportació per PDA)<br /></td></tr>
                 </table>
                 <br>
 
@@ -161,7 +161,7 @@ if ($carrega == 3) {
                 <table class="general" width="70%" align="center" bgcolor="#ffbf6d" >
                     <tr><td align="center"><div id="pujaono" >
                                 <p> Indica el que vulguis fer</p>
-                                <input type="radio" name="carrega2" value="1" id="carrega_0" onclick="mostrarReferencia4()" > <b>Utilitzar un fitxer de SAGA carregat prèviament. </b> 
+                                <input type="radio" name="carrega2" value="1" id="carrega_0" onclick="mostrarReferencia4()" > <b>Utilitzar un fitxer de SAGA (Exportació per PDA) carregat prèviament. </b> 
 
                                 <?php
                                 if (file_exists('../uploads/pujat_saga.xml')) {
@@ -174,7 +174,7 @@ if ($carrega == 3) {
                                 ?>
 
                                 <br>
-                                <input type="radio" name="carrega2" value="0" id="carrega_1" onclick="mostrarReferencia4()" > <b>Carregar un fitxer nou de SAGA</b>.<br>
+                                <input type="radio" name="carrega2" value="0" id="carrega_1" onclick="mostrarReferencia4()" > <b>Carregar una nova exportació per PDA de SAGA</b>.<br>
                             </div></td></tr>
                 </table>
                 <!-- ############################# -->

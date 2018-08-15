@@ -43,8 +43,10 @@ if ((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER'] != "access_o
         $sql = "DELETE FROM professor_carrec WHERE ((idcarrecs='1') OR (idcarrecs='2'));";
         $result = $db->prepare($sql);
         $result->execute();
-
-        $sql = "DELETE FROM equivalencies WHERE grup_gp!='';";
+        
+        // Elimina  equivalendies de grups anteriors
+        // El que realment s'ha de mantenir és elprofessorat
+        $sql = "DELETE FROM equivalencies WHERE grup_gp!='' AND grup_gp IS NOT NULL;";
         $result = $db->prepare($sql);
         $result->execute();
 

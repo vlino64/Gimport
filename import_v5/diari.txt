@@ -58,11 +58,36 @@ OK  Franges i espais Kronowin
 OK  Franges i espais Horwin
 OK  Franges i espais aSc
 
+HORARIS
+OK Horaris GPuntis
+OK Horaris Peñalara
+OK Horaris Kronowin. Manquen guàrdies
+OK Horaris Horwin
+OK Horaris aSc XXXX Reprovar amb 17/18
+
+ALUMNES
+OK SAGA Nous
+OK SAGA Actualitzacions
+OK CSV Nous
+OK Actualitzacions
+
+ALUMNES->GRUPS
+OK SAGA
+OK CSV
+CSV amb matèries >> Sta Eulàlia
+
+SEGONA CÀRREGA
+GPUntis -> prof, grup, materies4,........, franges i espais, horaris, assignacionscsv, ......
+PEÑALARA -> prof, grup, materies4,........, franges i espais, horaris, assignacionscsv, ......
 
 
-    Professorat, Grups >> segona càrrega
-    Tot el tema callipolis
-    Segona càrrega
+Horaris segon any respcte de professors. 
+    Comporvar que es correcte el nom i el codi. A HorWin el codi enter no és gaire segur que es mantingui
+Afegir comprovació addicional
+Professorat, Grups >> segona càrrega
+Tot el tema callipolis
+Segona càrrega
+Revisa que als corrus i telèfons no hi hagi un espai com a primer caràcter
 
 
 
@@ -71,6 +96,7 @@ ANOTACIONS
 Consulta
     $result=$db->prepare($sql);
     $result->execute();
+    $fila =$result->fetch();
 
 Bucle per processar consulta
     $result = $db->prepare($sql);

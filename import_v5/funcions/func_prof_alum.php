@@ -34,8 +34,7 @@ function profe_ja_existeix($user, $db) {
 function update_professorat_gassist($arrayProfessorat, $db) {
     // Crearem el csv
     $data = date("Ymd");
-    $hora = date("hi");
-    $_SESSION['professorat.csv'] = '../uploads/professorat.csv';
+    $hora = date("Hi");
     $myFile = "../uploads/professorat.csv";
     $myNewFile = "../uploads/" . $data . '_' . $hora . "_professorat.csv";
     $fh = fopen($myFile, 'w') or die("can't open file");
@@ -203,13 +202,12 @@ function extreu_professorat($fitxerXml, $app) {
                     break;
             }
         }
-    }
-    else {
+    } else {
         // Entre si és asC
         $i = 0;
         $array_from_csv = array();
         $array_from_csv = extreuProfessoratCsv();
-        foreach ($array_from_csv as $prof){
+        foreach ($array_from_csv as $prof) {
             $arrayProfessorat[$i][0] = $prof;
             $arrayProfessorat[$i][1] = $prof;
             $i++;
@@ -279,6 +277,7 @@ function update_professorat($exporthorarixml, $db) {
         }
     } else {
         // Amb programa d'horaris
+        echo "<br>>>>".$exporthorarixml;
         $resultatconsulta = simplexml_load_file($exporthorarixml);
         if ((!$resultatconsulta )AND ( extreu_fase('app_horaris', $db) != 4)) { // no es carrega l'xml si es tracta d'un csv
             echo "Carrega fallida horaris >>> " . $exporthorarixml;
@@ -290,7 +289,7 @@ function update_professorat($exporthorarixml, $db) {
                     die("<script>location.href = './act_prof_form_GEISoft.php?app=0'</script>");
                 } else {
                     foreach ($resultatconsulta->teachers->teacher as $professorgp) {
-                        //$sql="SELECT COUNT(codi_prof_gp) FROM equivalencies WHERE nom_prof_gp='".$professorgp->surname."' AND codi_prof_gp='".$professorgp['id']."';";
+                        //echo "<br>Ha entrat";
                         $codi = $professorgp['id'];
                         $nomComplet = $professorgp->surname;
                         if ($nomComplet == "") {
@@ -416,7 +415,7 @@ function update_professorat($exporthorarixml, $db) {
                     die("<script>location.href = './act_prof_form_GEISoft.php?app=3'</script>");
                 } else {
                     foreach ($resultatconsulta->DATOS->PROFESORES->PROFESOR as $professorgp) {
-                        $codi = $professorgp['abreviatura'];
+                        $codi = $professorgp['num_int_pr'];
                         $nomComplet = $professorgp['nombre'];
                         if ($nomComplet == "") {
                             $nomComplet = $codi;
@@ -702,30 +701,26 @@ function _select_professorat($exportsagaxml, $exporthorarixml) {
     }
 }
 
-function _altaAlumne() {
+function altaAlumne($db) {
     $camps = array();
     $camps = recuperacampdedades($camps, $db);
 
     $sql = "ALTER TABLE `contacte_families` CHANGE `Valor` `Valor` VARCHAR(400) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL;";
-    $result = mysql_query($sql);
-    if (!$result) {
-        die(_ERR_INSERT_ALUM . mysql_error());
-    }
+    $result = $db->prepare($sql);
+    $result->execute();
 
 
     //Desactivem tots els alumnes
     $sql = "UPDATE `alumnes` SET activat = 'N';";
     //echo $sql."<br>";
-    $result = mysql_query($sql);
-    if (!$result) {
-        die(_ERR_INSERT_ALUM . mysql_error());
-    }
+    $result = $db->prepare($sql);
+    $result->execute();
 
     // Preparem el fitxer
     $data = date("Ymd");
-    $hora = date("hi");
-    $_SESSION['alumnat.csv'] = '../uploads/' . $data . $hora . 'alumnat.csv';
-    $myFile = "../uploads/" . $data . $hora . "alumnat.csv";
+    $hora = date("Hi");
+    $myFile = "../uploads/alumnat.csv";
+    $myNewFile = "../uploads/" . $data . $hora . "alumnat.csv";
     $fh = fopen($myFile, 'w') or die("can't open file");
     $stringData = "nom_i_cognoms,usuari,login,password\n";
     fwrite($fh, $stringData);
@@ -756,14 +751,12 @@ function _altaAlumne() {
         $pass = "";
         //echo "<br>".$idAlumne;
         if ($idAlumne != "") {
-            if (alumne_ja_existeix($idAlumne)) {
+            if (alumne_ja_existeix($idAlumne, $db)) {
                 //Hem d'activar l'alumne
                 $sql = "UPDATE `alumnes` SET activat = 'S' WHERE codi_alumnes_saga = '" . $idAlumne . "' ;";
                 //echo $sql."<br>";
-                $result = mysql_query($sql);
-                if (!$result) {
-                    die(_ERR_INSERT_ALUM . mysql_error());
-                }
+                $result = $db->prepare($sql);
+                $result->execute();
             } else {
                 // Hem de crear l'alumne
 
@@ -777,32 +770,28 @@ function _altaAlumne() {
                 $sql .= "VALUES ('" . $idAlumne . "','S');";
                 //echo $sql."<br>";
 
-                $result = mysql_query($sql);
-                if (!$result) {
-                    die(_ERR_INSERT_ALUM . mysql_error());
-                }
+                $result = $db->prepare($sql);
+                $result->execute();
                 //echo "S'ha insertat ".$nom;echo "<br>";
 
 
 
-                $id = extreu_id(alumnes, codi_alumnes_saga, idalumnes, $idAlumne);
+                $id = extreu_id('alumnes', 'codi_alumnes_saga', 'idalumnes', $idAlumne, $db);
                 //echo "<br>".$id;
 
                 $sql = "INSERT INTO `contacte_alumne`(id_alumne,id_tipus_contacte,Valor) ";
-                $sql .= "VALUES ('" . $id . "','" . $camps[nom_complet] . "','" . $nom_complet . "'),";
-                $sql .= "('" . $id . "','" . $camps[login] . "','" . $user . "'),";
-                $sql .= "('" . $id . "','" . $camps[iden_ref] . "','" . $idAlumne . "'),";
-                $sql .= "('" . $id . "','" . $camps[nom_alumne] . "','" . $nom . "'),";
-                $sql .= "('" . $id . "','" . $camps[cognom1_alumne] . "','" . $cognom1 . "'),";
-                $sql .= "('" . $id . "','" . $camps[cognom2_alumne] . "','" . $cognom2 . "'),";
-                $sql .= "('" . $id . "','" . $camps[data_naixement] . "','" . $dataNaixement . "'),";
+                $sql .= "VALUES ('" . $id . "','" . $camps['nom_complet'] . "','" . $nom_complet . "'),";
+                $sql .= "('" . $id . "','" . $camps['login'] . "','" . $user . "'),";
+                $sql .= "('" . $id . "','" . $camps['iden_ref'] . "','" . $idAlumne . "'),";
+                $sql .= "('" . $id . "','" . $camps['nom_alumne'] . "','" . $nom . "'),";
+                $sql .= "('" . $id . "','" . $camps['cognom1_alumne'] . "','" . $cognom1 . "'),";
+                $sql .= "('" . $id . "','" . $camps['cognom2_alumne'] . "','" . $cognom2 . "'),";
+                $sql .= "('" . $id . "','" . $camps['data_naixement'] . "','" . $dataNaixement . "'),";
                 $md5pass = md5($user);
-                $sql .= "('" . $id . "','" . $camps[contrasenya] . "','" . $md5pass . "');";
+                $sql .= "('" . $id . "','" . $camps['contrasenya'] . "','" . $md5pass . "');";
                 //            echo $sql."<br>";
-                $result = mysql_query($sql);
-                if (!$result) {
-                    die(_ERR_INSERT_ALUM_CONTACT . mysql_error());
-                }
+                $result = $db->prepare($sql);
+                $result->execute();
                 //print("L'alumne/a d'alta: ".$nom_complet." Nom d'usuari: ".$user."<br>");
                 //Escrivim en el csv
                 $stringData = $nom . "," . $cognom1 . " " . $cognom2 . "," . $user . "," . $user . "\n";
@@ -810,17 +799,15 @@ function _altaAlumne() {
 
                 // Generem famílies
                 // Crea una família sense dades i retorna el seu id
-                $id_families = crea_families();
+                $id_families = crea_families($db);
 
                 // Segon si té o no germans es modifica la sql	
                 $sql = "INSERT INTO `alumnes_families`(idalumnes,idfamilies) ";
                 $sql .= "VALUES ";
                 $sql .= "('" . $id . "','" . $id_families . "'); ";
                 //            echo $sql."<br>";
-                $result = mysql_query($sql);
-                if (!$result) {
-                    die(_ERR_INSERT_FAMILY . (2) . mysql_error());
-                }
+                $result = $db->prepare($sql);
+                $result->execute();
 
                 //Inserim les dades de contacte de la família si no té german que ja s'hagin donat s'alta
 
@@ -848,21 +835,22 @@ function _altaAlumne() {
                 $sql .= ",('" . $id_families . "','" . $camps["nom_municipi"] . "','" . $localitat . "') ";
                 $sql .= ",('" . $id_families . "','" . $camps["telefon"] . "','" . $altres . "') ";
                 //echo $sql."<br>";
-                $result = mysql_query($sql);
-                if (!$result) {
-                    die(_ERROR_INSERT_FAMILY . (3) . mysql_error());
-                }
+                $result = $db->prepare($sql);
+                $result->execute();
             }
         }
     }
     fclose($fh);
-    introduir_fase('families', 1);
-    introduir_fase('alumnat', 1);
+    if (!copy($myFile, $myNewFile)) {
+        echo "failed to copy";
+    }
+    introduir_fase('families', 1, $db);
+    introduir_fase('alumnat', 1, $db);
 
     die("<script>location.href = './menu.php'</script>");
 }
 
-function _select_alumnat() {
+function select_alumnat($db) {
     // NOMÉS S'UTILITZA PER DONAR D'ALTA DES DE FITXER DE SAGA
     $exportsagaxml = $_SESSION['upload_saga'];
     $camps = array();
@@ -871,10 +859,8 @@ function _select_alumnat() {
     // Desactivem tot l'alumnat que està activat a la base de dades. No els pasem de moment a l'històric
     // ja que volem que al desplegable apareguin
     $sql = "UPDATE `alumnes` SET `activat`='N' WHERE activat='S';";
-    $result = mysql_query($sql);
-    if (!$result) {
-        die(_ERR_DEACT_ALUM . mysql_error());
-    }
+    $result = $db->prepare($sql);
+    $result->execute();
 
     // Comprovem i actualitzem el l'alumnat
 
@@ -883,51 +869,6 @@ function _select_alumnat() {
         echo "Carrega fallida";
     } else {
         echo "<br>Carrega correcta";
-
-        foreach ($resultatconsulta->alumnes->alumne as $alumne) {
-            // Cerca un per un quin alumne ja té l'id correcte
-            // Si el localitza, l'activa
-            $sql = "SELECT count(*) FROM alumnes ";
-            $sql .= "WHERE codi_alumnes_saga='" . $alumne['id'] . "';";
-            //echo "<br>".$sql."<br>";
-            $result = mysql_query($sql);
-            if (!$result) {
-                die(_ERR_LOOK_FOR_ALUM . mysql_error());
-            }
-            $fila = mysql_fetch_row($result);
-            $present = $fila[0];
-            if ($present) {
-                // Activem l'alumnat en questió i si és un alumne que era historic , el torna a habilitar
-                $sql = "UPDATE `alumnes` SET `activat`='S',historic='N'  WHERE codi_alumnes_saga='" . $alumne['id'] . "' ;";
-                //echo "<br>".$sql;
-                $result = mysql_query($sql);
-                if (!$result) {
-                    die(_ERR_ACT_ALUM1 . mysql_error());
-                }
-
-                // 16/17. Li afegimn la data de naixement
-                $sql = "SELECT id_alumne FROM contacte_alumne WHERE id_tipus_contacte = '" . $camps[iden_ref] . "' AND Valor = '" . $alumne['id'] . "';";
-                $result = mysql_query($sql);
-                if (!$result) {
-                    die(_ERR_ACT_ALUM2 . mysql_error());
-                }
-                $fila = mysql_fetch_row($result);
-                $id_saga = $fila[0];
-
-                $sql = "INSERT INTO contacte_alumne(id_alumne,id_tipus_contacte,Valor) ";
-                $sql .= "VALUES ('" . $id_saga . "','" . $camps[data_naixement] . "','" . $alumne[datanaixement] . "')";
-                $result = mysql_query($sql);
-                if (!$result) {
-                    die(_ERR_ACT_ALUM3 . mysql_error());
-                }
-                // Final afegir data naixement alumnes antics              
-            }
-        }
-        // Ja no mostra el que s'ha activat per tenir l'id de saga correcte
-        // Apareix:
-        // Alumnat nou al centre
-        // Alumnat que l'any anterior no se li va posar bé l'id
-        // Alumnat que torna després de haver anat a l'històric
 
         print("<form method=\"post\" action=\"./act_alum.php\" enctype=\"multipart/form-data\" id=\"profform\">");
 
@@ -944,15 +885,19 @@ function _select_alumnat() {
         foreach ($resultatconsulta->alumnes->alumne as $alumne) {
             // Cerca l'alumne per identificador
             // Si no hi és apareix al llistat
-            $sql = "SELECT COUNT(*) FROM alumnes ";
+            $sql = "SELECT COUNT(*) AS compte FROM alumnes ";
             $sql .= "WHERE codi_alumnes_saga='" . $alumne['id'] . "';";
-            $result = mysql_query($sql);
-            if (!$result) {
-                die(mysql_error());
-            }
-            $present = mysql_result($result, 0);
-            //echo "<br>".$sql." >> ".$present;
-            if ($present == 0) {
+            $result = $db->prepare($sql);
+            $result->execute();
+            $fila = $result->fetch();
+            $present = $fila['compte'];
+            if ($present != 0) {
+                // Activem l'alumnat en questió i si és un alumne que era historic , el torna a habilitar
+                $sql = "UPDATE `alumnes` SET `activat`='S',historic='N'  WHERE codi_alumnes_saga='" . $alumne['id'] . "' ;";
+                //echo "<br>".$sql;
+                $result = $db->prepare($sql);
+                $result->execute();
+            } else {
                 print("<tr ");
                 if ((($pos / 5) % 2) == "0") {
                     print("bgcolor=\"orange\"");
@@ -964,26 +909,7 @@ function _select_alumnat() {
                 print("<td><input type=\"text\" name=\"naixement" . $pos . "\" value=\"" . $alumne['datanaixement'] . "\" size=\"12\" HIDDEN></td>");
                 print("<td><input type=\"checkbox\" value=\"1\" name=\"alta" . $pos . "\" CHECKED ");
                 print("> Alta</td>");
-//					if ($fase!=0)
-//						{				
-//                  
-//                  // Consulta per emplenar el desplegable
-//                  $sql="SELECT A.idalumnes, B.Valor FROM alumnes A,contacte_alumne B WHERE ((A.idalumnes=B.id_alumne) AND (B.id_tipus_contacte='1') ";
-//                  $sql.="AND (A.activat='N') AND (historic='N')) order by B.Valor;";
-//                  //echo $sql;
-//                  $result=mysql_query($sql); if (!$result) {	die(mysql_error());}
-//                  
-//                  
-//                  print("<td><select name=\"id_gass".$pos."\">");
-//						print("<option value=\"\"></option>");
-//						while ($fila=mysql_fetch_row($result))
-//							{
-//							print("<option value=\"".$fila[0]."\">".$fila[1]."</option>");
-//							}
-//						print("</select></td>");
-//						print("<td><input type=\"checkbox\" name=\"actualitzacio".$pos."\" ");
-//						print(">Actualització</td>");
-//						}
+
                 print("</tr> ");
                 $pos++;
             }
@@ -994,10 +920,9 @@ function _select_alumnat() {
             print("<tr><td align=\"center\" colspan=\"7\"><input type=\"text\" name=\"recompte\" value=\"" . $pos . "\" HIDDEN ></td></tr>");
             print("</table>");
             print("</form>");
-            mysql_close($conexion);
         } else {
-            introduir_fase('families', 1);
-            introduir_fase('alumnat', 1);
+            introduir_fase('families', 1, $db);
+            introduir_fase('alumnat', 1, $db);
             $page = "./menu.php";
             $sec = "0";
             header("Refresh: $sec; url=$page");
@@ -1417,8 +1342,28 @@ function esmovilsms($telefon) {
 // 				ASSISGNACIÓ ALUMNES A GRUPS MATÈRIA
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2
 
-function _select_grups_per_matricular_csv() {
-    require_once('../../bbdd/connect.php');
+function select_grups_per_matricular_csv_materies($db) {
+
+    $arr_grups_csv = extreuGrupsCsv2();
+
+    print("<form method=\"post\" action=\"./assignacions_act_csv_materies.php\" enctype=\"multipart/form-data\" id=\"profform\">");
+
+    print("<table align=\"center\" width=\"60%\">");
+    print("<tr><td align=\"center\" colspan=\"3\"><h3>INSTRUCCIONS</h3></td></tr>");
+    print("<tr><td align=\"center\" colspan=\"3\">");
+    print("<font color =\"red\"><br>Es tracta d'una assignació per matèries que s'està provant de cara a futures importacions</font><br>");
+    print("Per poder realitzar aquesta càrrega: <br>");
+    print("S'ha hagut de realitzar una exportació específica molt concreta de  SAGA per obtenir les matèries a les que està matriculat un alumne.<br>");
+    print("Que les maeries i UFs tinguin correspondencia completa entre SAGA i el programa d'horaris.<br>");
+    print("Les matèries del programa d'horaris  no han de tenir la xifra final corresponent al curs  que tenen a SAGA.<br>");
+    print("S'haurà d'etablir el paral.lelisme entre grups de SAGA i el program d'horaris.<br></td></tr>");
+    print("<tr><td align=\"center\" colspan=\"3\"><input name=\"boton\" type=\"submit\" id=\"boton\" value=\"Seguim!\">");
+    print("&nbsp&nbsp<input type=button onClick=\"location.href='./menu.php'\" value=\"Torna al menú!\" ></td></tr>");
+    print("</table>");
+    print("</form>");
+}
+
+function select_grups_per_matricular_csv($db) {
 
     $arr_grups_csv = extreuGrupsCsv2();
 
@@ -1428,18 +1373,16 @@ function _select_grups_per_matricular_csv() {
     print("<tr><td align=\"center\" colspan=\"3\"><h3>INSTRUCCIONS</h3></td></tr>");
     print("<tr><td align=\"center\" colspan=\"3\">Si selecciones un grup del fitxer CSV, tots els alumnes que consten com alumnes ");
     print("d'aquest grup es matricularan a totes les matèries vinculades al grup. <br>   ");
-    print("Tingues present que els professors poden inscriure els alumnes als seus grups des de l'aplicació");
+    print("<b>Tingues present que els professors poden inscriure els alumnes als seus grups des de l'aplicació<b>");
     print(". <br>");
-    print("<font color =\"red\"><br>Si es tracta d'una segona càrrega amb un segon fitxer d'horaris, no tornis a matricular esls alumnes ja matriculats</font>");
+    print("<font color =\"red\"><br>Si es tracta d'una segona càrrega amb un segon fitxer d'horaris, no tornis a matricular els alumnes ja matriculats</font>");
     print("<tr align=\"center\" bgcolor=\"#ffbf6d\" ><td>Grup app horaris </td><td></td><td>Grups fitxer csv</td></tr>");
     $pos = 1;
     //echo "<br>".$sql;
     $sql = "SELECT idgrups,nom FROM grups WHERE 1 ORDER BY nom; ";
-    $result = mysql_query($sql);
-    if (!$result) {
-        die(mysql_error());
-    }
-    while ($fila = mysql_fetch_row($result)) {
+    $result = $db->prepare($sql);
+    $result->execute();
+    foreach ($result->fetchAll() as $fila) {
         print("<tr ");
         if ((($pos / 5) % 2) == "0") {
             print("bgcolor=\"#3f3c3c\"");
@@ -1466,8 +1409,8 @@ function _select_grups_per_matricular_csv() {
     print("</form>");
 }
 
-function _select_grups_per_matricular($exportsagaxml) {
-    require_once('../../bbdd/connect.php');
+function select_grups_per_matricular($exportsagaxml, $db) {
+
     $resultatconsulta = simplexml_load_file($exportsagaxml);
     if (!$resultatconsulta) {
         echo "Càrrega fallida.";
@@ -1486,17 +1429,15 @@ function _select_grups_per_matricular($exportsagaxml) {
         $pos = 1;
         //echo "<br>".$sql;
         $sql = "SELECT idgrups,nom FROM grups WHERE 1 ORDER BY nom; ";
-        $result = mysql_query($sql);
-        if (!$result) {
-            die(mysql_error());
-        }
-        while ($fila = mysql_fetch_row($result)) {
+        $result = $db->prepare($sql);
+        $result->execute();
+        foreach ($result->fetchAll() as $fila) {
             print("<tr ");
             if ((($pos / 5) % 2) == "0") {
                 print("bgcolor=\"#3f3c3c\"");
             }
-            print("><td><input type=\"text\" name=\"nom_grup_" . $pos . "\" value=\"" . $fila[1] . "\" SIZE=\"50\" READONLY></td>");
-            print("<td><input type=\"text\" name=\"id_grup_" . $pos . "\" value=\"" . $fila[0] . "\" SIZE=\"6\" HIDDEN></td>");
+            print("><td><input type=\"text\" name=\"nom_grup_" . $pos . "\" value=\"" . $fila['nom'] . "\" SIZE=\"50\" READONLY></td>");
+            print("<td><input type=\"text\" name=\"id_grup_" . $pos . "\" value=\"" . $fila['idgrups'] . "\" SIZE=\"6\" HIDDEN></td>");
 
             print("<td><select name=\"id_grup_saga_" . $pos . "\" ");
             print(">");
@@ -1573,7 +1514,7 @@ function _select_grups_per_matricular_cali($exportsagaxml) {
     }
 }
 
-function _mostra_grups($exportsagaxml) {
+function mostra_grups($exportsagaxml) {
     $resultatconsulta = simplexml_load_file($exportsagaxml);
     $resultatconsulta2 = simplexml_load_file($exportsagaxml);
 
@@ -1584,7 +1525,7 @@ function _mostra_grups($exportsagaxml) {
     foreach ($resultatconsulta->grups->grup as $grup) {
         //print('<td><a <input type="button value="'.$grup[nom].'" onClick="ccalert1('.$grup[id].')">fsdgdsf</td>');
         //print('<td><a id="myLink" title="Visualitza els alumnes del grup" href="alumnes_grup.php?idgrup='.$grup[id].'" >'.$grup[nom].'</a></td>');
-        print('<td><a href="javascript:window.open(\'alumnes_grup.php?idgrup=' . $grup['id'] . '\',\'mywindowtitle\',\'width=400,height=600\')">' . $grup[nom] . '</a></td>');
+        print('<td><a href="javascript:window.open(\'alumnes_grup.php?idgrup=' . $grup['id'] . '\',\'mywindowtitle\',\'width=400,height=600\')">' . $grup['nom'] . '</a></td>');
         $i++;
         if ($i % 5 == 0) {
             print('</tr><tr>');

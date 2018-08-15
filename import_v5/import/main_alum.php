@@ -8,10 +8,11 @@
 * Post cond.:
 * 
 ----------------------------------------------------------------*/
-require_once('../../bbdd/connect.php');
+require_once('../../pdo/bbdd/connect.php');
 include("../funcions/func_prof_alum.php");
 include("../funcions/funcions_generals.php");
 include("../funcions/funcionsCsv.php");
+ini_set("display_errors", 1);
 
 session_start();
 //Check whether the session variable SESS_MEMBER is present or not
@@ -69,9 +70,8 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
         }
     else 
         {
-	require_once('../../bbdd/connect.php');
-        if ($_POST['alumnes'] == 0) {altaAlumne(); }
-        if ($_POST['alumnes'] == 1) {select_alumnat(); }
+        if ($_POST['alumnes'] == 0) {altaAlumne($db); }
+        if ($_POST['alumnes'] == 1) {select_alumnat($db); }
         }
 		
 ?>

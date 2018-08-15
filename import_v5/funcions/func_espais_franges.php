@@ -62,13 +62,8 @@ function carregaFrangesDiesKW($db) {
     }
 }
 
-function _extreu_codi_franja_guardies($dia, $fran) {
-    require_once('../../bbdd/connect.php');
-
-//	$conexion=mysql_connect(localhost,$_USR_GASSIST,$_PASS_GASSIST);
-//	$db=mysql_select_db($_BD_GASSIST,$conexion);
-//	mysql_set_charset("utf8");   
-
+function extreu_codi_franja_guardies($dia, $fran, $db) {
+    
     $exporthorarixml = $_SESSION['upload_horaris'];
     $resultatconsulta2 = simplexml_load_file($exporthorarixml);
     if (!$resultatconsulta2) {
@@ -90,25 +85,22 @@ function _extreu_codi_franja_guardies($dia, $fran) {
     }
     $sql = "SELECT idfranges_horaries FROM franges_horaries ";
     $sql.="WHERE activada='S' AND hora_inici='" . $horainici . "' AND hora_fi='" . $horafi . "';";
-    $result = mysql_query($sql);
-    if (!$result) {
-        die(Select_franja2 . mysql_error());
-    }
-    $id_franja = mysql_result($result, 0);
+                                    $result = $db->prepare($sql);
+                                    $result->execute();
+                                    $fila = $result->fetch();
+    $id_franja = $fila['idfranges_horaries'];
 
     $sql = "SELECT id_dies_franges FROM dies_franges ";
     $sql.="WHERE iddies_setmana='" . $dia . "' AND idfranges_horaries='" . $id_franja . "';";
-    $result = mysql_query($sql);
-    if (!$result) {
-        die(Select_franja2 . mysql_error());
-    }
-    $iddia_franja = mysql_result($result, 0);
+                                    $result = $db->prepare($sql);
+                                    $result->execute();
+                                    $fila = $result->fetch();
+    $iddia_franja = $fila['id_dies_franges'];
 
     return $iddia_franja;
 }
 
-function _extreu_codi_franja($dia, $fran, $id_grup) {
-    require_once('../../bbdd/connect.php');
+function _extreu_codi_franja($dia, $fran, $id_grup,$db) {
 
     $id_torn = extreu_id('grups', 'idgrups', 'idtorn', $id_grup);
 
@@ -237,7 +229,7 @@ function formulari_franges_GP($exporthorarixml,$db) {
                         print("<option value=\"" . $fila1['idFrangesHora'] . "\">" . $fila1['horaIni'] . "-" . $fila1['horaFi'] . "-" . $fila1['nomTorn'] . "</option>");
                     }
                     print("</select></td>");
-                    print("<td><input type=\"checkbox\" name=\"crea_franja_" . $pos . "\" value=\"1\">Crea la franja</td>");
+                    print("<td><input type=\"checkbox\" name=\"crea_franja_" . $pos . "\" value=\"1\" CHECKED >Crea la franja</td>");
                 } else {
                     print("</td>");
                 }
@@ -443,7 +435,7 @@ function formulari_franges_HW($exporthorarixml, $db) {
                         print("<option value=\"" . $fila1['idFrangesHora'] . "\">" . $fila1['horaIni'] . "-" . $fila1['horaFi'] . "-" . $fila1['nomTorn'] . "</option>");
                     }
                     print("</select></td>");
-                    print("<td><input type=\"checkbox\" name=\"crea_franja_" . $pos . "\" value=\"1\">Crea la franja</td>");
+                    print("<td><input type=\"checkbox\" name=\"crea_franja_" . $pos . "\" value=\"1\" CHECKED >Crea la franja</td>");
                 } else {
                     print("</td>");
                 }
@@ -554,7 +546,7 @@ function formulari_franges_PN($exportgpuntisxml, $db) {
                         print("<option value=\"" . $fila1['idFrangesHora'] . "\">" . $fila1['horaIni'] . "-" . $fila1['horaFi'] . "-" . $fila1['nomTorn'] . "</option>");
                     }
                     print("</select></td>");
-                    print("<td><input type=\"checkbox\" name=\"crea_franja_" . $pos . "\" value=\"1\">Crea la franja</td>");
+                    print("<td><input type=\"checkbox\" name=\"crea_franja_" . $pos . "\" value=\"1\" CHECKED>Crea la franja</td>");
                 } else {
                     print("</td>");
                 }
@@ -583,7 +575,7 @@ function form_espais2_gp($exporthorarixml, $db) {
     print("<table  align=\"center\"><tr ><td width =\"25%\">&nbsp</td><td width =\"25%\">ESPAIS JA DONATS D'ALTA</td><td width =\"25%\">NOUS ESPAIS DEL FITXER CARREGAT</td><td width =\"25%\">&nbsp</td></tr><tr><td></td><td>");
     espais_intro2_gp($exporthorarixml,$db);
     print("<br><input name=\"boton\" type=\"submit\" id=\"boton\" value=\"Crea els espais marcats\">");
-    $recompte = $recompte - 1;
+//    $recompte = $recompte - 1;
     print("</td><td></td></tr></table>");
 }
 

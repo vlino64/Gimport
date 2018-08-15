@@ -48,7 +48,7 @@ function carregaFrangesDies($db) {
         $result2->execute();
         foreach ($result2->fetchAll() as $fila2) {
             $sql3 = "INSERT INTO dies_franges(iddies_setmana,idfranges_horaries,idperiode_escolar) ";
-            $sql3 .="VALUES(" . $fila['iddies_setmana'] . "," . $fila2['idfranges_horaries'] . "," . $periode . ")";
+            $sql3 .= "VALUES(" . $fila['iddies_setmana'] . "," . $fila2['idfranges_horaries'] . "," . $periode . ")";
             $result3 = $db->prepare($sql3);
             $result3->execute();
         }
@@ -80,6 +80,83 @@ function extreuGrupsCsv2() {
     return $grups;
 }
 
+// Mètode CALI per generar csv de grups però amb el pla d'estudis inclòs
+function extreuGrupsCsvAmbPlaEstudis($db) {
+    // Extreu els grups de csv d'alumnes
+    $alumnat = extreuAlumnatCsv();
+    $grups = array();
+    $k = 0;
+    for ($i = 1; $i < count($alumnat); $i++) {
+        for ($j = 0; $j < 3; $j++) {
+            $grupTmp = $alumnat[$i][$j];
+            // Eliminem el guió que porta a SAGA
+            $grupTmpArr = explode("-", $grupTmp);
+            $grupTmp = $grupTmpArr[0] . $grupTmpArr[1];
+            $present = false;
+            if ($grupTmp != "") {
+                foreach ($grups as $grup) {
+//                    echo "<br>" . $grup[0] . " >> " . $grupTmp;
+                    if (!strcmp($grup[0], $grupTmp)) {
+                        $present = true;
+                        break;
+                    }
+                }
+                if (!$present) {
+                    //Eliminem el guio que es posa als noms de SAGA
+
+                    $grups[$k][0] = $grupTmp;
+                    $grups[$k][1] = "X";
+//                    echo "<br>" . $grupTmp;
+                    $k++;
+                }
+            }
+        }
+    }
+    // CALI. Afegeix el pla d'estudis a l'array de grups
+    $exportsagaxml = $_SESSION['upload_saga'];
+    $grups = afegeixPlaEstudis($grups, $exportsagaxml, $db);
+    return $grups;
+}
+
+function afegeixPlaEstudis($grups, $exportsagaxml, $db) {
+
+    $resultatconsulta = simplexml_load_file($exportsagaxml);
+    if (!$resultatconsulta) {
+        echo "Carrega Saga fallida";
+    } else {
+
+        for ($i = 0; $i < count($grups); $i++) {
+            //foreach ($grups as $grup) {
+            $nomGrup = $grups[$i][0];
+            if ($nomGrup != "") {
+                foreach ($resultatconsulta->grups->grup as $grupSaga) {
+                    // Hem d'extreure el codi del pla d'estudis del codi general
+                    $plaEstudis = explode(" ", $grupSaga['codi']);
+                    // Eliminem el guió que porta a SAGA
+                    $grupTmpArr = explode("-", $grupSaga['nom']);
+                    $grupTmp = $grupTmpArr[0];
+                    
+                    $longitud = strlen($grupTmp);
+                    $nomGrupRetallat=substr($nomGrup,0,$longitud);
+                    echo "<br>".$nomGrup." >>> ".$nomGrupRetallat." >>> ". $grupTmp. " >> ".$longitud;
+                    
+                    if ($nomGrupRetallat == $grupTmp) {
+                        echo "<br>****************".$nomGrupRetallat." >>> ". $grupTmp;
+                        $sql = "SELECT idplans_estudis FROM plans_estudis WHERE Acronim_pla_estudis "
+                                . "LIKE '%" . $plaEstudis[1] . "%';";
+                        $result = $db->prepare($sql);
+                        $result->execute();
+                        $fila = $result->fetch();
+                        $grups[$i][1] = $fila['idplans_estudis'];
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    return $grups;
+}
+
 function extreuGrupsCsv() {
     // Extraccio de grups del csv de ASC
     $csvFile = $_SESSION['upload_horaris'];
@@ -108,7 +185,7 @@ function extreuGrupsCsv() {
     return $grups;
 }
 
-function __extreuDia($dia) {
+function extreuDia($dia) {
     switch ($dia) {
         case "A":
             $dia = 1;
@@ -132,8 +209,41 @@ function __extreuDia($dia) {
     return $dia;
 }
 
-function __creaSessionsEso($sessions, $idgrup_materia, $codi_noroom, $periode) {
-    require_once('../../bbdd/connect.php');
+function creaGuardies($sessions, $idProfessor, $codi_noroom, $periode, $db) {
+
+    $unitatsclasse = explode(" ", $sessions);
+
+    foreach ($unitatsclasse as $uclasse) {
+        $franja = substr($uclasse, 0, strpos($uclasse, "(")) + 1;
+        $dies = substr($uclasse, (strpos($uclasse, "(") + 1), ((strpos($uclasse, ")")) - (strpos($uclasse, "(") + 1)));
+        $arrayDies = explode(",", $dies);
+        foreach ($arrayDies as $dia) {
+            $dia = extreuDia($dia);
+            //echo "<br>" . $franja . " >> " . $dia . " >> " . $periode;
+            if (($dia != "") && ($franja != "") && ($periode != "")) {
+                //echo "<br>".$franja." >> ".$dia;
+                $sql = "SELECT id_dies_franges FROM dies_franges WHERE iddies_setmana='" . $dia . "' AND idfranges_horaries='" . $franja . "'";
+                $sql .= " AND idperiode_escolar='" . $periode . "' ;";
+                //echo "<br>".$sql;
+                $result = $db->prepare($sql);
+                $result->execute();
+                $fila = $result->fetch();
+                $diaFranja = $fila['id_dies_franges'];
+
+                if (($idProfessor != "") && ($diaFranja != "")) {
+                    $sql = "INSERT INTO guardies(idprofessors,id_dies_franges,idespais_centre) VALUES ";
+                    $sql .= "(" . $idProfessor . "," . $diaFranja . "," . $codi_noroom . ")";
+                    //echo "<br>".$sql;
+                    $result = $db->prepare($sql);
+                    $result->execute();
+                }
+            }
+        }
+        //echo "<br>=====================";
+    }
+}
+
+function creaSessionsEso($sessions, $idgrup_materia, $codi_noroom, $periode, $db) {
 
     $unitatsclasse = explode(" ", $sessions);
 
@@ -146,30 +256,25 @@ function __creaSessionsEso($sessions, $idgrup_materia, $codi_noroom, $periode) {
             if (($dia != "") && ($franja != "") && ($periode != "")) {
                 //echo "<br>".$franja." >> ".$dia;
                 $sql = "SELECT id_dies_franges FROM dies_franges WHERE iddies_setmana='" . $dia . "' AND idfranges_horaries='" . $franja . "'";
-                $sql.=" AND idperiode_escolar='" . $periode . "' ;";
+                $sql .= " AND idperiode_escolar='" . $periode . "' ;";
                 //echo "<br>".$sql;
-                $result = mysql_query($sql);
-                if (!$result) {
-                    die(SELECT_DIES . mysql_error());
-                }
-                $fila = mysql_fetch_row($result);
-                $diaFranja = $fila[0];
+                $result = $db->prepare($sql);
+                $result->execute();
+                $fila = $result->fetch();
+                $diaFranja = $fila['id_dies_franges'];
 
                 $sql = "INSERT INTO unitats_classe(id_dies_franges,idespais_centre,idgrups_materies) VALUES ";
-                $sql.="(" . $diaFranja . "," . $codi_noroom . "," . $idgrup_materia . ")";
+                $sql .= "(" . $diaFranja . "," . $codi_noroom . "," . $idgrup_materia . ")";
                 //echo "<br>".$sql;
-                $result = mysql_query($sql);
-                if (!$result) {
-                    die(INSERT_UC_ESO . mysql_error());
-                }
+                $result = $db->prepare($sql);
+                $result->execute();
             }
         }
         //echo "<br>=====================";
     }
 }
 
-function _creaSessionsCCFF($sessions, $arrayUfs, $codi_noroom, $periode) {
-    require_once('../../bbdd/connect.php');
+function creaSessionsCCFF($sessions, $arrayUfs, $codi_noroom, $periode, $db) {
 
     $unitatsclasse = explode(" ", $sessions);
 
@@ -183,22 +288,18 @@ function _creaSessionsCCFF($sessions, $arrayUfs, $codi_noroom, $periode) {
             //echo "<br>".$franja." >> ".$dia;
             if (($dia != "") && ($franja != "") && ($periode != "")) {
                 $sql = "SELECT id_dies_franges FROM dies_franges WHERE iddies_setmana='" . $dia . "' AND idfranges_horaries='" . $franja . "'";
-                $sql.=" AND idperiode_escolar='" . $periode . "' ;";
+                $sql .= " AND idperiode_escolar='" . $periode . "' ;";
                 //echo "<br>".$sql;
-                $result = mysql_query($sql);
-                if (!$result) {
-                    die(SELECT_DIES . mysql_error());
-                }
-                $fila = mysql_fetch_row($result);
-                $diaFranja = $fila[0];
+                $result = $db->prepare($sql);
+                $result->execute();
+                $fila = $result->fetch();
+                $diaFranja = $fila['id_dies_franges'];
                 for ($i = 0; $i < count($arrayUfs); $i++) {
                     $sql = "INSERT INTO unitats_classe(id_dies_franges,idespais_centre,idgrups_materies) VALUES ";
-                    $sql.="(" . $diaFranja . "," . $codi_noroom . "," . $arrayUfs[$i][0] . ")";
+                    $sql .= "(" . $diaFranja . "," . $codi_noroom . "," . $arrayUfs[$i][0] . ")";
                     //echo "<br>".$sql;
-                    $result = mysql_query($sql);
-                    if (!$result) {
-                        die(INSERT_UC_FP . mysql_error());
-                    }
+                    $result = $db->prepare($sql);
+                    $result->execute();
                 }
             }
         }
@@ -257,67 +358,55 @@ function netejaCsv($csvFile) {
     return $data2;
 }
 
-function _gestionaProfessorESO($profFila, $idgrup_materia, $es_nou_grup_materia) {
+function gestionaProfessorESO($profFila, $idgrup_materia, $es_nou_grup_materia, $db) {
     $array_prof = explode(",", $profFila);
     foreach ($array_prof as $arr_prof) {
-        $idProfessor = extreu_id("equivalencies", "nom_prof_gp", "prof_ga", $arr_prof);
+        $idProfessor = extreu_id("equivalencies", "nom_prof_gp", "prof_ga", $arr_prof, $db);
         if ($idProfessor != "") {
             if ($es_nou_grup_materia) {
                 $sql = "INSERT INTO prof_agrupament(idprofessors,idagrups_materies) VALUES ('" . $idProfessor . "','" . $idgrup_materia . "');";
                 //echo "<br>>>>>>>".$sql;
-                $result = mysql_query($sql);
-                if (!$result) {
-                    die(_INSERINT_PROF_GRUP_MATERIA . mysql_error());
-                }
+                $result = $db->prepare($sql);
+                $result->execute();
             } else {
                 // Hem de comprovar que la relació no estiguija establerta
                 $sql = "SELECT idprof_grup_materia FROM prof_agrupament WHERE idprofessors = '" . $idProfessor . "' AND idagrups_materies ='" . $idgrup_materia . "';";
                 //echo "<br>>>>>>>".$sql;
-                $result = mysql_query($sql);
-                if (!$result) {
-                    die(_SELECT_PROF_GRUP_MATERIA . mysql_error());
-                }
-                if (mysql_num_rows($result) == 0) {
+                $result = $db->prepare($sql);
+                $result->execute();
+                if ($result->rowCount() == 0) {
                     $sql = "INSERT INTO prof_agrupament(idprofessors,idagrups_materies) VALUES ('" . $idProfessor . "','" . $idgrup_materia . "');";
                     //echo "<br>>>>>>>".$sql;
-                    $result = mysql_query($sql);
-                    if (!$result) {
-                        die(_INSERINT_PROF_GRUP_MATERIA(2) . mysql_error());
-                    }
+                    $result = $db->prepare($sql);
+                    $result->execute();
                 }
             }
         }
     }
 }
 
-function _gestionaProfessorCCFF($profFila, $arrayUfs) {
+function gestionaProfessorCCFF($profFila, $arrayUfs, $db) {
     $array_prof = explode(",", $profFila);
     foreach ($array_prof as $arr_prof) {
-        $idProfessor = extreu_id("equivalencies", "nom_prof_gp", "prof_ga", $arr_prof);
+        $idProfessor = extreu_id("equivalencies", "nom_prof_gp", "prof_ga", $arr_prof, $db);
         if ($idProfessor != "") {
             for ($i = 0; $i < count($arrayUfs); $i++) {
                 if ($arrayUfs[$i][1] == 1) {
                     $sql = "INSERT INTO prof_agrupament(idprofessors,idagrups_materies) VALUES ('" . $idProfessor . "','" . $arrayUfs[$i][0] . "');";
                     //echo "<br> Inserint".$sql;
-                    $result = mysql_query($sql);
-                    if (!$result) {
-                        die(_INSERINT_PROF_GRUP_MATERIA . mysql_error());
-                    }
+                    $result = $db->prepare($sql);
+                    $result->execute();
                 } else {
                     // Hem de comprovar que la relació no estiguija establerta
                     $sql = "SELECT idprof_grup_materia FROM prof_agrupament WHERE idprofessors = '" . $idProfessor . "' AND idagrups_materies ='" . $arrayUfs[$i][0] . "';";
                     //echo "<br>>>>>>>".$sql;
-                    $result = mysql_query($sql);
-                    if (!$result) {
-                        die(_SELECT_PROF_GRUP_MATERIA . mysql_error());
-                    }
-                    if (mysql_num_rows($result) == 0) {
+                    $result = $db->prepare($sql);
+                    $result->execute();
+                    if ($result->rowCount() == 0) {
                         $sql = "INSERT INTO prof_agrupament(idprofessors,idagrups_materies) VALUES ('" . $idProfessor . "','" . $arrayUfs[$i][0] . "');";
                         //echo "<br>>>>>>>".$sql;
-                        $result = mysql_query($sql);
-                        if (!$result) {
-                            die(_INSERINT_PROF_GRUP_MATERIA(2) . mysql_error());
-                        }
+                        $result = $db->prepare($sql);
+                        $result->execute();
                     }
                 }
             }
@@ -410,7 +499,7 @@ function comprova_matricula_grup($idAlumne, $id_grup, $db) {
     foreach ($result->fetchAll() as $fila) {
         if ($present == 0) {
             $sql2 = "SELECT idalumnes_grup_materia AS compta FROM alumnes_grup_materia WHERE idalumnes = " . $idAlumne . " AND ";
-            $sql2.= "idgrups_materies = " . $fila['idgrups_materies'] . ";";
+            $sql2 .= "idgrups_materies = " . $fila['idgrups_materies'] . ";";
             //echo "<br>".$sql2;
             $result2 = $db->prepare($sql2);
             $result2->execute();
@@ -509,7 +598,7 @@ function actualitzar_alumnat_csv($relacioGrups, $db) {
                 fwrite($fh, $stringData);
 
                 $sql = "INSERT INTO `alumnes`(codi_alumnes_saga,activat) ";
-                $sql.="VALUES ('" . $idAlumne . "','S');";
+                $sql .= "VALUES ('" . $idAlumne . "','S');";
                 //echo $sql."<br>";
 
                 $result = $db->prepare($sql);
@@ -520,15 +609,15 @@ function actualitzar_alumnat_csv($relacioGrups, $db) {
                 //echo "<br>".$id;
 
                 $sql = "INSERT INTO `contacte_alumne`(id_alumne,id_tipus_contacte,Valor) ";
-                $sql.="VALUES ('" . $id . "','" . $camps['nom_complet'] . "','" . $nom_complet . "'),";
-                $sql.="('" . $id . "','" . $camps['login'] . "','" . $user . "'),";
-                $sql.="('" . $id . "','" . $camps['iden_ref'] . "','" . $idAlumne . "'),";
-                $sql.="('" . $id . "','" . $camps['nom_alumne'] . "','" . $nom . "'),";
-                $sql.="('" . $id . "','" . $camps['cognom1_alumne'] . "','" . $cognom1 . "'),";
-                $sql.="('" . $id . "','" . $camps['cognom2_alumne'] . "','" . $cognom2 . "'),";
-                $sql.="('" . $id . "','" . $camps['data_naixement'] . "','" . $dataNaixement . "'),";
+                $sql .= "VALUES ('" . $id . "','" . $camps['nom_complet'] . "','" . $nom_complet . "'),";
+                $sql .= "('" . $id . "','" . $camps['login'] . "','" . $user . "'),";
+                $sql .= "('" . $id . "','" . $camps['iden_ref'] . "','" . $idAlumne . "'),";
+                $sql .= "('" . $id . "','" . $camps['nom_alumne'] . "','" . $nom . "'),";
+                $sql .= "('" . $id . "','" . $camps['cognom1_alumne'] . "','" . $cognom1 . "'),";
+                $sql .= "('" . $id . "','" . $camps['cognom2_alumne'] . "','" . $cognom2 . "'),";
+                $sql .= "('" . $id . "','" . $camps['data_naixement'] . "','" . $dataNaixement . "'),";
                 $md5pass = md5($user);
-                $sql.="('" . $id . "','" . $camps['contrasenya'] . "','" . $md5pass . "');";
+                $sql .= "('" . $id . "','" . $camps['contrasenya'] . "','" . $md5pass . "');";
                 //echo $sql."<br>";
                 $result = $db->prepare($sql);
                 $result->execute();
@@ -540,8 +629,8 @@ function actualitzar_alumnat_csv($relacioGrups, $db) {
 
                 // Segon si té o no germans es modifica la sql	
                 $sql = "INSERT INTO `alumnes_families`(idalumnes,idfamilies) ";
-                $sql.="VALUES ";
-                $sql.="('" . $id . "','" . $id_families . "'); ";
+                $sql .= "VALUES ";
+                $sql .= "('" . $id . "','" . $id_families . "'); ";
                 //            echo $sql."<br>";
                 $result = $db->prepare($sql);
                 $result->execute();
@@ -552,25 +641,25 @@ function actualitzar_alumnat_csv($relacioGrups, $db) {
                 $nom_complet_mare = $tutor2Nom . " " . $tutor2Cognom1 . " " . $tutor2Cognom2;
 
                 $sql = "INSERT INTO `contacte_families`(id_families,id_tipus_contacte,Valor) ";
-                $sql.="VALUES ";
-                $sql.="('" . $id_families . "','" . $camps["nom_pare"] . "','" . $tutor1Nom . "') ";
-                $sql.=",('" . $id_families . "','" . $camps["cognom1_pare"] . "','" . $tutor1Cognom1 . "') ";
-                $sql.=",('" . $id_families . "','" . $camps["cognom2_pare"] . "','" . $tutor1Cognom2 . "') ";
-                $sql.=",('" . $id_families . "','" . $camps["nom_complet"] . "','" . $nom_complet_pare . "') ";
-                $sql.=",('" . $id_families . "','" . $camps["nom_complet"] . "','" . $nom_complet_pare . "') ";
-                $sql.=",('" . $id_families . "','" . $camps["mobil_sms"] . "','" . $tutor1mobil . "') ";
-                $sql.=",('" . $id_families . "','" . $camps["email1"] . "','" . $tutor1email . "') ";
+                $sql .= "VALUES ";
+                $sql .= "('" . $id_families . "','" . $camps["nom_pare"] . "','" . $tutor1Nom . "') ";
+                $sql .= ",('" . $id_families . "','" . $camps["cognom1_pare"] . "','" . $tutor1Cognom1 . "') ";
+                $sql .= ",('" . $id_families . "','" . $camps["cognom2_pare"] . "','" . $tutor1Cognom2 . "') ";
+                $sql .= ",('" . $id_families . "','" . $camps["nom_complet"] . "','" . $nom_complet_pare . "') ";
+                $sql .= ",('" . $id_families . "','" . $camps["nom_complet"] . "','" . $nom_complet_pare . "') ";
+                $sql .= ",('" . $id_families . "','" . $camps["mobil_sms"] . "','" . $tutor1mobil . "') ";
+                $sql .= ",('" . $id_families . "','" . $camps["email1"] . "','" . $tutor1email . "') ";
                 if ($tutor2Nom != "") {
-                    $sql.=",('" . $id_families . "','" . $camps["nom_mare"] . "','" . $tutor2Nom . "') ";
-                    $sql.=",('" . $id_families . "','" . $camps["cognom1_mare"] . "','" . $tutor2Cognom1 . "') ";
-                    $sql.=",('" . $id_families . "','" . $camps["cognom2_mare"] . "','" . $tutor2Cognom2 . "') ";
-                    $sql.=",('" . $id_families . "','" . $camps["nom_complet"] . "','" . $nom_complet_mare . "') ";
-                    $sql.=",('" . $id_families . "','" . $camps["mobil_sms2"] . "','" . $tutor2mobil . "') ";
-                    $sql.=",('" . $id_families . "','" . $camps["email1"] . "','" . $tutor2email . "') ";
+                    $sql .= ",('" . $id_families . "','" . $camps["nom_mare"] . "','" . $tutor2Nom . "') ";
+                    $sql .= ",('" . $id_families . "','" . $camps["cognom1_mare"] . "','" . $tutor2Cognom1 . "') ";
+                    $sql .= ",('" . $id_families . "','" . $camps["cognom2_mare"] . "','" . $tutor2Cognom2 . "') ";
+                    $sql .= ",('" . $id_families . "','" . $camps["nom_complet"] . "','" . $nom_complet_mare . "') ";
+                    $sql .= ",('" . $id_families . "','" . $camps["mobil_sms2"] . "','" . $tutor2mobil . "') ";
+                    $sql .= ",('" . $id_families . "','" . $camps["email1"] . "','" . $tutor2email . "') ";
                 }
-                $sql.=",('" . $id_families . "','" . $camps["adreca"] . "','" . $adressa . "') ";
-                $sql.=",('" . $id_families . "','" . $camps["nom_municipi"] . "','" . $localitat . "') ";
-                $sql.=",('" . $id_families . "','" . $camps["telefon"] . "','" . $altres . "') ";
+                $sql .= ",('" . $id_families . "','" . $camps["adreca"] . "','" . $adressa . "') ";
+                $sql .= ",('" . $id_families . "','" . $camps["nom_municipi"] . "','" . $localitat . "') ";
+                $sql .= ",('" . $id_families . "','" . $camps["telefon"] . "','" . $altres . "') ";
                 //echo $sql."<br>";
                 $result = $db->prepare($sql);
                 $result->execute();

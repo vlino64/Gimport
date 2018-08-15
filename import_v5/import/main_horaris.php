@@ -8,11 +8,14 @@
 * Post cond.:
 * 
 ----------------------------------------------------------------*/
-require_once('../../bbdd/connect.php');
+require_once('../../pdo/bbdd/connect.php');
+include("../funcions/func_horaris.php");
+include("../funcions/func_espais_franges.php");
 include("../funcions/func_grups_materies.php");
 include("../funcions/funcions_generals.php");
-include("../funcions/func_horaris_cali.php");
-
+include("../funcions/funcionsCsv.php");
+ini_set("display_errors", 1);
+    
 session_start();
 //Check whether the session variable SESS_MEMBER is present or not
 if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")) 
@@ -35,10 +38,28 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 <body>
 <?php
 
-	$exportsagaxml=$_SESSION['upload_saga'];
-	$exporthorarixml=$_SESSION['upload_horaris'];
-	cali_intro_grups($exportsagaxml,$exporthorarixml);    
-	
+    $exportsagaxml=$_SESSION['upload_saga'];
+    $exporthorarixml=$_SESSION['upload_horaris'];
+    $app= extreu_fase('app_horaris',$db);
+    switch ($app)
+        {
+        case 0:
+            crea_horaris_gp_mixt($exportsagaxml,$exporthorarixml,$db);
+            break;
+        case 1:
+            crea_horaris_PN_mixt($exportsagaxml,$exporthorarixml,$db);
+            break;
+        case 2:
+            crea_horaris_KW_mixt($exportsagaxml,$exporthorarixml,$db);
+            break;
+        case 3:
+            crea_horaris_HW_mixt($exportsagaxml,$exporthorarixml,$db);
+            break;
+        case 4:
+            crea_horaris_ASC_mixt($db);
+            break;
+        }
+		
 ?>
 </body>
 

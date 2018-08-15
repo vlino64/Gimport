@@ -254,12 +254,12 @@ if ((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER'] != "access_o
 
         foreach ($result->fetchAll() as $fila) {
             foreach ($resultatconsulta->grups->grup as $grup) {
-                if ($grup[id] == $fila[1]) {
+                if ($grup['id'] == $fila[1]) {
 
                     foreach ($grup->continguts->contingut as $mat_prof) {
                         //echo "<br>".$grup[id]." --> ".$mat_prof[professor]." --> ".$mat_prof[contingut];
                         // Esbrino l'id de la materia de cada contingut
-                        $id_materia = extreu_id('moduls_materies_ufs', 'codi_materia', 'id_mat_uf_pla', $mat_prof['contingut']);
+                        $id_materia = extreu_id('moduls_materies_ufs', 'codi_materia', 'id_mat_uf_pla', $mat_prof['contingut'],$db);
                         //echo $mat_prof[contingut].">>> ".$id_materia."<br>";
                         //amb aquest id_materia puc posar-hi el contingut a la taula grup_materia
                         // Si no conté cap informació significa que és un módul i no una UF

@@ -112,7 +112,8 @@ if ((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER'] != "access_o
                     <tr><td align="center"><input type="radio" name="saga" value="4" id="materies_4"  /> 
                             vull carregar les matèries, crèdits i mòduls des del fitxer d'horaris, i les Ufs del fitxer de SAGA</td></tr>
                     <tr><td align="center"><input type="radio" name="saga" value="6" id="materies_6" onclick="Urgente6(this)"   /> 
-                            vull carregar les matèries, crèdits i mòduls des del fitxer d'horaris i mantenir les Ufs carregades el curs passat</td></tr>
+                            vull carregar les matèries, crèdits i mòduls des del fitxer d'horaris i mantenir les Ufs carregades el curs passat<br>
+                            <sub>(<font color = "red">^^^ Aquesta opció no es vàlida per segones càrregues</font>)</sub></td></tr>
                     <tr><td align="center"><input type="radio" name="saga" value="5" id="materies_5" onclick="Urgente5(this)" /> 
                             vull mantenir les matèries/mòduls/UFs que ja tinc al programa d'horaris</td></tr>
                     <tr><td align="center"><input type="radio" name="saga" value="10" id="materies_1" DISABLED  /> 

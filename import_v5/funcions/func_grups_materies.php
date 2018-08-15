@@ -13,107 +13,70 @@
 //						GRUPS I MATÈRIES
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2
 
-function _genera_tutoria($dataInici, $dataFi, $idPla, $acronimPla, $esLoe) {
+function genera_tutoria($dataInici, $dataFi, $idPla, $acronimPla, $esLoe, $db) {
     $materia = $acronimPla . "_Tutoria";
     if (!$esLoe) {
-        $sql = "SELECT COUNT(idmateria) FROM materia WHERE codi_materia = '" . $materia . "';";
-        $result = mysql_query($sql);
-
-
-        if (!$result) {
-            die(_ERR_INSERT_MATERIA2 . mysql_error());
-        }
-        $fila = mysql_fetch_row($result);
-        if ($fila[0] == 0) {
+        $sql = "SELECT COUNT(idmateria) as compta FROM materia WHERE codi_materia = '" . $materia . "';";
+        $result = $db->prepare($sql);
+        $result->execute();
+        $fila = $result->rowCount();
+        if ($fila == 0) {
             $sql2 = "INSERT INTO moduls_materies_ufs(idplans_estudis,codi_materia,activat) ";
             $sql2 .= "VALUES ('" . $idPla . "','" . $materia . "','S')";
-            //echo "<br>".$sql2;
-
-            $result2 = mysql_query($sql2);
-            if (!$result2) {
-                die(_ERR_INSERT_MATERIA2 . mysql_error());
-            }
+            $result2 = $db->prepare($sql2);
+            $result2->execute();
 
             $sql2 = "SELECT id_mat_uf_pla FROM moduls_materies_ufs WHERE codi_materia = '" . $materia . "';";
-            //echo "<br>".$sql2;
-
-            $result2 = mysql_query($sql2);
-            if (!$result2) {
-                die(_ERR_SELECT_ID_MATERIA . mysql_error());
-            }
-            $fila2 = mysql_fetch_row($result2);
-            $idMateria = $fila2[0];
+            $result2 = $db->prepare($sql2);
+            $result2->execute();
+            $fila2 = $result2->fetch();
+            $idMateria = $fila2['id_mat_uf_pla'];
 
             $sql2 = "INSERT INTO materia(idmateria,codi_materia,nom_materia) ";
             $sql2 .= "VALUES ('" . $idMateria . "','" . $materia . "','" . $materia . "')";
-            //echo "<br>".$sql2;
-
-            $result2 = mysql_query($sql2);
-            if (!$result2) {
-                die(_ERR_INSERT_MATERIA3 . mysql_error());
-            }
+            $result2 = $db->prepare($sql2);
+            $result2->execute();
         }
     }
     // Crea la tutoria com a unitat formativa i módul
     else {
-        $sql = "SELECT COUNT(idunitats_formatives) FROM unitats_formatives WHERE nom_uf = '" . $materia . "';";
-        $result = mysql_query($sql);
-        if (!$result) {
-            die(_ERR_INSERT_MATERIA2 . mysql_error());
-        }
-        $fila = mysql_fetch_row($result);
-        if ($fila[0] == 0) {
+        $sql = "SELECT COUNT(idunitats_formatives) as compta FROM unitats_formatives WHERE nom_uf = '" . $materia . "';";
+        $result = $db->prepare($sql);
+        $result->execute();
+        $fila = $result->fetch();
+        if ($fila['compta'] == 0) {
             // Crearem primer el módul i extreurem el seu id
             $sql2 = "INSERT INTO moduls(idplans_estudis,nom_modul,codi_modul,hores_finals) ";
             $sql2 .= "VALUES ('" . $idPla . "','" . $materia . "','" . $materia . "', 0 )";
-            //echo "<br>".$sql2;
-            $result2 = mysql_query($sql2);
-            if (!$result2) {
-                die(_ERR_INSERT_MODUL . mysql_error());
-            }
-
-            $idModul = extreu_id('moduls', 'nom_modul', 'idmoduls', $materia);
-
+            $result2 = $db->prepare($sql2);
+            $result2->execute();
+            $idModul = extreu_id('moduls', 'nom_modul', 'idmoduls', $materia, $db);
             $sql2 = "INSERT INTO moduls_materies_ufs(idplans_estudis,codi_materia,activat) ";
             $sql2 .= "VALUES ('" . $idPla . "','" . $materia . "','S')";
-            //echo "<br>".$sql2;
-            $result2 = mysql_query($sql2);
-            if (!$result2) {
-                die(_ERR_INSERT_MATERIA2 . mysql_error());
-            }
-            $fila2 = mysql_fetch_row($result2);
-
+            $result2 = $db->prepare($sql2);
+            $result2->execute();
             $sql2 = "SELECT id_mat_uf_pla FROM moduls_materies_ufs WHERE codi_materia = '" . $materia . "';";
-            $result2 = mysql_query($sql2);
-            //echo "<br>".$sql2;
-            if (!$result2) {
-                die(_ERR_SELECT_ID_MATERIA . mysql_error());
-            }
-            $fila2 = mysql_fetch_row($result2);
-            $idMateria = $fila2[0];
-
+            $result2 = $db->prepare($sql2);
+            $result2->execute();
+            $fila2 = $result2->fetch();
+            $idMateria = $fila2['id_mat_uf_pla'];
             $sql2 = "INSERT INTO unitats_formatives(idunitats_formatives,nom_uf,codi_uf) ";
             $sql2 .= "VALUES ('" . $idMateria . "','" . $materia . "','" . $materia . "')";
-            //echo "<br>".$sql2;
-            $result2 = mysql_query($sql2);
-            if (!$result2) {
-                die(_ERR_INSERT_MATERIA3 . mysql_error());
-            }
+            $result2 = $db->prepare($sql2);
+            $result2->execute();
 
             $sql2 = "INSERT INTO moduls_ufs(id_moduls,id_ufs) ";
             $sql2 .= "VALUES ('" . $idModul . "','" . $idMateria . "')";
+            $result2 = $db->prepare($sql2);
+            $result2->execute();
             //echo "<br>".$sql2;
-            $result2 = mysql_query($sql2);
-            if (!$result2) {
-                die(_ERR_INSERT_MATERIA3 . mysql_error());
-            }
         }
     }
-    //echo "<br>".$materia;
+    //echo "<br>" . $materia;
     return $materia;
 }
 
-function _cali_intro_grups($exportsagaxml, $exporthorarixml) {
+function cali_intro_grups($exportsagaxml, $exporthorarixml, $db) {
     // Tot es gestionarà amb el torn global
     echo "***************************************************<br>";
     echo "S'ha de crear un torn que es digui \"Torn Global\"<br>";
@@ -124,77 +87,40 @@ function _cali_intro_grups($exportsagaxml, $exporthorarixml) {
 
     // Extreiem el identificador del torn global
     $sql = "SELECT idtorn FROM torn WHERE nom_torn = 'Torn Global';";
-    $result = mysql_query($sql);
-    if (!$result) {
-        die(_ERR_SELECT_TORNS . mysql_error());
-    }
-    $fila = mysql_fetch_row($result);
-    $idTorn = $fila[0];
+    $result = $db->prepare($sql);
+    $result->execute();
+    $fila = $result->fetch();
+    $idTorn = $fila['idtorn'];
 
-    carrega_plans_estudis();
+    carrega_plans_estudis($db);
 
-    $resultatconsulta = simplexml_load_file($exportsagaxml);
-    if (!$resultatconsulta) {
-        echo "Carrega Saga fallida";
-    } else {
-        foreach ($resultatconsulta->grups->grup as $grup) {
-            $idGrup = $grup[id];
-            $nomGrup = $grup[nom];
-            $arrayNomGrup = explode(" ", $nomGrup);
-            $arrayNomGrup2 = explode("-", $arrayNomGrup[0]);
-            $nomGrup2 = $arrayNomGrup2[0] . $arrayNomGrup2[1];
+    $grups = extreuGrupsCsvAmbPlaEstudis($db);
 
-            $idPla = $arrayNomGrup[1];
+    foreach ($grups as $grup) {
+        $idGrup = $grup[0];
+        $nomGrup = $grup[0];
+        $idPla = $grup[1];
 
-            //Comprovem que aquest grup no existeixi
-            $sql = "SELECT COUNT(idgrups) FROM grups WHERE codi_grup = '" . $nomGrup . "';";
-            $result = mysql_query($sql);
-            if (!$result) {
-                die(_ERR_SELECT_PLANS . mysql_error());
-            }
-            $fila = mysql_fetch_row($result);
-            $present = $fila[0];
+        if ($nomGrup != "") {
 
-            if ($present == 0) {
-                $sql = "INSERT INTO grups(idtorn,codi_grup,nom) VALUES ('" . $idTorn . "','" . $nomGrup . "','" . $nomGrup2 . "');";
-                $result = mysql_query($sql);
-                if (!$result) {
-                    die(_ERR_INSERT_GROUPS . mysql_error());
-                }
+            $sql = "INSERT INTO grups(idtorn,codi_grup,nom) VALUES ('" . $idTorn . "','" . $nomGrup . "','" . $nomGrup . "');";
+            $result = $db->prepare($sql);
+            $result->execute();
 
-                //Extreiem l'identificador del grup 
-                $id_grup = extreu_id('grups', 'codi_grup', 'idgrups', $nomGrup);
+            //Extreiem l'identificador del grup 
+            $id_grup = extreu_id('grups', 'codi_grup', 'idgrups', $nomGrup, $db);
 
-                // Extreiem l'identificador del pla d'estudis
-                $sql = "SELECT idplans_estudis FROM plans_estudis WHERE  `Acronim_pla_estudis` LIKE  '%" . $idPla . "%' ";
-                $result = mysql_query($sql);
-                if (!$result) {
-                    die(_ERR_SELECT_PLANS . mysql_error());
-                }
-                $fila = mysql_fetch_row($result);
-                $id_pla = $fila[0];
-
-                //Desem l'emparellament a la taula equivalencies per quan s'hagin de carregat els alumnes i matèries
-                $sql = "INSERT INTO equivalencies(grup_gp,grup_ga,pla_saga) VALUES ('" . $nomGrup . "','" . $id_grup . "','" . $id_pla . "');";
-                $result = mysql_query($sql);
-                if (!$result) {
-                    die(_ERR_INSERT_GROUPS_3 . mysql_error());
-                }
-            }
+            //Desem l'emparellament a la taula equivalencies per quan s'hagin de carregat els alumnes i matèries
+            $sql = "INSERT INTO equivalencies(grup_gp,grup_ga,pla_saga) VALUES ('" . $nomGrup . "','" . $id_grup . "','" . $idPla . "');";
+            $result = $db->prepare($sql);
+            $result->execute();
         }
     }
-    introduir_fase('grups', 1);
+
+    introduir_fase('grups', 1, $db);
     $page = "./menu.php";
     $sec = "0";
     header("Refresh: $sec; url=$page");
-}
-
-function _clonar_modul($id_modul, $duplicat) {
-    
-}
-
-function _crea_grup_sense_materies_i_assigna_alumnes($tipus_pla, $id_pla, $nom_materia, $id_materia, $id_grup, $idg_grup) {
-    
 }
 
 function relaciona_grups_torns_sol_saga($exportsagaxml, $db) {
@@ -684,21 +610,22 @@ function crea_agrupaments_GP($exporthorarixml, $db) {
     $sql = "DELETE FROM equivalencies WHERE grup_gp!=' ' AND altres!=' ';";
     $result = $db->prepare($sql);
     $result->execute();
-
     $exporthorarixml = $_SESSION['upload_horaris'];
     $resultatconsulta = simplexml_load_file($exporthorarixml);
     if (!$resultatconsulta) {
         echo "Carrega Gpuntis fallida";
     } else {
+        $id_torn = "";
         foreach ($resultatconsulta->lessons->lesson as $grupss) {
             // Comprovem que no estigui a equivalencies
-            $sql = "SELECT COUNT(grup_gp) FROM equivalencies WHERE grup_gp='" . $grupss->lesson_classes['id'] . "';";
+            $sql = "SELECT grup_gp FROM equivalencies WHERE grup_gp='" . $grupss->lesson_classes['id'] . "';";
             $result = $db->prepare($sql);
             $result->execute();
             $present = $result->rowCount();
+
             if ($present == 0) {
                 // Si no hi és, cerquem en la taula grups
-                $sql = "SELECT COUNT(idgrups) FROM grups WHERE codi_grup='" . $grupss->lesson_classes['id'] . "';";
+                $sql = "SELECT idgrups FROM grups WHERE codi_grup='" . $grupss->lesson_classes['id'] . "';";
                 $result = $db->prepare($sql);
                 $result->execute();
                 $present = $result->rowCount();
@@ -710,8 +637,8 @@ function crea_agrupaments_GP($exporthorarixml, $db) {
                         $grup_ext[$i] = trim("CL_" . $grup_ext[$i]);
                     }
                     for ($i = 1; $i < count($grup_ext); $i++) { {
-                            $id_torn = torna_torn($grup_ext[$i]);
-                            $id_pla = torna_pla($grup_ext[$i]);
+                            $id_torn = torna_torn($grup_ext[$i], $db);
+                            $id_pla = torna_pla($grup_ext[$i], $db);
                             //echo "<br>".$id_torn." >> ".$id_pla." >> ".$grup_ext[$i];
                             if (($id_torn != '') AND ( $id_pla != ''))
                                 break;
@@ -728,7 +655,6 @@ function crea_agrupaments_GP($exporthorarixml, $db) {
 
                         //Desem l'emparellament a la taula equivalencies per quan s'hagin de carregat els alumnes i matèries
                         $sql = "INSERT INTO equivalencies(grup_gp,grup_ga,pla_saga) VALUES ('" . $grupss->lesson_classes['id'] . "','" . $id_grup . "','" . $id_pla . "');";
-                        $result = mysql_query($sql);
                         $result = $db->prepare($sql);
                         $result->execute();
                     }
@@ -755,13 +681,13 @@ function crea_agrupaments_PN($exporthorarixml, $db) {
             $agrupament = neteja_item_grup_materia($grupss->grupoMateria);
 
             // Comprovem que no estigui a equivalencies
-            $sql = "SELECT COUNT(grup_gp) FROM equivalencies WHERE grup_gp='" . $agrupament . "';";
+            $sql = "SELECT grup_gp FROM equivalencies WHERE grup_gp='" . $agrupament . "';";
             $result = $db->prepare($sql);
             $result->execute();
             $present = $result->rowCount();
             if ($present == 0) {
                 // Si no hi és, cerquem en la taula grups
-                $sql = "SELECT COUNT(idgrups) FROM grups WHERE codi_grup='" . $agrupament . "';";
+                $sql = "SELECT idgrups FROM grups WHERE codi_grup='" . $agrupament . "';";
                 $result = $db->prepare($sql);
                 $result->execute();
                 $present = $result->rowCount();
@@ -770,8 +696,8 @@ function crea_agrupaments_PN($exporthorarixml, $db) {
                     // El trenquem per veure si es desdoblament/optativa
                     $grup_ext = explode("/", $agrupament);
                     for ($i = 0; $i < count($grup_ext); $i++) {
-                        $id_torn = torna_torn($grup_ext[$i]);
-                        $id_pla = torna_pla($grup_ext[$i]);
+                        $id_torn = torna_torn($grup_ext[$i], $db);
+                        $id_pla = torna_pla($grup_ext[$i], $db);
                         //echo "<br>".$id_torn." >> ".$id_pla." >> ".$grup_ext[$i];
                         if (($id_torn != '') AND ( $id_pla != ''))
                             break;
@@ -901,38 +827,33 @@ function _torna_torn_pla_HW($grup) {
     
 }
 
-function _torna_torn($grup) {
+function torna_torn($grup, $db) {
     // Aprofitem treure el torn per veure si és un grup de docència i està en la taula equivalencies
-    $sql = "SELECT A.idtorn FROM grups A, equivalencies B WHERE B.grup_saga=A.codi_grup AND B.grup_gp='" . $grup . "';";
+    $sql = "SELECT A.idtorn AS idtorn FROM grups A, equivalencies B WHERE B.grup_saga=A.codi_grup AND B.grup_gp='" . $grup . "';";
     //echo "<br>".$sql;
-    $result = mysql_query($sql);
-    if (!$result) {
-        die(_ERROR_SELECT_TORN . mysql_error());
-    }
-    $present = mysql_num_rows($result);
+    $result = $db->prepare($sql);
+    $result->execute();
+
+    $present = $result->rowCount();
     if ($present == 0) {
         // Aprofitem treure el torn per veure si és un grup de docència i està en la taula grups
         $sql = "SELECT idtorn FROM grups WHERE codi_grup='" . $grup . "';";
-        $result = mysql_query($sql);
-        if (!$result) {
-            die(_ERROR_SELECT_TORN(2) . mysql_error());
-        }
+        $result = $db->prepare($sql);
+        $result->execute();
     }
-    $fila = mysql_fetch_row($result);
-    $id_torn = $fila[0];
+    $fila = $result->fetch();
+    $id_torn = $fila['idtorn'];
     return $id_torn;
 }
 
-function _torna_pla($grup) {
+function torna_pla($grup, $db) {
     // Aprofitem treure el torn per veure si és un grup de docència i està en la taula equivalencies
     $sql = "SELECT pla_saga FROM equivalencies WHERE grup_gp='" . $grup . "';";
     //echo "<br>".$sql;
-    $result = mysql_query($sql);
-    if (!$result) {
-        die(_ERROR_SELECT_TORN . mysql_error());
-    }
-    $fila = mysql_fetch_row($result);
-    $id_pla = $fila[0];
+    $result = $db->prepare($sql);
+    $result->execute();
+    $fila = $result->fetch();
+    $id_pla = $fila['pla_saga'];
     return $id_pla;
 }
 
@@ -1196,10 +1117,11 @@ function _emparella_moduls_pena() {
             if (!$resultatconsulta) {
                 echo "Carrega fallida";
             } {
-                $sql = "SELECT COUNT(idunitats_formatives) FROM unitats_formatives;";
+                $sql = "SELECT COUNT(idunitats_formatives) AS uf FROM unitats_formatives;";
                 $result = $db->prepare($sql);
                 $result->execute();
-                $files0 = $result->rowCount();
+                $fila = $result->fetch();
+                $files0 = $fila['uf'];
                 foreach ($resultatconsulta->{'plans-estudi'}->{'pla-estudis'} as $pla) {
                     $cad = "LOE";
                     $pos = strpos($pla['nom'], $cad);
@@ -1307,9 +1229,8 @@ function _emparella_moduls_pena() {
 
 //   }
 
-        function _carrega_plans_estudis() {
+        function carrega_plans_estudis($db) {
 
-            require_once('../../bbdd/connect.php');
 
             $exportsagaxml = $_SESSION['upload_saga'];
             $exporthorarixml = $_SESSION['upload_horaris'];
@@ -1318,17 +1239,14 @@ function _emparella_moduls_pena() {
                 echo "Carrega fallida";
             } {
                 foreach ($resultatconsulta->{'plans-estudi'}->{'pla-estudis'} as $pla) {
-                    $pla[nom] = neteja_apostrofs($pla[nom]);
-                    $acronim = $pla[etapa] . "(" . $pla[subetapa] . ")";
-                    $id_pla = extreu_id(plans_estudis, Acronim_pla_estudis, idplans_estudis, $acronim);
+                    $pla['nom'] = neteja_apostrofs($pla['nom']);
+                    $acronim = $pla['etapa'] . "(" . $pla['subetapa'] . ")";
+                    $id_pla = extreu_id('plans_estudis', 'Acronim_pla_estudis', 'idplans_estudis', $acronim, $db);
                     if ($id_pla == '') {
                         $sql = "INSERT plans_estudis(activat,Nom_plan_estudis,Acronim_pla_estudis) ";
-                        $sql .= "VALUES ('S','" . $pla[nom] . "','" . $pla[etapa] . "(" . $pla[subetapa] . ")');";
-                        $result = mysql_query($sql);
-                        //echo $sql."<br>";
-                        if (!$result) {
-                            die(_ERR_INSERT_PLA_ESTUDIS . mysql_error());
-                        }
+                        $sql .= "VALUES ('S','" . $pla['nom'] . "','" . $pla['etapa'] . "(" . $pla['subetapa'] . ")');";
+                        $result = $db->prepare($sql);
+                        $result->execute();
 
                         //$id_pla=extreu_id(plans_estudis,Nom_plan_estudis,idplans_estudis,$pla[nom]);
                     }
@@ -1358,7 +1276,7 @@ function _emparella_moduls_pena() {
                 $result->execute();
             }
         }
-        
+
         function intro_mat_GP($resultatconsulta, $id_pla, $db) {
             foreach ($resultatconsulta->subjects->subject as $materia) {
                 $nom_materia = $materia->longname;
@@ -1434,6 +1352,7 @@ function _emparella_moduls_pena() {
             //echo "Hola";
             foreach ($resultatconsulta->DATOS->ASIGNATURAS->ASIGNATURA as $materia) {
                 //foreach ($resultatconsulta->materias->materia as $materia)
+                $idMateria = $materia['num_int_as'];
                 $nom_materia = $materia['nombre'];
                 $nom_materia = neteja_apostrofs($nom_materia);
                 $codi_materia = $materia['abreviatura'];
@@ -1442,16 +1361,19 @@ function _emparella_moduls_pena() {
                 //echo $nom_materia . " >> " . $codi_materia . "<br>";
                 // Inserció a moduls_materies_ufs
                 $sql = "INSERT IGNORE INTO moduls_materies_ufs(idplans_estudis,codi_materia,activat) ";
-                $sql .= "VALUES ('" . $id_pla . "','" . $codi_materia . "','S');";
+                $sql .= "VALUES ('" . $id_pla . "','" . $idMateria . "','S');";
+                //echo "<br>".$sql;
                 $result = $db->prepare($sql);
                 $result->execute();
                 $id_taula_materies = extreu_id('moduls_materies_ufs', 'codi_materia', 'id_mat_uf_pla', $codi_materia, $db);
                 // Inserció a la taula materies
                 $sql = "INSERT IGNORE INTO materia(idmateria,codi_materia,nom_materia) ";
-                $sql .= "VALUES ('" . $id_taula_materies . "','" . $codi_materia . "','" . $nom_materia . "');";
+                $sql .= "VALUES ('" . $id_taula_materies . "','" . $idMateria . "','" . $nom_materia . "');";
                 //echo $sql."<br>";
                 $result = $db->prepare($sql);
                 $result->execute();
+                
+
             }
         }
         ?>

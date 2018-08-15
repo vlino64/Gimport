@@ -8,12 +8,13 @@
 * Post cond.:
 * 
 ----------------------------------------------------------------*/
-require_once('../../bbdd/connect.php');
-include("../funcions/func_horaris_cali.php");
-include("../funcions/func_horaris.php");
-include("../funcions/func_espais_franges.php");
+require_once('../../pdo/bbdd/connect.php');
 include("../funcions/func_grups_materies.php");
 include("../funcions/funcions_generals.php");
+include("../funcions/func_horaris_cali.php");
+include("../funcions/funcionsCsv.php");
+ini_set("display_errors", 1);
+
 
 session_start();
 //Check whether the session variable SESS_MEMBER is present or not
@@ -37,12 +38,10 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 <body>
 <?php
 
-    require_once('../../bbdd/connect.php');
-    
-    carrega_CCFF_de_SAGA($db);
-    
-    genera_horaris_cali();
-		
+	$exportsagaxml=$_SESSION['upload_saga'];
+	$exporthorarixml=$_SESSION['upload_horaris'];
+	cali_intro_grups($exportsagaxml,$exporthorarixml,$db);    
+	
 ?>
 </body>
 

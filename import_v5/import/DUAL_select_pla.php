@@ -47,6 +47,7 @@ $recompte = $_POST['recompte'];
 //      {
 $j = 0;
 $k = 0;
+$materia = "";
 for ($i = 1; $i <= $recompte; $i++) {
     //echo "<br>>>>".$i." >>> ".$recompte;
     $crea = false;

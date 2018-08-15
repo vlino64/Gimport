@@ -8,10 +8,12 @@
 * Post cond.:
 * 
 ----------------------------------------------------------------*/
-require_once('../../bbdd/connect.php');
+require_once('../../pdo/bbdd/connect.php');
 include("../funcions/func_prof_alum.php");
 include("../funcions/funcions_generals.php");
 include("../funcions/funcionsCsv.php");
+ini_set("display_errors", 1);
+
 
 
 session_start();
@@ -50,39 +52,17 @@ if((!isset($_SESSION['SESS_MEMBER'])) || ($_SESSION['SESS_MEMBER']!="access_ok")
 
         if ($_POST['alumnes'] == 0) 
             {
-            echo "<br>".$_POST['alumnes'];
-            select_grups_per_matricular_csv();
-//            $page = "./assignacions_act_csv.php";
-//            $sec="0";
-//            header("Refresh: $sec; url=$page");             
-            
+            select_grups_per_matricular_csv($db);
             }
         if ($_POST['alumnes'] == 1) 
             {
             mostra_grups($exportsagaxml);
-            select_grups_per_matricular($exportsagaxml); 
+            select_grups_per_matricular($exportsagaxml,$db); 
             }
-
-
-
-
-    
-      
-
-//    if ($_POST['automatricula'] AND extreu_fase('app_horaris')!=5)
-//        {
-////        introduir_fase('assig_alumnes',1);
-////	$page = "./menu.php";
-////	$sec="0";
-////	header("Refresh: $sec; url=$page");
-//        }
-//   else
-//        {
-//        $auto=$_POST['automatricula'];
-//        
-//        }
-   
-   
+        if ($_POST['alumnes'] == 2) 
+            {
+            select_grups_per_matricular_csv_materies($exportsagaxml,$db); 
+            }            
 	
 		
 ?>

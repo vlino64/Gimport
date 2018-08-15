@@ -182,7 +182,7 @@ function buidatge($modalitat,$db)
 function extreu_id($taula,$camp,$id,$codi,$db)
 	{
 	$sql="SELECT ".$id." FROM ".$taula." WHERE ".$camp."='".$codi."';";
-	//echo "extreu ".$sql."<br>";
+//	echo "extreu ".$sql."<br>";
 	$result=$db->prepare($sql);
         $result->execute();
         $fila =$result->fetch();
