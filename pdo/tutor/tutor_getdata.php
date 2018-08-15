@@ -11,8 +11,8 @@ $idalumnes  = isset($_REQUEST['alumne']) ? $_REQUEST['alumne'] : 0 ;
 
 $page       = isset($_POST['page']) ? intval($_POST['page']) : 1;  
 $rows       = isset($_POST['rows']) ? intval($_POST['rows']) : 20;  
-$sort       = isset($_POST['sort']) ? strval($_POST['sort']) : 'data';  
-$order      = isset($_POST['order']) ? strval($_POST['order']) : 'desc';
+$sort       = isset($_POST['sort']) ? strval($_POST['sort']) : 'data,hora';  
+$order      = isset($_POST['order']) ? strval($_POST['order']) : 'asc';
 
 $data_inici = isset($_REQUEST['data_inici_tutor']) ? substr($_REQUEST['data_inici_tutor'],6,4)."-".substr($_REQUEST['data_inici_tutor'],3,2)."-".substr($_REQUEST['data_inici_tutor'],0,2) : getCursActual($db)["data_inici"];
 

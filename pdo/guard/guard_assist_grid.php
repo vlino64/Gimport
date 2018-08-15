@@ -178,13 +178,17 @@
             closed="true" collapsible="true" resizable="true" modal="true" buttons="#dlg_incidencia-buttons">  
         <form id="fm_incidencia" method="post" novalidate>             	
                 <label>Tipus</label>
-                <select id="id_tipus_incident" name="id_tipus_incident" class="easyui-combobox" data-options="
-					width:600,
-                    url:'./incidents_tipus/incidents_tipus_getdata.php',
-					idField:'idtipus_incident',
-                    valueField:'idtipus_incident',
-					textField:'tipus_incident',
-					panelHeight:'auto'
+                <select id="id_tipus_incident" name="id_tipus_incident" class="easyui-combogrid" style="width:600px" data-options="
+                    required: false,
+                    panelWidth: 600,
+                    idField: 'idtipus_incident',
+                    textField: 'tipus_incident',
+                    url: url,
+                    method: 'get',
+                    columns: [[
+                        {field:'tipus_incident',title:'Motiu',width:600}
+                    ]],
+                    fitColumns: true
                 ">
                 </select>
                 <br /><br />
@@ -212,13 +216,13 @@
                 
                 <label style="color:#666666">Tipus d'incidència</label>
                 <select id="id_falta" name="id_falta" class="easyui-combobox" data-options="
-					required:true,
+                    required:true,
                     width:250,
                     url:'./ccc_tipus/ccc_tipus_getdata.php',
-					idField:'idccc_tipus',
+                    idField:'idccc_tipus',
                     valueField:'idccc_tipus',
-					textField:'nom_falta',
-					panelHeight:'auto'
+                    textField:'nom_falta',
+                    panelHeight:'auto'
                 ">
                 </select>
                 
@@ -417,6 +421,13 @@
             url:'./ccc_motius/ccc_motius_getdata.php',
             valueField:'idccc_motius',
             textField:'nom_motiu'
+	});
+        
+        $('#id_tipus_incident').combogrid({
+			url:'./assist/incidents_tipus_getdata.php',
+			valueField:'idtipus_incident',
+			textField:'tipus_incident',
+			editable:false
 	});
 			
 	function addFalta(clicked_id)
@@ -640,17 +651,17 @@
         	if (r){
                     $.post('./guard/guard_sign.php',{idprofessors:idprofessors,idgrups:idgrups,
                           			     id_mat_uf_pla:idmateria,idfranges_horaries:idfranges_horaries},function(result){  
-                   if (result.success){
+                    if (result.success){
 			   	$('#sign_button').css('background-color', '#a1d88b');
 				$('#sign_button').css('font-weight', 'bold');
 				$('#sign_button').css('color', '#666');
 				$('#sign_button').linkbutton('disable');
-                   } else {  
+                    } else {  
                        $.messager.show({     
                          title: 'Error',  
                          msg: result.msg  
                        });  
-                   }  
+                    }  
         	},'json');  
 		}
         });

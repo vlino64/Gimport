@@ -748,14 +748,13 @@ function insertaLogProfessor($db,$professor,$accio) {
 /*  ********************************************************************************************************
 /*   insertaLogProfessor --> Nova entrada al fitxer log de professors 
 ************************************************************************************************************ */
-function insertaLogProfessorExtended($db,$professor,$accio,$data_llista,$franja,$grupmateria) {
+function insertaLogProfessorExtended($db,$professor,$accio,$data_llista,$franja,$grupmateria,$comentari) {
     $data        = date("Y/m/d");
-    $data_llista = $data_llista;
     $hora        = date("H:i:s");
     $ip_remota   = $_SERVER['REMOTE_ADDR'];
 	
-    $sql  = "INSERT INTO log_professors(data,hora,id_professor,id_accio,ip_remota,dia_franja,data_llista,grup_materia) ";
-    $sql .= "VALUES ('$data','$hora',$professor,$accio,'$ip_remota',$franja,$data_llista,$grupmateria) ";
+    $sql  = "INSERT INTO log_professors(data,hora,id_professor,id_accio,ip_remota,dia_franja,data_llista,grup_materia,comentari) ";
+    $sql .= "VALUES ('$data','$hora',$professor,$accio,'$ip_remota',$franja,'$data_llista',$grupmateria,'$comentari') ";
     $rec = $db->query($sql);
 
     return 1;	
@@ -872,8 +871,8 @@ function existLogProfessorData($db,$professor,$accio,$data) {
 /*   existLogDataFranjaGrupMateria --> existeix una entrada del tipos $accio al log de professors
 ************************************************************************************************************ */
 function existLogDataFranjaGrupMateria($db,$accio,$data,$franja,$grupmateria) {
-	$sql  = "SELECT hora FROM log_professors ";
-	$sql .= "WHERE data='$data' AND id_accio=$accio ";
+	$sql  = "SELECT * FROM log_professors ";
+	$sql .= "WHERE data_llista='$data' AND id_accio=$accio ";
 	$sql .= "AND dia_franja=$franja AND grup_materia=$grupmateria ";
         $sql .= "ORDER BY hora DESC LIMIT 0,1 ";
 	$rec = $db->query($sql);
@@ -883,8 +882,13 @@ function existLogDataFranjaGrupMateria($db,$accio,$data,$franja,$grupmateria) {
 		$count++;
 		$result = $row;
 	}
-	 
-	return $count;
+	
+        if ($count != 0) {
+            return $result["idlog_professors"];
+        }
+        else {
+            return 0;
+        }
 }
 /* ********************************************************************************************************* */
 
@@ -894,7 +898,7 @@ function existLogDataFranjaGrupMateria($db,$accio,$data,$franja,$grupmateria) {
 ************************************************************************************************************ */
 function existLogProfessorDataFranjaGrupMateria($db,$professor,$accio,$data,$franja,$grupmateria) {
 	$sql  = "SELECT hora FROM log_professors ";
-	$sql .= "WHERE data='$data' AND id_professor=$professor AND id_accio=$accio ";
+	$sql .= "WHERE data_llista='$data' AND id_professor=$professor AND id_accio=$accio ";
 	$sql .= "AND dia_franja=$franja AND grup_materia=$grupmateria ";
         $sql .= "ORDER BY hora DESC LIMIT 0,1 ";
 	$rec = $db->query($sql);
@@ -910,7 +914,7 @@ function existLogProfessorDataFranjaGrupMateria($db,$professor,$accio,$data,$fra
 /* ********************************************************************************************************* */
 
 /*  ********************************************************************************************************
-	getProfessorsLogAccioData --> Professors que han fet una eterminada acció en una determinada data. 
+	getProfessorsLogAccioData --> Professors que han fet una determinada acció en una determinada data. 
 ************************************************************************************************************ */
 function getProfessorsLogAccioData($db,$accio,$data) {
 	$sql  = "SELECT lp.*,cp.Valor FROM log_professors lp ";
@@ -923,6 +927,24 @@ function getProfessorsLogAccioData($db,$accio,$data) {
   }
 /* ********************************************************************************************************* */
 
+/*  ********************************************************************************************************
+	getProfessorsLogById --> Entrada de log_professors
+************************************************************************************************************ */
+function getProfessorsLogById($db,$idlog_professors) {
+	$sql  = "SELECT * FROM log_professors ";
+	$sql .= "WHERE idlog_professors=$idlog_professors";
+	$rec = $db->query($sql);
+	$count = 0;
+
+	foreach($rec->fetchAll() as $row) {
+		$count++;
+		$result = $row;
+	}
+	 
+	return $result;
+  }
+/* ********************************************************************************************************* */
+  
 /*  ********************************************************************************************************
 	getHoraEntradaProfessorDia --> Hora d'entrada d'un professor al centre una data determinada 
 ************************************************************************************************************ */

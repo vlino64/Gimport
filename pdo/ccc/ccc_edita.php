@@ -8,8 +8,7 @@ $db->exec("set names utf8");
 
 $id           		   = isset($_REQUEST['id'])                   ? $_REQUEST['id'] : 0 ;
 $id_falta     		   = isset($_REQUEST['id_falta'])             ? $_REQUEST['id_falta'] : 0 ;
-$expulsio     		   = isset($_REQUEST['expulsio'])   		  ? $_REQUEST['expulsio'] : 'N' ;
-//$descripcio_breu       = isset($_REQUEST['descripcio_breu'])      ? str_replace("'","\'",$_REQUEST['descripcio_breu']) : '';
+$expulsio     		   = isset($_REQUEST['expulsio'])             ? $_REQUEST['expulsio'] : 'N' ;
 $id_motius     		   = isset($_REQUEST['id_motius_nova'])       ? $_REQUEST['id_motius_nova'] : 0 ;
 if ($id_motius == 0) {
 	$id_motius     	   = isset($_REQUEST['id_motius'])            ? $_REQUEST['id_motius'] : 0 ;
@@ -45,18 +44,9 @@ $data_i = substr($data_incident,6,4)."-".substr($data_incident,3,2)."-".substr($
 $d_i_s  = substr($data_inici_sancio,6,4)."-".substr($data_inici_sancio,3,2)."-".substr($data_inici_sancio,0,2);
 $d_f_s  = substr($data_fi_sancio,6,4)."-".substr($data_fi_sancio,3,2)."-".substr($data_fi_sancio,0,2);
 
-if ($d_i_s == '0000-00-00') {
-	//$d_i_s = date("Y-m-d");
-}
-
-if ($d_f_s == '0000-00-00') {
-	//d_f_s = date("Y-m-d");
-}
-
 $sql  = "SELECT id_falta,expulsio,id_motius,descripcio_detallada,id_tipus_sancio,data_inici_sancio,data_fi_sancio ";
 $sql .= "FROM ccc_taula_principal ";
 $sql .= "WHERE idccc_taula_principal='$id'";
-
 
 $rec          = $db->query($sql);
 $count        = 0;
@@ -65,36 +55,21 @@ foreach($rec->fetchAll() as $row) {
 }
 
 if ($count == 0) {
-		$sql    = "DELETE FROM ccc_taula_principal WHERE idccc_taula_principal=$id";
-		$result = $db->query($sql);
+	$sql    = "DELETE FROM ccc_taula_principal WHERE idccc_taula_principal=$id";
+	$result = $db->query($sql);
 		
-		$sql    = "INSERT INTO ccc_taula_principal (idalumne,idgrup,idprofessor,idmateria,idfranges_horaries,idespais,data,hora,id_falta,expulsio,id_motius,descripcio_detallada,id_tipus_sancio,data_inici_sancio,data_fi_sancio) ";
-		$sql   .= "VALUES ('$idalumne','$idgrup','$idprofessor','$idmateria','$idfranges_horaries','$idespais','$data_i','".date("H:i")."','$id_falta','$expulsio','$id_motius','$descripcio_detallada','$id_tipus_sancio','$d_i_s','$d_f_s')";
-		$result = $db->query($sql);
-				
-		include('../ccc/ccc_send.php');
-		
-		if (isset($rsCarrecs)) {
-			//mysql_free_result($rsCarrecs);
-		}
-		if (isset($rsProfessorsCarrec)) {
-			//mysql_free_result($rsProfessorsCarrec);
-		}
+	$sql    = "INSERT INTO ccc_taula_principal (idalumne,idgrup,idprofessor,idmateria,idespais,data,hora,id_falta,expulsio,id_motius,descripcio_detallada) ";
+	$sql   .= "VALUES ($idalumne,$idgrup,$idprofessor,$idmateria,$idespais,'$data_i','".date("H:i")."',$id_falta,'$expulsio',$id_motius,'$descripcio_detallada')";
+	$result = $db->query($sql);
+        $id_ccc = $db->lastInsertId();
+	
+	//include('../ccc/ccc_send.php');
 		
 }
 else {  
-		$sql    = "UPDATE ccc_taula_principal SET id_falta='$id_falta',expulsio='$expulsio',id_motius='$id_motius',descripcio_detallada='$descripcio_detallada',data='$data_i',id_tipus_sancio='$id_tipus_sancio' WHERE idccc_taula_principal='$id'";
-		$result = $db->query($sql);
+	$sql    = "UPDATE ccc_taula_principal SET id_falta='$id_falta',expulsio='$expulsio',id_motius='$id_motius',descripcio_detallada='$descripcio_detallada',data='$data_i',id_tipus_sancio='$id_tipus_sancio' WHERE idccc_taula_principal='$id'";
+	$result = $db->query($sql);
 }
 
-echo json_encode(array('success'=>true));
-
-/*if ($result != 0){
-	echo json_encode(array('success'=>true));
-} else {
-	echo json_encode(array('msg'=>'Algunos errores ocurrieron.'));
-}*/
-
-//mysql_free_result($rec);
-//mysql_close();
+echo json_encode(array('success'=>true,'id'=>$id_ccc));
 ?>

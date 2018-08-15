@@ -186,7 +186,7 @@
             	<select id="id_falta" name="id_falta" class="easyui-combobox" data-options="
 					required: true,
                     width:120,
-                    url:'./ccc_tipus/ccc_tipus_getdata.php',
+                    url:'./ccc_adm/tipus_getdata.php',
 					idField:'idccc_tipus',
                     valueField:'idccc_tipus',
 					textField:'nom_falta',
@@ -327,8 +327,8 @@
             <td>
                 <form id="fm_estadistiques" method="post">
                 Desde: <input id="data_inici_estad" name="data_inici_estad" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser"></input>&nbsp;
-        		Fins a: <input id="data_fi_estad" name="data_fi_estad" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser"></input>&nbsp;<br />
-				<img src="./images/line.png" height="1" width="100%" align="absmiddle" /> 
+        	Fins a: <input id="data_fi_estad" name="data_fi_estad" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser"></input>&nbsp;<br />
+		<img src="./images/line.png" height="1" width="100%" align="absmiddle" /> 
                 Criteri:
                 <select id="criteri_estad" name="criteri_estad" class="easyui-combobox">
                     <option value="CAP"></option>
@@ -677,15 +677,14 @@
     	}
 		
 		function imprimirDadesEstad(){  
-			d_inici  = $('#data_inici_informe_estad').datebox('getValue');
-			d_fi     = $('#data_fi_informe_estad').datebox('getValue');
+			d_inici  = $('#data_inici_estad').datebox('getValue');
+			d_fi     = $('#data_fi_estad').datebox('getValue');
 			//criteri  = $('input[name=criteri]:checked', '#fm_informes').val();
 			criteri       = $('#criteri_estad').combobox('getValue');
 			valor_criteri = $('#valor_criteri_estad').combobox('getValue');
 			sub_criteri   = $('#sub_criteri_estad').combobox('getValue');
 		
 			url = './ccc_adm/ccc_adm_print.php?criteri='+criteri+'&valor_criteri='+valor_criteri+'&sub_criteri='+sub_criteri+'&data_inici='+d_inici+'&data_fi='+d_fi;
-			
 			$('#fitxer_pdf').attr('src', url);
     	}
 	
@@ -731,7 +730,7 @@
             });
         }
 		
-		function novaCCC(){  
+	function novaCCC(){  
            $('#dlg_nova_ccc').dialog('open').dialog('setTitle','Nova CCC');
 		   $('#fm_nova_ccc').form('load','./ccc_adm/ccc_adm_load.php?id=0');				
 				

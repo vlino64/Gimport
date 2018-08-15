@@ -307,7 +307,13 @@ hr {
     </tr>
     <?php
 		$linea = 1;
-		$rsAlumnes = getAlumnesGrup($db,$idgrup,TIPUS_nom_complet);
+		if ($c_materia == 0) {
+                    $rsAlumnes = getAlumnesGrup($db,$idgrup,TIPUS_nom_complet); 
+                }
+                else {
+                    $rsAlumnes = getAlumnesGrupMateria($db,$idgrup,$c_materia,TIPUS_nom_complet);
+                }
+                
 		foreach($rsAlumnes->fetchAll() as $row) {
 		  echo "<tr>";
 		  echo "<td valign='top' width='30'>".$linea."</td>";
@@ -363,7 +369,7 @@ hr {
                                      $rsIncidencias = getIncidenciasGrupMateria($db,$idgrup,$c_materia,TIPUS_FALTA_ALUMNE_ABSENCIA,$data_inici,$data_fi);
                                    }
                                    else {
-                                     $rsIncidencias = getIncidenciasAlumneGrupMateria($db,$c_alumne,$idgrup,$c_materia,TIPUS_FALTA_ALUMNE_ABSENCIA,$data_inici,$data_fi);
+                                     $rsIncidencias = getIncidenciasAlumneGrupMateria($db,$c_alumne,TIPUS_FALTA_ALUMNE_ABSENCIA,$idgrup,$c_materia,$data_inici,$data_fi);
                                    }
                                    foreach($rsIncidencias->fetchAll() as $row) {
 						  echo "<tr>";
@@ -406,7 +412,7 @@ hr {
                                      $rsIncidencias = getIncidenciasGrupMateria($db,$idgrup,$c_materia,TIPUS_FALTA_ALUMNE_RETARD,$data_inici,$data_fi);
                                    }
                                    else {
-                                     $rsIncidencias = getIncidenciasAlumneGrupMateria($db,$c_alumne,$idgrup,$c_materia,TIPUS_FALTA_ALUMNE_RETARD,$data_inici,$data_fi);
+                                     $rsIncidencias = getIncidenciasAlumneGrupMateria($db,$c_alumne,TIPUS_FALTA_ALUMNE_RETARD,$idgrup,$c_materia,$data_inici,$data_fi);
                                    }
 				   foreach($rsIncidencias->fetchAll() as $row) {
 						  echo "<tr>";
@@ -450,7 +456,7 @@ hr {
                                      $rsIncidencias = getIncidenciasGrupMateria($db,$idgrup,$c_materia,TIPUS_FALTA_ALUMNE_JUSTIFICADA,$data_inici,$data_fi);
                                    }
                                    else {
-                                     $rsIncidencias = getIncidenciasAlumneGrupMateria($db,$c_alumne,$idgrup,$c_materia,TIPUS_FALTA_ALUMNE_JUSTIFICADA,$data_inici,$data_fi);
+                                     $rsIncidencias = getIncidenciasAlumneGrupMateria($db,$c_alumne,TIPUS_FALTA_ALUMNE_JUSTIFICADA,$idgrup,$c_materia,$data_inici,$data_fi);
                                    }
 				   foreach($rsIncidencias->fetchAll() as $row) {
 						  echo "<tr>";
@@ -496,7 +502,7 @@ hr {
                                      $rsIncidencias = getIncidenciasGrupMateria($db,$idgrup,$c_materia,TIPUS_FALTA_ALUMNE_SEGUIMENT,$data_inici,$data_fi);
                                    }
                                    else {
-                                     $rsIncidencias = getIncidenciasAlumneGrupMateria($db,$c_alumne,$idgrup,$c_materia,TIPUS_FALTA_ALUMNE_SEGUIMENT,$data_inici,$data_fi);
+                                     $rsIncidencias = getIncidenciasAlumneGrupMateria($db,$c_alumne,TIPUS_FALTA_ALUMNE_SEGUIMENT,$idgrup,$c_materia,$data_inici,$data_fi);
                                    }
 				   foreach($rsIncidencias->fetchAll() as $row) {
 						  echo "<tr>";

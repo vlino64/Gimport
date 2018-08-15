@@ -82,7 +82,7 @@ $result = curl_exec($curl_connection);
 $error=curl_errno($curl_connection);
 //$error= curl_error($curl_connection);
 if ($error=="0") {
-	echo "Informació rebuda correctament al servidor de geisoft....<br>";
+	echo "Informació rebuda correctament al servidor de GEISoft....<br>";
 	echo "Saldo actual de missatges: <strong>".extreu_saldo($dbSMS,USERNAME_SMS)." </strong>";
 }
 else {echo "S'ha produit un error amb codi".$error;}

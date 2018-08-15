@@ -30,8 +30,8 @@
 	  array_push($nom_alumnes_array,$nom_sms);
 	}
       	
-	$sms_tutor2 = getValorTipusContacteFamilies($db,$id_alumne,TIPUS_mobil_sms2);
-	if ($sms_tutor2 != '') {
+	$sms_tutor2 = getValorTipusContacteFamilies($db, $id_alumne, TIPUS_mobil_sms2);
+    if ($sms_tutor2 != '') {
 	  $mobil_sms2 = "+34.".getValorTipusContacteFamilies($db,$id_alumne,TIPUS_mobil_sms2);
 	  array_push($sms_array,$mobil_sms2);
 	  array_push($nom_alumnes_array,$nom_sms);

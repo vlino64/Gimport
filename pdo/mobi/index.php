@@ -8,10 +8,10 @@
 
 	//Insert your cient ID and secret 
 	//You can get it from : https://console.developers.google.com/
-	$client_id = 'XXXXXXXXXXXXXXXXXXXXXXX'; 
-	$client_secret = 'XXXXXXXXXXXXXX';
-	$redirect_uri = 'XXXXXXXXXXXXXXXXXXXXXX';
-	$hosting        = 'XXXX'; 
+	$client_id = 'XXXXXXXXXXXXXXXXXXXX'; 
+	$client_secret = 'XXXXXXXXXXXXXXXXXXXX';
+	$redirect_uri = 'XXXXXXXXXXXXXXXXXXXX';
+        $hosting        = '1';
 
 	//incase of logout request, just unset the session var
 	if (isset($_GET['logout'])) {

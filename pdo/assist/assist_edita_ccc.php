@@ -25,7 +25,7 @@ $id_tipus_sancio       = isset($_REQUEST['id_tipus_sancio'])      ? $_REQUEST['i
 $data_inici_sancio     = isset($_REQUEST['data_inici_sancio'])    ? $_REQUEST['data_inici_sancio'] : 0 ;
 $data_fi_sancio        = isset($_REQUEST['data_fi_sancio'])       ? $_REQUEST['data_fi_sancio'] : 0 ;
 
-$sql = "SELECT id_falta,expulsio,id_motius,descripcio_detallada FROM ccc_taula_principal WHERE idalumne='$id' AND data='$data' AND idfranges_horaries='$idfranges_horaries'";
+$sql = "SELECT id_falta,expulsio,id_motius,descripcio_detallada FROM ccc_taula_principal WHERE idalumne=$id AND data='$data' AND idfranges_horaries=$idfranges_horaries";
 
 $rec          = $db->query($sql);
 $count        = 0;
@@ -39,11 +39,11 @@ if ( $idprofessors == 0 ) {
 else {
 	
 	if ($count == 0) {
-		$sql    = "DELETE FROM ccc_taula_principal WHERE idalumne=$id AND data='$data' AND idfranges_horaries='$idfranges_horaries'";
+		$sql    = "DELETE FROM ccc_taula_principal WHERE idalumne=$id AND data='$data' AND idfranges_horaries=$idfranges_horaries";
 		$result = $db->query($sql);
 
-		$sql    = "INSERT INTO ccc_taula_principal (idalumne,idgrup,idprofessor,idmateria,idfranges_horaries,idespais,id_falta,data,hora,id_motius,descripcio_detallada,expulsio,id_tipus_sancio,data_inici_sancio,data_fi_sancio) ";
-		$sql   .= "VALUES ('$id','$idgrups','$idprofessors','$idmateria','$idfranges_horaries','$idespais_centre','$id_falta','$data','$hora','$id_motius','$descripcio_detallada','$expulsio','$id_tipus_sancio','$data_inici_sancio','$data_fi_sancio')";
+		$sql    = "INSERT INTO ccc_taula_principal (idalumne,idgrup,idprofessor,idmateria,idfranges_horaries,idespais,id_falta,data,hora,id_motius,descripcio_detallada,expulsio) ";
+		$sql   .= "VALUES ($id,$idgrups,$idprofessors,$idmateria,$idfranges_horaries,$idespais_centre,$id_falta,'$data','$hora',$id_motius,'$descripcio_detallada','$expulsio')";
 		$result = $db->query($sql);
                 $id_ccc = $db->lastInsertId();
   
@@ -51,7 +51,7 @@ else {
 
 	}
 	else {  
-		$sql    = "UPDATE ccc_taula_principal SET hora='$hora',id_falta='$id_falta',expulsio='$expulsio',id_motius='$id_motius',descripcio_detallada='$descripcio_detallada' WHERE idalumne='$id' AND data='$data' AND idfranges_horaries='$idfranges_horaries' ";
+		$sql    = "UPDATE ccc_taula_principal SET hora='$hora',id_falta=$id_falta,expulsio='$expulsio',id_motius=$id_motius,descripcio_detallada='$descripcio_detallada' WHERE idalumne=$id AND data='$data' AND idfranges_horaries=$idfranges_horaries ";
 		$result = $db->query($sql);
 	}
 }
@@ -62,6 +62,4 @@ if ($result != 0){
 	echo json_encode(array('msg'=>'Algunos errores ocurrieron.'));
 }
 
-//mysql_free_result($rec);
-//mysql_close();
 ?>

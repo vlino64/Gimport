@@ -41,7 +41,7 @@ onKeyUp="limitText(this.form.contingut,this.form.countdown,140);">
 </div>
 
 <div id="resultSMSDiv" style="position:absolute; left:540px; width:470px; color: #CC0000; font:16px bolder Geneva, Arial, Helvetica, sans-serif;">
- 
+ Saldo actual de missatges: <strong> <?php echo extreu_saldo($dbSMS,USERNAME_SMS); ?> </strong> 
 </div>
 
 <script type="text/javascript">

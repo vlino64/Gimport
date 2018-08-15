@@ -51,7 +51,7 @@
 						editor:{
 							type:'combobox',
 							options:{
-                                                            url:'./incidents_tipus/incidents_tipus_getdata.php',
+                                                            url:'./assist/incidents_tipus_getdata.php',
                                                             idField:'idtipus_incident',
                                                             valueField:'idtipus_incident',
                                                             textField:'tipus_incident',

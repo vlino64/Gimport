@@ -1,9 +1,10 @@
 <?php
 /* ************************
     BIBLIOTECA DE DEFINICIONS
-    AUTOR: TONI LÓPEZ
-    ANY: 2013
+	AUTOR: TONI LÓPEZ
+	ANY: 2013
 ***************************  */
+
 /* IP centre */
 define("IP_CENTRE", "127.0.0.1");
 
@@ -48,5 +49,10 @@ define("TIPUS_ACCIO_PASALLISTAGUARDIA", 6);
 define("TIPUS_ACCIO_NOENTRACLASSE", 7);
 define("TIPUS_ACCIO_ENTROALCENTRE", 8);
 define("TIPUS_ACCIO_SURTODELCENTRE", 9);
+
+
+//referencia generado con MD5(uniqueid(<some_string>, true))
+define('API_KEY','3d524a53c110e4c22463b10ed32cef9d');
+
 
 ?>

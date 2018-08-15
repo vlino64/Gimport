@@ -345,6 +345,34 @@ function getTotalIncidenciasProfessorGrup($db,$idprofessors,$idgrups,$id_tipus_i
   }
 /* ********************************************************************************************************* */
 
+  /*  ********************************************************************************************************
+	getTotalIncidenciasProfessorGrupMateria --> Total Incidencies d'un alumne, grup i materia per tipus i entre dates
+************************************************************************************************************ */
+function getTotalIncidenciasProfessorGrupMateria($db,$idprofessors,$id_tipus_incidencia,$idgrups,$id_mat_uf_pla,$data_inici,$data_fi) {
+     $sql  = "SELECT ia.idalumnes, ia.id_tipus_incidencia, COUNT( ia.id_tipus_incidencia ) AS total ";
+     $sql .= "FROM incidencia_alumne ia ";
+     $sql .= "WHERE ia.idprofessors=".$idprofessors." AND ia.id_tipus_incidencia=".$id_tipus_incidencia;
+     $sql .= " AND ia.idgrups=".$idgrups." AND ia.id_mat_uf_pla=".$id_mat_uf_pla;
+     $sql .= " AND ia.data BETWEEN '".$data_inici."' AND '".$data_fi."'";
+
+     $rec = $db->query($sql);
+     $count = 0;
+     $result = "";
+     foreach($rec->fetchAll() as $row) {
+	$count++;
+	$result = $row;
+     }
+     //mysql_free_result($rec);
+     if ($count == 0) {
+	   return 0;
+     }
+     else {
+           return $result["total"];
+     }
+	
+  }
+/* ********************************************************************************************************* */
+  
 /*  ********************************************************************************************************
 	getTotalIncidenciasProfessorAlumne --> Total Incidencies d'un professor i alumne per tipus i entre dates
 	                                       Per informes de faltes d'assistència 

@@ -56,7 +56,7 @@ if ($d_f_s == '0000-00-00') {
 
 $sql  = "SELECT id_falta,expulsio,id_motius,descripcio_detallada,id_tipus_sancio,data_inici_sancio,data_fi_sancio ";
 $sql .= "FROM ccc_taula_principal ";
-$sql .= "WHERE idccc_taula_principal='$id'";
+$sql .= "WHERE idccc_taula_principal=$id";
 
 $rec          = $db->query($sql);
 $count        = 0;
@@ -68,18 +68,14 @@ if ($count == 0) {
 		$sql    = "DELETE FROM ccc_taula_principal WHERE idccc_taula_principal=$id";
 		$result = $db->query($sql);
 		
-		$sql    = "INSERT INTO ccc_taula_principal (idalumne,idgrup,idprofessor,idmateria,idfranges_horaries,idespais,data,hora,id_falta,expulsio,id_motius,descripcio_detallada,id_tipus_sancio,data_inici_sancio,data_fi_sancio) ";
-		$sql   .= "VALUES ('$idalumne','$idgrup','$idprofessor','$idmateria','$idfranges_horaries','$idespais','$data_i','".date("H:i")."','$id_falta','$expulsio','$id_motius','$descripcio_detallada','$id_tipus_sancio','$d_i_s','$d_f_s')";
+		/*$sql    = "INSERT INTO ccc_taula_principal (idalumne,idgrup,idprofessor,idmateria,idfranges_horaries,idespais,data,hora,id_falta,expulsio,id_motius,descripcio_detallada,id_tipus_sancio,data_inici_sancio,data_fi_sancio) ";
+		$sql   .= "VALUES ('$idalumne','$idgrup','$idprofessor','$idmateria','$idfranges_horaries','$idespais','$data_i','".date("H:i")."','$id_falta','$expulsio','$id_motius','$descripcio_detallada','$id_tipus_sancio','$d_i_s','$d_f_s')";*/
+
+		$sql    = "INSERT INTO ccc_taula_principal (idalumne,idgrup,idprofessor,idmateria,idfranges_horaries,idespais,data,hora,id_falta,expulsio,id_motius,descripcio_detallada) ";
+		$sql   .= "VALUES ($idalumne,$idgrup,$idprofessor,$idmateria,$idfranges_horaries,$idespais,'$data_i','".date("H:i")."',$id_falta,'$expulsio',$id_motius,'$descripcio_detallada')";
 		$result = $db->query($sql);
-		
+
 		include('../ccc_adm/ccc_adm_send.php');
-		
-		if (isset($rsCarrecs)) {
-			//mysql_free_result($rsCarrecs);
-		}
-		if (isset($rsProfessorsCarrec)) {
-			//mysql_free_result($rsProfessorsCarrec);
-		}
 		
 }
 else { 
@@ -100,13 +96,4 @@ else {
 }
 
 echo json_encode(array('success'=>true));
-
-/*if ($result != 0){
-	echo json_encode(array('success'=>true));
-} else {
-	echo json_encode(array('msg'=>'Algunos errores ocurrieron.'));
-}*/
-
-//mysql_free_result($rec);
-//mysql_close();
 ?>

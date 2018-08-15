@@ -28,7 +28,7 @@ if ($modul_reg_prof) {
         }
     }
     $log = insertaLogProfessor($db,$idprofessors,TIPUS_ACCIO_ENTRACLASSE);  
-    $log = insertaLogProfessorExtended($db,$idprofessors,TIPUS_ACCIO_PASALLISTA,$data_llista,$franja,$grup_materia);
+    $log = insertaLogProfessorExtended($db,$idprofessors,TIPUS_ACCIO_PASALLISTA,$data_llista,$franja,$grup_materia,'');
         
     $sql  = "INSERT INTO qp_seguiment (id_dia_franja,id_grup_materia,lectiva,seguiment,data) ";
     $sql .= "VALUES ('$dia_franja','$grup_materia','1','','$data')";

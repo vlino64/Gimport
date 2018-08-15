@@ -58,7 +58,9 @@ $rsFranjes = $db->query($sql);
 					
 					echo "<ul>";
                                         foreach($rsClasses->fetchAll() as $row_cl) {
-                                                $id_professor  = getOneProfessorByGrupMateria($db,$row_cl['idgrups_materies'])["idprofessors"];
+                                            $rsProfMateria = getProfessorByGrupMateria($db,$row_cl['idgrups_materies']);
+                                            foreach($rsProfMateria->fetchAll() as $row_pm) {
+                                                $id_professor  = $row_pm["idprofessors"];
 						$img_professor = "../images/prof/".$id_professor.".jpg";
                                                 
 						$hora_entra_centre = getLastLogProfessor($db,$id_professor,date("y-m-d"),TIPUS_ACCIO_ENTROALCENTRE);					
@@ -106,7 +108,8 @@ $rsFranjes = $db->query($sql);
 						echo "<font color=navy>".substr($row_cl['espaicentre'],0,20)."</font><br>";
 						echo "<strong><font>".substr(getProfessor($db,$id_professor,TIPUS_nom_complet),0,30)."</font></strong></td>";
 						echo "</tr></table>";
-						echo "</li></div>";	
+						echo "</li></div>";
+                                            }    
 					}
 					echo "</ul>";
 					echo "<div class='clear'></div>";

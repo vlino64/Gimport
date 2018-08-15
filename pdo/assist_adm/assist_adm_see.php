@@ -3,7 +3,7 @@
   require_once('../bbdd/connect.php');
   require_once('../func/constants.php');
   require_once('../func/generic.php');
-  //require_once('../func/seguretat.php');
+  require_once('../func/seguretat.php');
   $db->exec("set names utf8");
   
   $data_inici = isset($_REQUEST['data_inici']) ? substr($_REQUEST['data_inici'],6,4)."-".substr($_REQUEST['data_inici'],3,2)."-".substr($_REQUEST['data_inici'],0,2) : getCursActual($db)["data_inici"];
@@ -66,7 +66,6 @@
     $percentatge = 20;
   }
   
-  
   if ($idmateria == 0) {
 	  $rsAlumnes = getAlumnesGrup($db,$idgrups,TIPUS_nom_complet);
   }
@@ -84,11 +83,11 @@
 <style type="text/css">
 
 @page {
-	margin: 1cm;
+	margin: 0.5cm 0.25cm 0.5cm 0.5cm;
 }
 
 body {
-  margin: 1.5cm 0;
+  margin: 1cm 0 0.5cm;
 }
 
 #header,
@@ -140,8 +139,17 @@ hr {
 </style>
 
 <style type='text/css'>
+		h2 {
+                    font-size: 16px;
+                }
+                h3 {
+                    font-size: 13px;
+                }
+                h5 {
+                    font-size: 13px;
+                }
 		.left{
-			width:2px;
+			
 			float:left;
 		}
 		.left table{
@@ -151,34 +159,35 @@ hr {
 			background:#eee;
 		}
 		.right{
-			float:right;
-			width:1060px;
+			/*float:right;*/
 		}
 		.right table{
 			background:#E0ECFF;
-			width:95%;
 		}
 		.right td{
-			text-align:left;
+			background:#fafafa;
 			padding:2px;
 		}
+		.right td{
+			background:#E0ECFF;
+                        font-size: 10px;
+		}
 		.right td.drop{
-			background:#fafafa;
+			background:#ffffff;
+			
 		}
 		.right td.over{
 			background:#FBEC88;
 		}
 		.item{
+			text-align:left;
+			border:1px solid #499B33;
 			background:#fafafa;
+			/*width:100px;*/
 		}
 		.assigned{
 			border:1px solid #BC2A4D;
 		}
-		.alumne {
-			background:#FFFFFF;
-			text-align:left;
-			width:400px;
-		}	
 </style>
 
 <?php
@@ -190,8 +199,8 @@ hr {
     <tr>
       <td>
       <b><?= getDadesCentre($db)["nom"] ?></b><br />
-      <?= getDadesCentre($db)["adreca"] ?>&nbsp;&nbsp;
-      <?= getDadesCentre($db)["cp"] ?>&nbsp;<?= getDadesCentre($db)["poblacio"] ?>
+      <?= getDadesCentre($db)["adreca"] ?>  
+      <?= getDadesCentre($db)["cp"] ?> <?= getDadesCentre($db)["poblacio"] ?>
       </td>
       <td style="text-align: right;">
       		<?php
@@ -209,7 +218,7 @@ hr {
   <table>
     <tr>
       <td>
-        <?= getDadesCentre($db)["tlf"] ?>&nbsp;&nbsp;<?= getDadesCentre($db)["email"] ?>
+        <?= getDadesCentre($db)["tlf"] ?>  <?= getDadesCentre($db)["email"] ?>
       </td>
       <td align="right">
   		<div class="page-number"></div>
@@ -222,49 +231,49 @@ hr {
   	}
 ?>
 
-<div style='width:1060px;'>
+<div>
  
  <?php
     if ($c_alumne == 0) {
  ?>	
  
  <h5 style='margin-bottom:0px'>
-  &nbsp;Informe de faltes del grup <a style=' color: #000066; font-size:16px; border:1px dashed #CCCCCC; padding:3px 3px 3px 3px '>
+   Informe de faltes del grup <a style=' color: #000066; font-size:16px; padding:3px 3px 3px 3px '>
   <?= getGrup($db,$idgrups)["nom"] ?></a><br />
  </h5>
   <?php
   	if ($idmateria != 0) {
   ?>
   	 <h5>
-     &nbsp;Mat&egrave;ria&nbsp;
-     <a style=' color: #000066; font-size:16px; border:1px dashed #CCCCCC; padding:3px 3px 3px 3px '>
+      Mat&egrave;ria 
+     <a style=' color: #000066; font-size:16px; padding:3px 3px 3px 3px '>
      <?=getMateria($db,$idmateria)["nom_materia"]?></a>
      </h5>
      
      <h5>
-     &nbsp;Dies lectius calculats&nbsp;&nbsp;
-     <a style="color:#000066; font-size:16px; font-weight:bold; border:1px dashed #CCCCCC;">
+      Dies lectius calculats  
+     <a style="color:#000066; font-size:16px; font-weight:bold; ">
      <?=$total_classes?></a>
-     &nbsp;&nbsp;
-     &nbsp;Dies lectius reals (seguiment del professor)&nbsp;&nbsp;
-     <a style="color:#000066; font-size:16px; font-weight:bold; border:1px dashed #CCCCCC;">
+       
+      Dies lectius reals (seguiment del professor)  
+     <a style="color:#000066; font-size:16px; font-weight:bold; ">
      <?=$total_seguiment?></a>
      </h5>
   <?php
 	}
   ?>
  <h5>
-  &nbsp;Desde el <a style=' color: #000066; font-size:16px; border:1px dashed #CCCCCC; padding:3px 3px 3px 3px '><?= $txt_inici ?></a>
-  &nbsp;&nbsp;fins al <a style=' color: #000066; font-size:16px; border:1px dashed #CCCCCC; padding:3px 3px 3px 3px '><?= $txt_fi ?></a>
+   Desde el <a style=' color: #000066; font-size:16px; padding:3px 3px 3px 3px '><?= $txt_inici ?></a>
+    fins al <a style=' color: #000066; font-size:16px; padding:3px 3px 3px 3px '><?= $txt_fi ?></a>
  </h5> 
  
 	<div class='left'>
-		&nbsp;
+		 
 	</div>
 	<div class='right'>
-		<table>
+		<table cellspacing="1">
          	<tr>
-                <td>&nbsp;</td>
+                <td> </td>
             	<td><strong>ALUMNE</strong></td>
                 <td><strong>FALTES</strong></td>
                 <?php
@@ -285,7 +294,7 @@ hr {
 				   $linea = 1;
                                    foreach($rsAlumnes->fetchAll() as $row) {
 						  echo "<tr>";
-						  echo "<td valign='top' width='30'>".$linea."</td>";
+						  echo "<td valign='top' width='15'>".$linea."</td>";
 						  echo "<td valign='top' class='drop'>".$row["Valor"]."</td>";
 						  if ($idmateria == 0) {
 							  echo "<td valign='top' width='50' class='drop'>".getTotalIncidenciasAlumne($db,$row["idalumnes"],TIPUS_FALTA_ALUMNE_ABSENCIA,$data_inici,$data_fi)."</td>";
@@ -339,10 +348,10 @@ hr {
         <br />
     <?php
  	if ($escicleloe) {
-		echo "<div class='demo-info'>";
-        echo "<div class='demo-tip icon-tip'></div>";
-        echo "<div>Aquesta matèria es de CCFF. Sortirà exclusivament el periode comprés entre la data d'inici i fi de la UF</div>";
-        echo "</div>";
+            echo "<div class='demo-info'>";
+            echo "<div class='demo-tip icon-tip'></div>";
+            echo "<div>Aquesta matèria es de CCFF. Sortirà exclusivament el periode comprés entre la data d'inici i fi de la UF</div>";
+            echo "</div>";
 	}
    ?>
 	</div>
@@ -352,16 +361,16 @@ hr {
 	else {
 ?>
   <h5 style='margin-bottom:0px;'>
-  &nbsp;Informe de faltes de l'alumne <a style=' color: #000066; border:1px dashed #CCCCCC; padding:3px 3px 3px 3px '>
+   Informe de faltes de l'alumne <a style=' color: #000066; padding:3px 3px 3px 3px '>
   <?= getAlumne($db,$c_alumne,TIPUS_nom_complet) ?></a>
-  &nbsp;Desde el <a style=' color: #000066; border:1px dashed #CCCCCC; padding:3px 3px 3px 3px '><?= $txt_inici ?></a>
-  &nbsp;&nbsp;fins al <a style=' color: #000066; border:1px dashed #CCCCCC; padding:3px 3px 3px 3px '><?= $txt_fi ?></a>
+   Desde el <a style=' color: #000066; padding:3px 3px 3px 3px '><?= $txt_inici ?></a>
+    fins al <a style=' color: #000066; padding:3px 3px 3px 3px '><?= $txt_fi ?></a>
  </h5>
  <div class='left'>
-		&nbsp;
+		 
  </div>
  <div class='right'>
- <table>
+ <table cellspacing="1">
     <tr>
         <td><strong>FALTES</strong></td>
         <td><strong>RETARDS</strong></td>
@@ -396,9 +405,9 @@ hr {
 	?>
  </table>
         <h5>Relaci&oacute; de faltes</h5>
- 		<table>
+ 		<table cellspacing="1">
             <tr>
-                <td>&nbsp;</td>
+                <td> </td>
                 <td><strong>DATA</strong></td>
                 <td><strong>F. HOR&Agrave;RIA</strong></td>
                 <td><strong>PROFESSOR/A</strong></td>
@@ -415,7 +424,7 @@ hr {
 				   }
                                    foreach($rsIncidencias->fetchAll() as $row) {
 						  echo "<tr>";
-						  echo "<td valign='top' width='30'>".$linea."</td>";
+						  echo "<td valign='top' width='15'>".$linea."</td>";
 						  echo "<td valign='top' width='100' class='drop'>".substr($row["data"],8,2)."-".substr($row["data"],5,2)."-".substr($row["data"],0,4)."</td>";
 						  echo "<td valign='top' width='80' class='drop'>".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_inici"],0,5)."-".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_fi"],0,5)."</td>";
 						  echo "<td valign='top' class='drop'>".getProfessor($db,$row["idprofessors"],TIPUS_nom_complet)."</td>";
@@ -427,9 +436,9 @@ hr {
         
         <br />
         <h5>Relaci&oacute; de retards</h5>
- 		<table>
+ 		<table cellspacing="1">
             <tr>
-                <td>&nbsp;</td>
+                <td> </td>
                 <td><strong>DATA</strong></td>
                 <td><strong>F. HOR&Agrave;RIA</strong></td>
                 <td><strong>PROFESSOR/A</strong></td>
@@ -446,7 +455,7 @@ hr {
 				   }
 				   foreach($rsIncidencias->fetchAll() as $row) {
 						  echo "<tr>";
-						  echo "<td valign='top' width='30'>".$linea."</td>";
+						  echo "<td valign='top' width='15'>".$linea."</td>";
 						  echo "<td valign='top' width='100' class='drop'>".substr($row["data"],8,2)."-".substr($row["data"],5,2)."-".substr($row["data"],0,4)."</td>";
 						  echo "<td valign='top' width='80' class='drop'>".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_inici"],0,5)."-".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_fi"],0,5)."</td>";
 						  echo "<td valign='top' class='drop'>".getProfessor($db,$row["idprofessors"],TIPUS_nom_complet)."</td>";
@@ -458,9 +467,9 @@ hr {
         
         <br />
         <h5>Relaci&oacute; de justificacions</h5>
- 		<table>
+ 		<table cellspacing="1">
             <tr>
-                <td>&nbsp;</td>
+                <td> </td>
                 <td><strong>DATA</strong></td>
                 <td><strong>F. HOR&Agrave;RIA</strong></td>
                 <td><strong>PROFESSOR/A</strong></td>
@@ -478,7 +487,7 @@ hr {
 				   }
 				   foreach($rsIncidencias->fetchAll() as $row) {
 						  echo "<tr>";
-						  echo "<td valign='top' width='30'>".$linea."</td>";
+						  echo "<td valign='top' width='15'>".$linea."</td>";
 						  echo "<td valign='top' width='100' class='drop'>".substr($row["data"],8,2)."-".substr($row["data"],5,2)."-".substr($row["data"],0,4)."</td>";
 						  echo "<td valign='top' width='80' class='drop'>".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_inici"],0,5)."-".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_fi"],0,5)."</td>";
 						  echo "<td valign='top' class='drop'>".getProfessor($db,$row["idprofessors"],TIPUS_nom_complet)."</td>";
@@ -491,9 +500,9 @@ hr {
 
         <br />
         <h5>Relaci&oacute; de seguiments</h5>
- 		<table>
+ 		<table cellspacing="1">
             <tr>
-                <td>&nbsp;</td>
+                <td> </td>
                 <td><strong>TIPUS</strong></td>
                 <td><strong>DATA</strong></td>
                 <td><strong>F. HOR&Agrave;RIA</strong></td>
@@ -512,7 +521,7 @@ hr {
 				   }
 				   foreach($rsIncidencias->fetchAll() as $row) {
 						  echo "<tr>";
-						  echo "<td valign='top' width='30'>".$linea."</td>";
+						  echo "<td valign='top' width='15'>".$linea."</td>";
 						  echo "<td valign='top' width='40' class='drop'>".getLiteralTipusIncident($db,$row["id_tipus_incident"])["tipus_incident"]."</td>";
 						  echo "<td valign='top' width='70' class='drop'>".substr($row["data"],8,2)."-".substr($row["data"],5,2)."-".substr($row["data"],0,4)."</td>";
 						  echo "<td valign='top' width='80' class='drop'>".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_inici"],0,5)."-".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_fi"],0,5)."</td>";
@@ -526,9 +535,9 @@ hr {
         
         <br />
         <h5>Relaci&oacute; de CCC</h5>
- 		<table>
+ 		<table cellspacing="1">
             <tr>
-                <td>&nbsp;</td>
+                <td> </td>
                 <td><strong>TIPUS CCC</strong></td>
                 <td><strong>DATA</strong></td>
                 <td><strong>EXPULSI&Oacute;</strong></td>
@@ -547,7 +556,7 @@ hr {
 				   }
 				   foreach($rsIncidencias->fetchAll() as $row) {
 						  echo "<tr>";
-						  echo "<td valign='top' width='20'>".$linea."</td>";
+						  echo "<td valign='top' width='15'>".$linea."</td>";
 						  echo "<td valign='top' width='40' class='drop'>".getLiteralTipusCCC($db,$row["id_falta"])["nom_falta"]."</td>";
 						  echo "<td valign='top' width='70' class='drop'>".substr($row["data"],8,2)."-".substr($row["data"],5,2)."-".substr($row["data"],0,4)."</td>";
 						  echo "<td valign='top' width='40' class='drop'>".$row["expulsio"]."</td>";
@@ -577,8 +586,3 @@ hr {
 	$('#header').css('visibility', 'hidden');
 	$('#footer').css('visibility', 'hidden');
 </script>
-
-<?php
-//mysql_free_result($rsAlumnes);
-//mysql_close();
-?>

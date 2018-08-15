@@ -15,15 +15,16 @@ require_once(dirname(dirname(__FILE__)).'/func/generic.php');
         $footer .= "Nota: Aquest correu s'ha enviat des d'una adreça  de correu electrònic que no accepta correus entrants.\r\n";
         $footer .= "Si us plau, no respongueu aquest missatge\r\n";
                 
-		$subject  =	"[GEISoft] Registre de control d'assist&eacute;ncia de la setmana ";
+		$subject  =	"[GEISoft] Registre de control d'assistència de la setmana ";
 		
         $to = $correuProf;
+        //$to = "vlino64@gmail.com";
                 
 		$content = "<br><br>Professor:       ".$nomProf."<br><br>";
         $content .= " A continuació s'indiquen les sessions en les que no consta que s'hagi fet el control d'assistència durant la darrera setmana.. <br><br>";    
         
         foreach ($arrprofessorat as $professor){
-           $content .= $professor[0]." || ".$professor[1]." || ".$professor[2]." || ".$professor[3]." || ".$professor[4]."<br>";
+           $content .= $professor[0]." || ".$professor[1]." || ".$professor[2]." || ".$professor[3]." || ".$professor[4]." || ".$professor[5]."<br>";
            }
 
                 //echo "<br>".$header."<br>";

@@ -15,7 +15,7 @@ $dia                = substr($data,8,2);
 
 $comentari_tasca = "";
 if (exitsIncidenciapProfessor($db,$idprofessors,$data,$idfranges_horaries)) {
-    $comentari_tasca = getIncidenciapProfessor($db,$idprofessors,$data,$idfranges_horaries)["comentari"];
+    $comentari_tasca = getIncidenciapProfessor($db,$idprofessors,$data,$idfranges_horaries)["comentari_tasca"];
 }
 
 $fitxer_tasca              = "";

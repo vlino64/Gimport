@@ -32,21 +32,21 @@ if ( $idprofessors == 0 ) {
 else {
 	
 	if ($count == 0) {
-		$sql    = "DELETE FROM incidencia_alumne WHERE idalumnes=$id AND data='$data' AND idfranges_horaries='$idfranges_horaries'";
-		$sql   .= " AND idprofessors='$idprofessors' AND idgrups='$idgrups' AND id_mat_uf_pla='$idmateria' ";
+		$sql    = "DELETE FROM incidencia_alumne WHERE idalumnes=$id AND data='$data' AND idfranges_horaries=$idfranges_horaries";
+		$sql   .= " AND idprofessors=$idprofessors AND idgrups=$idgrups AND id_mat_uf_pla=$idmateria ";
                 $sql   .= " AND id_tipus_incidencia=".TIPUS_FALTA_ALUMNE_SEGUIMENT;
                 $result = $db->query($sql);
 		
 		$sql    = "INSERT INTO incidencia_alumne (idalumnes,idgrups,id_mat_uf_pla,idprofessors,id_tipus_incidencia,id_tipus_incident,data,idfranges_horaries,comentari) ";
-		$sql   .= "VALUES ('$id','$idgrups','$idmateria','$idprofessors','".TIPUS_FALTA_ALUMNE_SEGUIMENT."','$id_tipus_incident','$data','$idfranges_horaries','$comentari')";
+		$sql   .= "VALUES ($id,$idgrups,$idmateria,$idprofessors,".TIPUS_FALTA_ALUMNE_SEGUIMENT.",$id_tipus_incident,'$data',$idfranges_horaries,'$comentari')";
+                $result = $db->query($sql);
 	}
 	else {  
-		$sql    = "UPDATE incidencia_alumne SET data='$data',id_tipus_incident='$id_tipus_incident',comentari='$comentari' WHERE idalumnes='$id' AND data='$data' AND idfranges_horaries='$idfranges_horaries' AND id_tipus_incidencia='".TIPUS_FALTA_ALUMNE_SEGUIMENT."'";
+		$sql    = "UPDATE incidencia_alumne SET data='$data',id_tipus_incident=$id_tipus_incident,comentari='$comentari' WHERE idalumnes=$id AND data='$data' AND idfranges_horaries=$idfranges_horaries AND id_tipus_incidencia=".TIPUS_FALTA_ALUMNE_SEGUIMENT;
+                $result = $db->query($sql);
 	}
 }
 
-
-$result = $db->query($sql);
 echo json_encode(array('success'=>true,'id'=>$id,'multiple'=>exitsIncidenciaAlumnebyDataFranja($db,$id,$data,$idfranges_horaries)));
 
 /*if ($result != 0){
@@ -56,5 +56,4 @@ echo json_encode(array('success'=>true,'id'=>$id,'multiple'=>exitsIncidenciaAlum
 }*/
 
 //mysql_free_result($rec);
-//mysql_close();
 ?>

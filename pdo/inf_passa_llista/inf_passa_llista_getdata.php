@@ -78,6 +78,9 @@ if ($idprofessor != 0) {
 	   $franja_horaria     = getLiteralFranjaHoraria($db,$idfranges_horaries);
            $grup_materia       = $result["idgrups_materies"];
            
+           $id_professor_guardia = 0;
+           $nom_prof_guardia = "";
+           
            if (existLogProfessorDataFranjaGrupMateria($db,$idprofessor,TIPUS_ACCIO_PASALLISTA,$data_fi_c,$idfranges_horaries,$grup_materia)) {
                 $passa_llista = 'S';
            }
@@ -85,6 +88,8 @@ if ($idprofessor != 0) {
                // Per aquest cas, no cal comprovar que el professor sigui el conectat, només que existeixi 
                // una guàrdia en una hora d'aquest professor on s'ha passat llista 
                $passa_llista = 'G';
+               $id_professor_guardia = getProfessorsLogById($db,existLogDataFranjaGrupMateria($db,TIPUS_ACCIO_PASALLISTAGUARDIA,$data_fi_c,$idfranges_horaries,$grup_materia))["id_professor"];
+               $nom_prof_guardia = getProfessor($db,$id_professor_guardia,TIPUS_nom_complet);
            }
            else {
                 $passa_llista = 'N';
@@ -96,6 +101,7 @@ if ($idprofessor != 0) {
                 "hora"	       => $result["hora"],
                 "grup"         => $result["grup"],
                 "materia"      => $result["materia"],
+                "profe_guardia" => $nom_prof_guardia,
                 "passa_llista" => "$passa_llista")); 
     }
     

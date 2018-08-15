@@ -13,8 +13,8 @@ require_once('../dompdf/autoload.inc.php');
 $criteri       = isset($_REQUEST['criteri']) ? $_REQUEST['criteri'] : 'CAP';
 $valor_criteri = isset($_REQUEST['valor_criteri']) ? $_REQUEST['valor_criteri'] : 0;
 $sub_criteri   = isset($_REQUEST['sub_criteri']) ? $_REQUEST['sub_criteri'] : 'idalumne';
-$data_inici    = $_REQUEST['data_inici'];
-$data_fi       = $_REQUEST['data_fi'];
+$data_inici    = isset($_REQUEST['data_inici']) ? $_REQUEST['data_inici'] : getCursActual($db)["data_inici"];
+$data_fi       = isset($_REQUEST['data_fi']) ? $_REQUEST['data_fi'] : getCursActual($db)["data_fi"];
 
 
 $fitxer_sortida  = "http://".$_SERVER['SERVER_NAME'].substr($_SERVER['PHP_SELF'],0,strlen($_SERVER['PHP_SELF'])-17)."ccc_adm_see.php?hr=1&data_inici=";
@@ -30,7 +30,7 @@ $dompdf = new Dompdf();
 $dompdf->loadHtml($html);
 
 // (Optional) Setup the paper size and orientation
-$dompdf->setPaper('A4', 'portrait');
+$dompdf->setPaper('A3', 'portrait');
 
 // Render the HTML as PDF
 $dompdf->render();

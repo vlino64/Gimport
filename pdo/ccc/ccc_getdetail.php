@@ -51,5 +51,4 @@ else {
                             
 <?php
 $rs->closeCursor();
-//mysql_close();
 ?>

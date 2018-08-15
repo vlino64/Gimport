@@ -54,6 +54,7 @@ $items = array();
 foreach($rs->fetchAll() as $row) {  
     if ($sms) {
         $dada = $row["idalumnes"];
+        
         if (getMajorEdat($db, $dada )) {
             $row["Valor"] = $row["Valor"]." (>=18)";
         }

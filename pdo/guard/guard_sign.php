@@ -14,16 +14,16 @@ $idfranges_horaries = isset($_REQUEST['idfranges_horaries']) ? $_REQUEST['idfran
 $data_llista        = date("Y-m-d");
 
 if (! existLogProfessorDataFranjaGrupMateria($db,$idprofessors,TIPUS_ACCIO_PASALLISTAGUARDIA,date("Y-m-d"),$idfranges_horaries,$grup_materia)) {
-    $log = insertaLogProfessorExtended($db,$idprofessors,TIPUS_ACCIO_PASALLISTAGUARDIA,$data_llista,$idfranges_horaries,$grup_materia);
+    $log = insertaLogProfessorExtended($db,$idprofessors,TIPUS_ACCIO_PASALLISTAGUARDIA,$data_llista,$idfranges_horaries,$grup_materia,'');
 }
 
 //if (! existsGuardiaSignada($idprofessors,$idfranges_horaries,$data,$id_mat_uf_pla,$idgrups)) {
 	$sql    = "DELETE FROM guardies_signades WHERE idprofessors=$idprofessors AND idgrups=$idgrups ";
-	$sql   .= "AND id_mat_uf_pla=$id_mat_uf_pla AND idfranges_horaries=$idfranges_horaries AND data='$data'";
+	$sql   .= "AND id_mat_uf_pla=$id_mat_uf_pla AND idfranges_horaries=$idfranges_horaries AND data='$data_llista'";
 	$result = $db->query($sql);
 	
 	$sql     = "INSERT INTO guardies_signades (idprofessors,id_mat_uf_pla,idgrups,idfranges_horaries,data) ";
-	$sql    .= "VALUES ($idprofessors,$id_mat_uf_pla,$idgrups,$idfranges_horaries,'$data')";
+	$sql    .= "VALUES ($idprofessors,$id_mat_uf_pla,$idgrups,$idfranges_horaries,'$data_llista')";
 	$result  = $db->query($sql);
 	
 	if ($result){

@@ -82,11 +82,11 @@ require_once('../func/seguretat.php');
     </div> 
       
     <script type="text/javascript">  
-		var editIndex = undefined;
-		var url;
-		var nou_registre = 0;
+	var editIndex = undefined;
+	var url;
+	var nou_registre = 0;
 		
-		$(function(){  
+	$(function(){  
             $('#dg').edatagrid({  
                 url: './ccc_tipus/ccc_tipus_getdata.php',  
                 saveUrl: './ccc_tipus/ccc_tipus_nou.php',  
@@ -125,23 +125,23 @@ require_once('../func/seguretat.php');
 		});
    				
 		function gestionCarrecs(){  
-			var row = $('#dg').datagrid('getSelected');
+                    var row = $('#dg').datagrid('getSelected');
 			
-            if (row){  
-				$('#dlg').dialog('open').dialog('setTitle',row.nom_falta);
-				$('#dg_mat').datagrid('load',{ 
-					id: row.idccc_tipus  
-     			});
-            }  
-        }		
+                    if (row){  
+                                        $('#dlg').dialog('open').dialog('setTitle',row.nom_falta);
+                                        $('#dg_mat').datagrid('load',{ 
+                                                id: row.idccc_tipus  
+                                });
+                    }  
+                }		
     	
 		function onAfterEdit(rowIndex, rowData, changes){
 			$('#dg').datagrid('reload');
-			$('#carrecs_button').linkbutton('disable');	
+			$('#carrecs_button').linkbutton('disable');
 		}
 		
 		function onClickRow(index){
-			$('#carrecs_button').linkbutton('enable');	
+			$('#carrecs_button').linkbutton('enable');
 		}
 		
 		function onClickRow_mat(index){
@@ -174,8 +174,8 @@ require_once('../func/seguretat.php');
 				}
 				
 				afterEdit(url,
-						  row_p.idccc_tipus,
-						  $('#dg_mat').datagrid('getRows')[editIndex]['id_carrec']);
+				  row_p.idccc_tipus,
+				  $('#dg_mat').datagrid('getRows')[editIndex]['id_carrec']);
 				
 				editIndex = undefined;
 				return true;
@@ -223,7 +223,7 @@ require_once('../func/seguretat.php');
 			$('#dlg').dialog('close');
 		}
 		
-		function destroyItem(){  
+	function destroyItem(){  
             var row = $('#dg').datagrid('getSelected'); 
             if (row){  
                 $.messager.confirm('Confirmar','Est&aacute;s segur de que vols esborrar aquesta falta?',function(r){  
@@ -244,7 +244,7 @@ require_once('../func/seguretat.php');
             }  
         }
 		
-		function destroyItemCarrec(){  
+	function destroyItemCarrec(){  
             var row = $('#dg_mat').datagrid('getSelected'); 
             if (row){  
                 $.messager.confirm('Confirmar','Est&aacute;s segur de que vols esborrar aquest c&agrave;rrec?',function(r){  
@@ -265,12 +265,13 @@ require_once('../func/seguretat.php');
             }  
         }
 		
-		function saveItem(url,row_a,row_p){ 			
+	function saveItem(url,row_a,row_p){ 			
 	
-			$.post(url,{id_tipus:row_p.idccc_tipus,id_carrec:row_a.id_carrec},function(result){  
-            if (result.success){  
+            $.post(url,{id_tipus:row_p.idccc_tipus,id_carrec:row_a.id_carrec},function(result){  
+            if (result.success){
+               editIndex = undefined; 
                //$('#dg_mat').datagrid('reload');   
-			   //$('#dg').datagrid('reload'); 
+	       //$('#dg').datagrid('reload'); 
             } else {  
                $.messager.show({   
                title: 'Error',  
@@ -281,9 +282,9 @@ require_once('../func/seguretat.php');
 		  
         }
 		
-		function afterEdit(url,field1,field2){		
+	function afterEdit(url,field1,field2){		
 	
-			$.post(url,{id_tipus:field1,id_carrec:field2},function(result){  
+            $.post(url,{id_tipus:field1,id_carrec:field2},function(result){  
             if (result.success){  
                //$('#dg_mat').datagrid('reload');
 			   //$('#dg').datagrid('reload');    

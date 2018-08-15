@@ -498,6 +498,41 @@ function getAlumnesGrup($db,$grup,$tipusContacte) {
      return $rec;
   }
 /* ********************************************************************************************************* */
+  
+  /*  ********************************************************************************************************
+	getAlumnesGrupMateria --> Alumnes d'un determinat grup i materia
+                                  Per informes d'assistèncis
+************************************************************************************************************ */
+function getAlumnesGrupMateria($db,$grup,$materia,$tipusContacte) {
+     $sql  = "SELECT DISTINCT(agm.idalumnes),ca.Valor ";
+     $sql .= "FROM alumnes_grup_materia agm ";
+     $sql .= "INNER JOIN alumnes            a ON agm.idalumnes          = a.idalumnes ";
+     $sql .= "INNER JOIN contacte_alumne ca ON agm.idalumnes=ca.id_alumne ";
+     $sql .= "INNER JOIN grups_materies    gm ON agm.idgrups_materies  = gm.idgrups_materies ";	 
+     $sql .= "INNER JOIN grups             g ON gm.id_grups            = g.idgrups ";
+     //$sql .= "INNER JOIN materia           m ON gm.id_mat_uf_pla       = m.idmateria ";
+     $sql .= "WHERE a.activat='S' AND g.idgrups=".$grup." AND gm.id_mat_uf_pla=".$materia;
+     $sql .= " AND ca.id_tipus_contacte=".$tipusContacte;
+
+     /*$sql .= " UNION ";
+	 
+     $sql .= "SELECT DISTINCT(agm.idalumnes),ca.Valor ";
+     $sql .= "FROM alumnes_grup_materia agm ";
+     $sql .= "INNER JOIN contacte_alumne ca ON agm.idalumnes=ca.id_alumne ";
+     $sql .= "INNER JOIN grups_materies    gm ON agm.idgrups_materies  = gm.idgrups_materies ";	 
+     $sql .= "INNER JOIN grups             g ON gm.id_grups            = g.idgrups ";
+     $sql .= "INNER JOIN unitats_formatives uf ON gm.id_mat_uf_pla     = uf.idunitats_formatives ";
+     $sql .= "INNER JOIN moduls_ufs         mu ON gm.id_mat_uf_pla     = mu.id_ufs ";
+     $sql .= "INNER JOIN moduls              m ON mu.id_moduls         = m.idmoduls ";
+     $sql .= "WHERE g.idgrups=".$grup." AND ca.id_tipus_contacte=".$tipusContacte;*/
+
+     $sql .= " ORDER BY 2 ";
+
+     $rec = $db->query($sql);
+	 
+     return $rec;
+  }
+/* ********************************************************************************************************* */
 
 /*  ********************************************************************************************************
 	getTotalAlumnesPlaEstudis --> Total Alumnes d'un determinat pla d'estudis

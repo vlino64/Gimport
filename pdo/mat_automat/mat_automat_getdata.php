@@ -42,6 +42,12 @@ $sql .= "WHERE df.idperiode_escolar=".$curs." AND pa.idprofessors='".$idprofesso
 $sql .= "GROUP BY uc.idgrups_materies";
 
 $sql .= " ORDER BY $sort $order ";
+
+//$file = fopen("log.txt",w);
+//fwrite($file,$sql);
+//fclose($file);
+
+
  
 $rs = $db->query($sql);
 

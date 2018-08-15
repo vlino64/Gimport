@@ -358,6 +358,7 @@ hr {
             <tr>
                 <td>&nbsp;</td>
                 <td><strong>DATA</strong></td>
+                <td><strong>HORA</strong></td>
                 <td><strong>PROFESSOR/A</strong></td>
                 <td><strong>MAT&Egrave;RIA</strong></td>
             </tr>
@@ -369,7 +370,8 @@ hr {
 						  echo "<tr>";
 						  echo "<td valign='top' width='30'>".$linea."</td>";
 						  echo "<td valign='top' width='90' class='drop'>".substr($row["data"],8,2)."-".substr($row["data"],5,2)."-".substr($row["data"],0,4)."</td>";
-						  echo "<td valign='top' width='200' class='drop'>".getProfessor($db,$row["idprofessors"],TIPUS_nom_complet)."</td>";
+						  echo "<td valign='top' width='80' class='drop'>".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_inici"],0,5)."-".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_fi"],0,5)."</td>";
+                                                  echo "<td valign='top' width='200' class='drop'>".getProfessor($db,$row["idprofessors"],TIPUS_nom_complet)."</td>";
 						  echo "<td valign='top' class='drop'>".getMateria($db,$row["id_mat_uf_pla"])["nom_materia"]."</td>";
 						  $linea++;
 				   }
@@ -389,6 +391,7 @@ hr {
             <tr>
                 <td>&nbsp;</td>
                 <td><strong>DATA</strong></td>
+                <td><strong>HORA</strong></td>
                 <td><strong>PROFESSOR/A</strong></td>
                 <td><strong>MAT&Egrave;RIA</strong></td>
             </tr>
@@ -400,7 +403,8 @@ hr {
 						  echo "<tr>";
 						  echo "<td valign='top' width='30'>".$linea."</td>";
 						  echo "<td valign='top' width='90' class='drop'>".substr($row["data"],8,2)."-".substr($row["data"],5,2)."-".substr($row["data"],0,4)."</td>";
-						  echo "<td valign='top' width='200' class='drop'>".getProfessor($db,$row["idprofessors"],TIPUS_nom_complet)."</td>";
+						  echo "<td valign='top' width='80' class='drop'>".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_inici"],0,5)."-".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_fi"],0,5)."</td>";
+                                                  echo "<td valign='top' width='200' class='drop'>".getProfessor($db,$row["idprofessors"],TIPUS_nom_complet)."</td>";
 						  echo "<td valign='top' class='drop'>".getMateria($db,$row["id_mat_uf_pla"])["nom_materia"]."</td>";
 						  $linea++;
 				   }
@@ -419,6 +423,7 @@ hr {
             <tr>
                 <td>&nbsp;</td>
                 <td><strong>DATA</strong></td>
+                <td><strong>HORA</strong></td>
                 <td><strong>PROFESSOR/A</strong></td>
                 <td><strong>MAT&Egrave;RIA</strong></td>
             </tr>
@@ -430,7 +435,8 @@ hr {
 						  echo "<tr>";
 						  echo "<td valign='top' width='30'>".$linea."</td>";
 						  echo "<td valign='top' width='90' class='drop'>".substr($row["data"],8,2)."-".substr($row["data"],5,2)."-".substr($row["data"],0,4)."</td>";
-						  echo "<td valign='top' width='200' class='drop'>".getProfessor($db,$row["idprofessors"],TIPUS_nom_complet)."</td>";
+						  echo "<td valign='top' width='80' class='drop'>".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_inici"],0,5)."-".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_fi"],0,5)."</td>";
+                                                  echo "<td valign='top' width='200' class='drop'>".getProfessor($db,$row["idprofessors"],TIPUS_nom_complet)."</td>";
 						  echo "<td valign='top' class='drop'>".getMateria($db,$row["id_mat_uf_pla"])["nom_materia"]."</td>";
 						  $linea++;
 				   }
@@ -450,6 +456,7 @@ hr {
                 <td>&nbsp;</td>
                 <td><strong>TIPUS</strong></td>
                 <td><strong>DATA</strong></td>
+                <td><strong>HORA</strong></td>
                 <td><strong>PROFESSOR/A</strong></td>
                 <td><strong>MAT&Egrave;RIA</strong></td>
                 <td><strong>OBSERVACIONS</strong></td>
@@ -463,7 +470,8 @@ hr {
 						  echo "<td valign='top' width='20'>".$linea."</td>";
 						  echo "<td valign='top' width='40' class='drop'>".getLiteralTipusIncident($db,$row["id_tipus_incident"])["tipus_incident"]."</td>";
 						  echo "<td valign='top' width='70' class='drop'>".substr($row["data"],8,2)."-".substr($row["data"],5,2)."-".substr($row["data"],0,4)."</td>";
-						  echo "<td valign='top' width='50' class='drop'>".getProfessor($db,$row["idprofessors"],TIPUS_nom_complet)."</td>";
+						  echo "<td valign='top' width='80' class='drop'>".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_inici"],0,5)."-".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_fi"],0,5)."</td>";
+                                                  echo "<td valign='top' width='50' class='drop'>".getProfessor($db,$row["idprofessors"],TIPUS_nom_complet)."</td>";
 						  echo "<td valign='top' width='50' class='drop'>".getMateria($db,$row["id_mat_uf_pla"])["nom_materia"]."</td>";
 						  echo "<td valign='top' width='300' class='drop'>".nl2br($row["comentari"])."</td>";
 						  $linea++;
@@ -484,6 +492,7 @@ hr {
                 <td>&nbsp;</td>
                 <td><strong>TIPUS CCC</strong></td>
                 <td><strong>DATA</strong></td>
+                <td><strong>HORA</strong></td>
                 <td><strong>EXPULSI&Oacute;</strong></td>
                 <td><strong>PROFESSOR/A</strong></td>
                 <td><strong>MAT&Egrave;RIA</strong></td>
@@ -499,7 +508,8 @@ hr {
 						  echo "<td valign='top' width='20'>".$linea."</td>";
 						  echo "<td valign='top' width='40' class='drop'>".getLiteralTipusCCC($db,$row["id_falta"])["nom_falta"]."</td>";
 						  echo "<td valign='top' width='70' class='drop'>".substr($row["data"],8,2)."-".substr($row["data"],5,2)."-".substr($row["data"],0,4)."</td>";
-						  echo "<td valign='top' width='40' class='drop'>".$row["expulsio"]."</td>";
+						  echo "<td valign='top' width='80' class='drop'>".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_inici"],0,5)."-".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_fi"],0,5)."</td>";
+                                                  echo "<td valign='top' width='40' class='drop'>".$row["expulsio"]."</td>";
 						  echo "<td valign='top' width='50' class='drop'>".getProfessor($db,$row["idprofessor"],TIPUS_nom_complet)."</td>";
 						  echo "<td valign='top' width='50' class='drop'>".(intval($row["idmateria"]!=0) ? getMateria($db,$row["idmateria"])["nom_materia"] : '')."</td>";
 						  echo "<td valign='top' width='50' class='drop'>".(intval($row["idgrup"]!=0) ? getGrup($db,$row["idgrup"])["nom"] : '')."</td>";
@@ -629,7 +639,3 @@ hr {
 	$('#header').css('visibility', 'hidden');
 	$('#footer').css('visibility', 'hidden');		
 </script>
-
-<?php
-//mysql_close();
-?>

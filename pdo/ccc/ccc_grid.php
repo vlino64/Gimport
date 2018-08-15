@@ -60,7 +60,7 @@
     
 	<div id="dlg_sancio" class="easyui-dialog" style=" padding-left:5px; padding-top:5px; width:800px;height:500px;"  
             closed="true" collapsible="true" resizable="true" modal="true" buttons="#dlg_sancio-buttons">
-        	<form id="fm_sancio" method="post" novalidate>
+            <form id="fm_sancio" method="post" novalidate>
             <input type="hidden" name="id_tipus_sancio" value="0" />
             <input type="hidden" name="data_inici_sancio" value="" />
             <input type="hidden" name="data_fi_sancio" value="" />
@@ -75,13 +75,13 @@
             	&nbsp;&nbsp;&nbsp;
             	<label style="width:150px; color:#666666">Tipus d'incid&egrave;ncia</label>
             	<select id="id_falta" name="id_falta" class="easyui-combobox" data-options="
-					required: true,
+                    required: true,
                     width:120,
-                    url:'./ccc_tipus/ccc_tipus_getdata.php',
-					idField:'idccc_tipus',
+                    url:'./ccc/tipus_getdata.php',
+                    idField:'idccc_tipus',
                     valueField:'idccc_tipus',
-					textField:'nom_falta',
-					panelHeight:'auto'
+                    textField:'nom_falta',
+                    panelHeight:'auto'
              	">
              	</select>
              	<br /><br />
@@ -125,7 +125,7 @@
         		Fins a: <input id="data_fi_sancio" name="data_fi_sancio" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser"></input>
             </div>
             -->
-        	</form>
+            </form>
     </div>
         
     <div id="dlg_sancio-buttons">
@@ -133,7 +133,7 @@
             <tr>  
                 <td>
                     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveSancio()">Acceptar</a>
-        			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg_sancio').dialog('close')">Cancel.lar</a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg_sancio').dialog('close')">Cancel.lar</a>
                 </td>
             </tr>  
         </table>  
@@ -141,7 +141,7 @@
     
     <div id="dlg_nova_ccc" class="easyui-dialog" style=" padding-left:5px; padding-top:5px; width:900px;height:500px;"  
             closed="true" collapsible="true" resizable="true" maximizable="true" modal="true" buttons="#dlg_nova_ccc-buttons">
-        	<form id="fm_nova_ccc" method="post" novalidate>
+            <form id="fm_nova_ccc" method="post" novalidate>
             <input type="hidden" name="id_tipus_sancio" value="0" />
             <input type="hidden" name="data_inici_sancio" value="" />
             <input type="hidden" name="data_fi_sancio" value="" />
@@ -159,7 +159,7 @@
             <select id="id_falta" name="id_falta" class="easyui-combobox" data-options="
 					required: true,
                     width:120,
-                    url:'./ccc_tipus/ccc_tipus_getdata.php',
+                    url:'./ccc/tipus_getdata.php',
 					idField:'idccc_tipus',
                     valueField:'idccc_tipus',
 					textField:'nom_falta',
@@ -229,7 +229,7 @@
         		Fins a: <input id="data_fi_sancio" name="data_fi_sancio" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser"></input>
             </div>
             -->
-        	</form>
+            </form>
     </div>
         
     <div id="dlg_nova_ccc-buttons">
@@ -253,8 +253,8 @@
             <td>
                 <form id="fm_informes" method="post">
                 Desde: <input id="data_inici_informe" name="data_inici_informe" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser"></input>&nbsp;
-        		Fins a: <input id="data_fi_informe" name="data_fi_informe" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser"></input>&nbsp;
-				<input type="hidden" name="criteri" value="CAP" />
+        	Fins a: <input id="data_fi_informe" name="data_fi_informe" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser"></input>&nbsp;
+			<input type="hidden" name="criteri" value="CAP" />
                 <img src="./images/line.png" height="1" width="100%" align="absmiddle" /> 
                 Criteri:
                 <select id="criteri" name="criteri" class="easyui-combobox">
@@ -283,7 +283,7 @@
     <iframe id="fitxer_pdf" scrolling="yes" frameborder="0" style="width:10px;height:10px; visibility:hidden" src=""></iframe>
     
     <script type="text/javascript">  
-        var url;
+                var url;
 		var editIndex    = undefined;
 		var nou_registre = 0;
 		var today        = new Date();
@@ -414,7 +414,7 @@
             }  
         } 
 								
-		$(function(){
+	$(function(){
             $('#dg').datagrid({  
 				view: detailview,
 				detailFormatter:function(index,row){
@@ -489,7 +489,7 @@
 			$('#fitxer_pdf').attr('src', url);
     	}
 		
-		function gestioSancio(){  
+	function gestioSancio(){  
             var row = $('#dg').datagrid('getSelected');
             if (row){
                 $('#dlg_sancio').dialog('open').dialog('setTitle','Modificar CCC');
@@ -500,7 +500,7 @@
         }
 
         function saveSancio(){		
-			$('#fm_sancio').form('submit',{
+            $('#fm_sancio').form('submit',{
                 url: url,
                 onSubmit: function(){
                     return $(this).form('validate');
@@ -515,11 +515,11 @@
                     } else {
                         $('#dlg_sancio').dialog('close');     
                         $('#dg').datagrid('reload'); 
-						editIndex = undefined;
+			editIndex = undefined;
 						
-						$('#gestio_sancio').linkbutton('disable');
-						$('#esborrar_ccc').linkbutton('disable');
-						$('#imprimir_ccc').linkbutton('disable');
+			$('#gestio_sancio').linkbutton('disable');
+			$('#esborrar_ccc').linkbutton('disable');
+			$('#imprimir_ccc').linkbutton('disable');
                     }
                 }
             });
@@ -533,33 +533,46 @@
 		   url = './ccc/ccc_edita.php?id=0';
                 }
 		
-		function saveCCC(){		
-			$('#fm_nova_ccc').form('submit',{
+	function saveCCC(){		
+            $('#fm_nova_ccc').form('submit',{
                 url: url,
                 onSubmit: function(){
                     return $(this).form('validate');
                 },
-                success: function(result){				
-					var result = eval('('+result+')');
+                success: function(result){
+                    $.messager.alert('Informaci&oacute;','CCC enregistrada correctament!','info');
+                    $('#dlg_nova_ccc').dialog('close'); 
+                    var result = eval('('+result+')');
                     if (result.errorMsg){
                         $.messager.show({
                             title: 'Error',
                             msg: result.errorMsg
                         });
                     } else {
-                        $('#dlg_nova_ccc').dialog('close');     
                         $('#dg').datagrid('reload'); 
-						editIndex = undefined;
-						
-						$('#gestio_sancio').linkbutton('disable');
-						$('#esborrar_ccc').linkbutton('disable');
-						$('#imprimir_ccc').linkbutton('disable');
+                       	editIndex = undefined;
+					
+			$('#gestio_sancio').linkbutton('disable');
+			$('#esborrar_ccc').linkbutton('disable');
+			$('#imprimir_ccc').linkbutton('disable');
                     }
+                    
+                    id_ccc = result.id;
+                    enviarCCC();
                 }
             });
         }
+        
+        function enviarCCC(){             
+            $.post('./assist/assist_send_ccc.php',{id_ccc:id_ccc},function(result){  
+                   if (result.success){ 
+                   } else {  
+                       
+                   }  
+        	},'json');            
+        }
 		
-		function esborrarCCC(){ 
+        function esborrarCCC(){ 
 		  var row = $('#dg').datagrid('getSelected');
 		  
 		  if (row){ 
@@ -587,17 +600,17 @@
                         },'json');  
                     }  
                });  
-			}
-		}
+               }
+	}
 		
 		function imprimirCCC(){  
-			var row = $('#dg').datagrid('getSelected');
+                    var row = $('#dg').datagrid('getSelected');
 		    if (row) {
-				url = './ccc_adm/ccc_adm_printCCC.php?id='+row.idccc_taula_principal;
+			url = './ccc_adm/ccc_adm_printCCC.php?id='+row.idccc_taula_principal;
 				
-				$('#fitxer_pdf').attr('src', url);
-			}
-    	}
+			$('#fitxer_pdf').attr('src', url);
+                    }
+                }
 		
 		function onClickRow(index){
 				var row = $('#dg').datagrid('getSelected');

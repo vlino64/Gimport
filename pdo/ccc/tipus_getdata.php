@@ -6,7 +6,7 @@ require_once('../func/generic.php');
 require_once('../func/seguretat.php');
 $db->exec("set names utf8");
 
-$rs = $db->query('select * from ccc_tipus');
+$rs = $db->query('SELECT * FROM ccc_tipus;');
 $result = array();
 foreach($rs->fetchAll() as $row) {
     array_push($result, $row);
@@ -14,5 +14,4 @@ foreach($rs->fetchAll() as $row) {
 echo json_encode($result);
 
 $rs->closeCursor();
-//mysql_close();
 ?>

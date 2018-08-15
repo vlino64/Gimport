@@ -188,7 +188,7 @@ hr {
   <a style=" color: #000066; border:0px dashed #CCCCCC; padding:2px 2px 2px 2px ">
   <?php 
   	if ($idgrup != 0) {
-		echo getGrup($db,$idgrup)->nom;
+		echo getGrup($db,$idgrup)['nom'];
 	}
    ?></a>
    &nbsp;(<a style=' color: #000066; border:1px dashed #CCCCCC; padding:3px 3px 3px 3px '><?= $txt_inici ?></a>
@@ -213,8 +213,9 @@ hr {
         <td><strong>NUM. SEGUIMENTS</strong></td>
         <td><strong>NUM. CCC</strong></td>
     </tr>
-    <?php
+        <?php
 		$linea = 1;
+                $totalCCC = 0;
 		$rsAlumnes = getAlumnesGrup($db,$idgrup,TIPUS_nom_complet);
                 foreach($rsAlumnes->fetchAll() as $row) {
 		  echo "<tr>";
@@ -225,6 +226,7 @@ hr {
 		  echo "<td valign='top' width='90' class='drop'>".getTotalIncidenciasAlumne($db,$row["idalumnes"],TIPUS_FALTA_ALUMNE_JUSTIFICADA,$data_inici,$data_fi)."</td>";
 		  echo "<td valign='top' width='90' class='drop'>".getTotalIncidenciasAlumne($db,$row["idalumnes"],TIPUS_FALTA_ALUMNE_SEGUIMENT,$data_inici,$data_fi)."</td>";
 		  echo "<td valign='top' width='90' class='drop'>".getTotalCCCAlumne($db,$row["idalumnes"],$data_inici,$data_fi)."</td></tr>";
+                  $totalCCC+=getTotalCCCAlumne($db,$row["idalumnes"],$data_inici,$data_fi);
 		  $linea++;
 		}
 	?>
@@ -238,7 +240,7 @@ hr {
         <td class='drop'><?=getTotalIncidenciasGrup($db,$idgrup,TIPUS_FALTA_ALUMNE_RETARD,$data_inici,$data_fi)?></td>
         <td class='drop'><?=getTotalIncidenciasGrup($db,$idgrup,TIPUS_FALTA_ALUMNE_JUSTIFICADA,$data_inici,$data_fi)?></td>
         <td class='drop'><?=getTotalIncidenciasGrup($db,$idgrup,TIPUS_FALTA_ALUMNE_SEGUIMENT,$data_inici,$data_fi)?></td>
-        <td class='drop'><?=getTotalCCCGrup($db,$idgrup,$data_inici,$data_fi)?></td>
+        <td class='drop'><?=$totalCCC?></td>
     </tr>
  </table>
  <br />
@@ -267,7 +269,7 @@ hr {
 		$rsEquipDocent = getProfessorsGrup($db,$idgrup);
 		foreach($rsEquipDocent->fetchAll() as $row) {
 			echo "<tr>";
-			if (isActivat($row["idprofessors"])=='S') {
+			if (isActivat($db,$row["idprofessors"])=='S') {
 				$isActivat="class='drop'";
 			} else {
 				$isActivat="";
@@ -463,10 +465,12 @@ hr {
                 <td><strong>DESCRIPCI&Oacute;</strong></td>
             </tr>
             
-                <?php
+                                <?php
 				   $linea         = 1;
-				   $rsIncidencias = getCCCGrup($db,$idgrup,$data_inici,$data_fi);
-				   foreach($rsIncidencias->fetchAll() as $row) {
+                                   $rsAlumnes = getAlumnesGrup($db,$idgrup,TIPUS_nom_complet);
+                                   foreach($rsAlumnes->fetchAll() as $row_a) {
+                                        $rsIncidencias = getCCCAlumne($db,$row_a["idalumnes"],$data_inici,$data_fi);
+                                        foreach($rsIncidencias->fetchAll() as $row) {
 						  echo "<tr>";
 						  echo "<td valign='top' width='20'>".$linea."</td>";
 						  echo "<td valign='top' width='40' class='drop'>".getLiteralTipusCCC($db,$row["id_falta"])["nom_falta"]."</td>";
@@ -478,6 +482,7 @@ hr {
 						  echo "<td valign='top' width='300' class='drop'><strong>Desc. breu</strong><br>".getLiteralMotiusCCC($db,$row["id_motius"])["nom_motiu"];
 						  echo "<br><strong>Desc. detallada</strong><br>".nl2br($row["descripcio_detallada"])."</td></tr>";
 						  $linea++;
+                                        }
 				   }
 				?>          
 	</table>

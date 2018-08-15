@@ -191,11 +191,9 @@
 		
 		function gestioUFs(afegir){ 
 		  endEditing();
-		  $('#dg').datagrid('selectAll');
+		  //$('#dg').datagrid('selectAll');
                   
-		  var rows_uf    = $('#dg').datagrid('getSelections');
-		  var rows_di    = $('#dg').datagrid('getSelections');
-		  var rows_df    = $('#dg').datagrid('getSelections');
+		  var rows_uf    = $('#dg').datagrid('getChecked');	  
                   var id_grups   = $('#grups').combogrid('getValue');
 		  
 		  if (rows_uf){ 

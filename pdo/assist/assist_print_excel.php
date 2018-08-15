@@ -258,7 +258,7 @@ hr {
 	}
 	
     if ($total_seguiment==0) {
-		echo "<div class='error-info'>";
+	echo "<div class='error-info'>";
         echo "<div class='error-tip icon-no'></div>";
         echo "<div>No hi han enregistrades dades de seguiment de la matèria.No podem mostrar l'informe d'assistència</div>";
         echo "</div>";
@@ -291,7 +291,7 @@ hr {
 						  
 						  echo "<tr>";
 						  echo "<td valign='top' width='30'>".$linea."</td>";
-						  echo "<td valign='top' class='drop'>".$row->Valor."</td>";
+						  echo "<td valign='top' class='drop'>".$row['Valor']."</td>";
 						  echo "<td valign='top' width='50' class='drop'>".$absencies."</td>";
 						  
 						  if ($abs_programat>=$percentatge) {
@@ -382,7 +382,7 @@ hr {
 				?>          
 		</table>
         
-        <hr/>
+        <br/>
         <h5>Relaci&oacute; de retards</h5>
  		<table>
             <tr>
@@ -408,7 +408,7 @@ hr {
 				?>          
 		</table>
         
-        <hr/>
+        <br/>
         <h5>Relaci&oacute; de justificacions</h5>
  		<table>
             <tr>
@@ -436,7 +436,7 @@ hr {
 				?>          
 		</table>
 
-        <hr/>
+        <br/>
         <h5>Relaci&oacute; de seguiments</h5>
  		<table>
             <tr>
@@ -466,7 +466,7 @@ hr {
 				?>          
 		</table>
         
-        <hr/>
+        <br/>
         <h5>Relaci&oacute; de CCC</h5>
  		<table>
             <tr>
@@ -481,7 +481,7 @@ hr {
             
                 <?php
 				   $linea         = 1;
-				   $rsIncidencias = getCCCAlumneGrupMateria($c_alumne,$idgrups,$idmateria,$data_inici,$data_fi);
+				   $rsIncidencias = getCCCAlumneGrupMateria($db,$c_alumne,$idgrups,$idmateria,$data_inici,$data_fi);
 				   foreach($rsIncidencias->fetchAll() as $row) {
 						  echo "<tr>";
 						  echo "<td valign='top' width='20'>".$linea."</td>";
@@ -514,7 +514,3 @@ hr {
 	$('#header').css('visibility', 'hidden');
 	$('#footer').css('visibility', 'hidden');
 </script>
-
-<?php
-//mysql_close();
-?>

@@ -106,8 +106,7 @@ hr {
 			background:#eee;
 		}
 		.right{
-			float:right;
-			width:1000px;
+			margin-left: 15px;
 		}
 		.right table{
 			background:#E0ECFF;
@@ -193,11 +192,18 @@ hr {
 		<?php
 		  $week         = 1;
 		  $day_of_week  = date('w', strtotime("$data_inici"));
-		  $rest_of_week = 7 - $day_of_week;
+                  $day_end_of_week  = date('w', strtotime("$data_fi"));
+                  $rest_of_week     = 7 - $day_of_week;
+                  $rest_end_of_week = 7 - $day_end_of_week;
+		  
+                  $data_fi = date("Y-m-d", strtotime("$data_fi +$rest_end_of_week day"));
 		  
 		  $begin_date   = date("Y-m-d", strtotime("$data_inici"));
+                  //$end_date   = date("Y-m-d", strtotime("$data_fi"));
+                  
 		  $end_date     = date("Y-m-d", strtotime("$begin_date +$rest_of_week day"));
-		  $startdate    = strtotime($begin_date);
+		  
+                  $startdate    = strtotime($begin_date);
 		  $enddate      = strtotime($end_date);
 		  
 		  $count_arriba_tard = 0;
@@ -249,7 +255,7 @@ hr {
                     }
 		    echo "</tr>";
                     
-                    $rsProfessors = ($infTotsProfessors) ? getProfessorsActius(TIPUS_nom_complet) : getRegistreProfessor($c_professor,TIPUS_nom_complet);
+                    $rsProfessors = ($infTotsProfessors) ? getProfessorsActius($db,TIPUS_nom_complet) : getRegistreProfessor($db,$c_professor,TIPUS_nom_complet);
 		    foreach($rsProfessors->fetchAll() as $row) {
 			$startdate          = strtotime($begin_date);
                         
@@ -298,7 +304,7 @@ hr {
                                     echo "<tr>";
                                     echo "<td class='drop'>&nbsp;</td>";
                                     if ($infTotsProfessors) {
-                                        echo "<td valign='top' class='drop'>".$row->Valor."</td>";
+                                        echo "<td valign='top' class='drop'>".$row["Valor"]."</td>";
                                         if ($count_arriba_tard > 0) {
                                             echo "<td valign='top' class='drop'><font color=red><strong>".$count_arriba_tard."</strong></font></td>";
                                         }
@@ -345,7 +351,7 @@ hr {
 			
                     $begin_date =  date("Y-m-d", strtotime("$end_date +1 day"));
                     $end_date   =  date("Y-m-d", strtotime("$begin_date +6 day")); 
-			
+
                     $startdate  = strtotime($begin_date);
                     $enddate    = strtotime($end_date);
 

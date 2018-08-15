@@ -34,8 +34,8 @@ if ($data_just_desde <= $data_just_finsa) {
             if (festiu($db,$data_actual,$curs)== 0)   
                 {                
 		foreach($rsFranges->fetchAll() as $row) {
-			$idfranges_horaries = $row['idfranges_horaries'];
-			$rsMateriaAlumne    = getMateriesDiaHoraAlumne($db,date('w'),$idfranges_horaries,$curs,$idalumnes);
+			$idfranges_horaries = $row['idfranges_horaries'];                        
+			$rsMateriaAlumne    = getMateriesDiaHoraAlumne($db,date('w',strtotime($data_actual)),$idfranges_horaries,$curs,$idalumnes);
                             
                             foreach($rsMateriaAlumne->fetchAll() as $row_mat) {
                                 $idmateria    = $row_mat['id_mat_uf_pla'];
@@ -76,7 +76,7 @@ if ($data_just_desde <= $data_just_finsa) {
 
                                         $result = $db->query($sql);
 
-                                        $sql  = "INSERT INTO incidencia_alumne  (idalumnes,idgrups,id_mat_uf_pla,idprofessors,id_tipus_incidencia,data,idfranges_horaries,comentari) ";
+                                        $sql  = "INSERT INTO incidencia_alumne (idalumnes,idgrups,id_mat_uf_pla,idprofessors,id_tipus_incidencia,data,idfranges_horaries,comentari) ";
                                         $sql .= "VALUES ($idalumnes,$idgrup,$idmateria,$idprofessors,".TIPUS_FALTA_ALUMNE_JUSTIFICADA.",'$data_actual',$idfranges_horaries,'$comentari')";
 
                                         $result = $db->query($sql);                                       
@@ -89,5 +89,4 @@ if ($data_just_desde <= $data_just_finsa) {
 }
 
 echo json_encode(array('success'=>true));
-//mysql_close();
 ?>

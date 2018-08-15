@@ -1,12 +1,20 @@
 <?php
+  session_start();
   header("Content-type: application/vnd.ms-word");
   header("Content-Disposition: attachment;Filename=Informe.doc");
-  session_start();
+  header("Pragma: no-cache");
+  header("Expires: 0");
+  
   require_once('../bbdd/connect.php');
   require_once('../func/constants.php');
   require_once('../func/generic.php');
   require_once('../func/seguretat.php');
-  //$db->exec("set names utf8");
+  
+  if (strrpos($_SERVER['HTTP_USER_AGENT'], 'Linux') === false){
+  }
+  else {
+      $db->exec("set names utf8");
+  }
   
   $data_inici = isset($_REQUEST['data_inici']) ? substr($_REQUEST['data_inici'],6,4)."-".substr($_REQUEST['data_inici'],3,2)."-".substr($_REQUEST['data_inici'],0,2) : getCursActual($db)["data_inici"];
   if ($data_inici=='--') {
@@ -40,114 +48,6 @@
  
   $mode_impresio      = isset($_REQUEST['mode_impresio'])      ? $_REQUEST['mode_impresio']      : 0;
 ?>
-
-<style type="text/css">
-@page {
-	margin: 1cm;
-}
-
-body {
-  font-family: sans-serif;
-  margin: 1.5cm 0;
-}
-
-#header,
-#footer {
-  position: fixed;
-  left: 0;
-  right: 0;
-  color: #aaa;
-  font-size: 0.9em;
-}
-
-#header {
-  top: 0;
-  border-bottom: 0.1pt solid #aaa;
-  margin-bottom:15px;
-}
-
-#footer {
-  bottom: 0;
-  border-top: 0.1pt solid #aaa;
-}
-
-#header table,
-#footer table {
-  width: 100%;
-  border-collapse: collapse;
-  border: none;
-}
-
-#header td,
-#footer td {
-  padding: 0;
-  width: 50%;
-}
-
-.page-number {
-  text-align: right;
-}
-
-.page-number:before {
-  content: " " counter(page);
-}
-
-hr {
-  page-break-after: always;
-  border: 0;
-}
-
-</style>
-
-<style type="text/css">
-		.left{
-			width:2px;
-			float:left;
-		}
-		.left table{
-			background:#E0ECFF;
-		}
-		.left td{
-			background:#eee;
-		}
-		.right{
-			float:right;
-			width:890px;
-		}
-		.right table{
-			background:#E0ECFF;
-			width:100%;
-		}
-		.right td{
-			background:#fafafa;
-			text-align:left;
-			padding:2px;
-		}
-		.right td{
-			background:#E0ECFF;
-		}
-		.right td.drop{
-			background:#fafafa;
-			/*width:95px;*/
-		}
-		.right td.over{
-			background:#FBEC88;
-		}
-		.item{
-			text-align:center;
-			/*border:1px solid #499B33;*/
-			background:#fafafa;
-			/*width:100px;*/
-		}
-		.assigned{
-			border:1px solid #BC2A4D;
-		}
-		.alumne {
-			background:#FFFFFF;
-			text-align:left;
-			width:400px;
-		}	
-	</style>
   
  <?php
   	if (! $mode_impresio) {
@@ -156,17 +56,17 @@ hr {
   <form id="ff" name="ff" method="post">
   Grup 
   <input id="idgrup" name="idgrup" class="easyui-combobox" style="width:320px" data-options="
-                	required: false,
-                    panelWidth: 320
+       	required: false,
+        panelWidth: 320
   ">
   <br /><br />
-  <input id="box_al" name="box_al" type="checkbox" value="alumne" checked="checked" />&nbsp;Alumnes&nbsp;
-  <input id="box_ed" name="box_ed" type="checkbox" value="general" />&nbsp;Equip docent&nbsp;
-  <input id="box_faltes" name="box_faltes" type="checkbox" value="falta" />&nbsp;Faltes&nbsp;
-  <input id="box_retards" name="box_retards" type="checkbox" value="retard" />&nbsp;Retards&nbsp;
-  <input id="box_justificacions" name="box_justificacions" type="checkbox" value="justificacio" />&nbsp;Justificacions&nbsp;
-  <input id="box_incidencies" name="box_incidencies" type="checkbox" value="incidencia" />&nbsp;Seguiments&nbsp;
-  <input id="box_CCC" name="box_CCC" type="checkbox" value="CCC" />&nbsp;CCC&nbsp;
+  <input id="box_al" name="box_al" type="checkbox" value="alumne" checked="checked" /> Alumnes 
+  <input id="box_ed" name="box_ed" type="checkbox" value="general" /> Equip docent 
+  <input id="box_faltes" name="box_faltes" type="checkbox" value="falta" /> Faltes 
+  <input id="box_retards" name="box_retards" type="checkbox" value="retard" /> Retards 
+  <input id="box_justificacions" name="box_justificacions" type="checkbox" value="justificacio" /> Justificacions 
+  <input id="box_incidencies" name="box_incidencies" type="checkbox" value="incidencia" /> Seguiments 
+  <input id="box_CCC" name="box_CCC" type="checkbox" value="CCC" /> CCC 
   <br />
   Desde <input id="data_inici" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser"></input>
   Fins a <input id="data_fi" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser"></input>
@@ -186,18 +86,18 @@ hr {
   	}
   ?>
   
- <div id="resultDiv" style="width:890px; margin-top:-5px;">
+ <div id="resultDiv">
   
-  <h2 style="margin-bottom:0px">
+  <h2>
   Informe d'assist&egrave;ncia
-  <a style=" color: #000066; border:0px dashed #CCCCCC; padding:2px 2px 2px 2px ">
+  <a>
   <?php 
   	if ($idgrup != 0) {
-		echo getGrup($db,$idgrup)->nom;
+		echo getGrup($db,$idgrup)['nom'];
 	}
    ?></a>
-   &nbsp;(<a style=' color: #000066; border:1px dashed #CCCCCC; padding:3px 3px 3px 3px '><?= $txt_inici ?></a>
-   -&nbsp;<a style=' color: #000066; border:1px dashed #CCCCCC; padding:3px 3px 3px 3px '><?= $txt_fi ?></a>)
+    (<a><?= $txt_inici ?></a>
+   - <a><?= $txt_fi ?></a>)
   </h2>
 
  <br />
@@ -210,7 +110,7 @@ hr {
  <h5>Alumnes del grup</h5>
  <table>
     <tr>
-    	<td>&nbsp;</td>
+    	<td> </td>
         <td><strong>ALUMNE</strong></td>
         <td><strong>NUM. FALTES</strong></td>
         <td><strong>NUM. RETARDS</strong></td>
@@ -218,8 +118,9 @@ hr {
         <td><strong>NUM. SEGUIMENTS</strong></td>
         <td><strong>NUM. CCC</strong></td>
     </tr>
-    <?php
+        <?php
 		$linea = 1;
+                $totalCCC = 0;
 		$rsAlumnes = getAlumnesGrup($db,$idgrup,TIPUS_nom_complet);
                 foreach($rsAlumnes->fetchAll() as $row) {
 		  echo "<tr>";
@@ -230,6 +131,7 @@ hr {
 		  echo "<td valign='top' width='90' class='drop'>".getTotalIncidenciasAlumne($db,$row["idalumnes"],TIPUS_FALTA_ALUMNE_JUSTIFICADA,$data_inici,$data_fi)."</td>";
 		  echo "<td valign='top' width='90' class='drop'>".getTotalIncidenciasAlumne($db,$row["idalumnes"],TIPUS_FALTA_ALUMNE_SEGUIMENT,$data_inici,$data_fi)."</td>";
 		  echo "<td valign='top' width='90' class='drop'>".getTotalCCCAlumne($db,$row["idalumnes"],$data_inici,$data_fi)."</td></tr>";
+                  $totalCCC+=getTotalCCCAlumne($db,$row["idalumnes"],$data_inici,$data_fi);
 		  $linea++;
 		}
 	?>
@@ -237,8 +139,8 @@ hr {
     	<td colspan="7"><strong>Totals</strong></td>
     </tr>
     <tr>
-    	<td class='drop'>&nbsp;</td>
-        <td class='drop'>&nbsp;</td>
+    	<td class='drop'> </td>
+        <td class='drop'> </td>
         <td class='drop'><?=getTotalIncidenciasGrup($db,$idgrup,TIPUS_FALTA_ALUMNE_ABSENCIA,$data_inici,$data_fi)?></td>
         <td class='drop'><?=getTotalIncidenciasGrup($db,$idgrup,TIPUS_FALTA_ALUMNE_RETARD,$data_inici,$data_fi)?></td>
         <td class='drop'><?=getTotalIncidenciasGrup($db,$idgrup,TIPUS_FALTA_ALUMNE_JUSTIFICADA,$data_inici,$data_fi)?></td>
@@ -257,7 +159,7 @@ hr {
  <h5>Equip docent</h5>
  <table>
     <tr>
-    	<td><strong>&nbsp;</strong></td>
+    	<td><strong> </strong></td>
         <td><strong>Docent</strong></td>
         <td><strong>Materia</strong></td>
         <td><strong>Hores/Set</strong></td>
@@ -272,7 +174,7 @@ hr {
 		$rsEquipDocent = getProfessorsGrup($db,$idgrup);
 		foreach($rsEquipDocent->fetchAll() as $row) {
 			echo "<tr>";
-			if (isActivat($row["idprofessors"])=='S') {
+			if (isActivat($db,$row["idprofessors"])=='S') {
 				$isActivat="class='drop'";
 			} else {
 				$isActivat="";
@@ -294,10 +196,10 @@ hr {
     	<td colspan="7"><strong>Totals</strong></td>
     </tr>
     <tr>
-    	<td class='drop'>&nbsp;</td>
-        <td class='drop'>&nbsp;</td>
-        <td class='drop'>&nbsp;</td>
-        <td class='drop'>&nbsp;</td>
+    	<td class='drop'> </td>
+        <td class='drop'> </td>
+        <td class='drop'> </td>
+        <td class='drop'> </td>
         <td class='drop'><?=getTotalIncidenciasGrup($db,$idgrup,TIPUS_FALTA_ALUMNE_ABSENCIA,$data_inici,$data_fi)?></td>
         <td class='drop'><?=getTotalIncidenciasGrup($db,$idgrup,TIPUS_FALTA_ALUMNE_RETARD,$data_inici,$data_fi)?></td>
         <td class='drop'><?=getTotalIncidenciasGrup($db,$idgrup,TIPUS_FALTA_ALUMNE_JUSTIFICADA,$data_inici,$data_fi)?></td>
@@ -316,7 +218,7 @@ hr {
  <h5>Relaci&oacute; de faltes</h5>
  <table>
             <tr>
-                <td>&nbsp;</td>
+                <td> </td>
                 <td><strong>DATA</strong></td>
                 <td><strong>F. HOR&Agrave;RIA</strong></td>
                 <td><strong>PROFESSOR/A</strong></td>
@@ -350,7 +252,7 @@ hr {
   <h5>Relaci&oacute; de retards</h5>
   <table>
             <tr>
-                <td>&nbsp;</td>
+                <td> </td>
                 <td><strong>DATA</strong></td>
                 <td><strong>F. HOR&Agrave;RIA</strong></td>
                 <td><strong>PROFESSOR/A</strong></td>
@@ -384,7 +286,7 @@ hr {
   <h5>Relaci&oacute; de justificacions</h5>
   <table>
             <tr>
-                <td>&nbsp;</td>
+                <td> </td>
                 <td><strong>DATA</strong></td>
                 <td><strong>F. HOR&Agrave;RIA</strong></td>
                 <td><strong>PROFESSOR/A</strong></td>
@@ -420,7 +322,7 @@ hr {
   <h5>Relaci&oacute; de SEGUIMENTS</h5>
   <table>
             <tr>
-                <td>&nbsp;</td>
+                <td> </td>
                 <td><strong>TIPUS</strong></td>
                 <td><strong>DATA</strong></td>
                 <td><strong>F. HOR&Agrave;RIA</strong></td>
@@ -458,7 +360,7 @@ hr {
     <h5>Relaci&oacute; de CCC</h5>
  	<table>
             <tr>
-                <td>&nbsp;</td>
+                <td> </td>
                 <td><strong>TIPUS CCC</strong></td>
                 <td><strong>DATA</strong></td>
                 <td><strong>EXPULSI&Oacute;</strong></td>
@@ -468,10 +370,12 @@ hr {
                 <td><strong>DESCRIPCI&Oacute;</strong></td>
             </tr>
             
-                <?php
+                                <?php
 				   $linea         = 1;
-				   $rsIncidencias = getCCCGrup($db,$idgrup,$data_inici,$data_fi);
-				   foreach($rsIncidencias->fetchAll() as $row) {
+                                   $rsAlumnes = getAlumnesGrup($db,$idgrup,TIPUS_nom_complet);
+                                   foreach($rsAlumnes->fetchAll() as $row_a) {
+                                        $rsIncidencias = getCCCAlumne($db,$row_a["idalumnes"],$data_inici,$data_fi);
+                                        foreach($rsIncidencias->fetchAll() as $row) {
 						  echo "<tr>";
 						  echo "<td valign='top' width='20'>".$linea."</td>";
 						  echo "<td valign='top' width='40' class='drop'>".getLiteralTipusCCC($db,$row["id_falta"])["nom_falta"]."</td>";
@@ -483,8 +387,9 @@ hr {
 						  echo "<td valign='top' width='300' class='drop'><strong>Desc. breu</strong><br>".getLiteralMotiusCCC($db,$row["id_motius"])["nom_motiu"];
 						  echo "<br><strong>Desc. detallada</strong><br>".nl2br($row["descripcio_detallada"])."</td></tr>";
 						  $linea++;
+                                        }
 				   }
-				?>          
+				?>       
 	</table>
     <?php
     }
@@ -622,7 +527,3 @@ hr {
 		textField:'nom'
 	});
 </script>
-
-<?php
-//mysql_close();
-?>

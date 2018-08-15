@@ -90,30 +90,30 @@ $id_professor  = isset($_SESSION['professor']) ? $_SESSION['professor'] : 0 ;
 		});
 		
 		$(function(){  
-            $('#dg').datagrid({  
-				view: detailview,  
-                detailFormatter:function(index,row){
-					return '<div class="ddv"></div>';
-				},
-				onExpandRow: function(index,row){
-				    data     = $('#data').datebox('getValue');
-					var ddv  = $(this).datagrid('getRowDetail',index).find('div.ddv');
-                    ddv.panel({
-                        border:false,
-                        cache:true,
-                        href:'./abs_prof/upload_task_form.php?data='+data+'&index='+index+'&id_professor='+row.idprofessors+'&idfranges_horaries='+row.idfranges_horaries+'&idgrups='+row.idgrups,
-                        onLoad:function(){
+                    $('#dg').datagrid({  
+                                        view: detailview,  
+                        detailFormatter:function(index,row){
+                                                return '<div class="ddv"></div>';
+                                        },
+                                        onExpandRow: function(index,row){
+                                            data     = $('#data').datebox('getValue');
+                                                var ddv  = $(this).datagrid('getRowDetail',index).find('div.ddv');
+                            ddv.panel({
+                                border:false,
+                                cache:true,
+                                href:'./abs_prof/upload_task_form.php?data='+data+'&index='+index+'&id_professor='+row.idprofessors+'&idfranges_horaries='+row.idfranges_horaries+'&idgrups='+row.idgrups,
+                                onLoad:function(){
+                                    $('#dg').datagrid('fixDetailRowHeight',index);
+                                    $('#dg').datagrid('selectRow',index);
+                                    $('#dg').datagrid('getRowDetail',index).find('form').form('load',row);
+                                }
+                            });
                             $('#dg').datagrid('fixDetailRowHeight',index);
-                            $('#dg').datagrid('selectRow',index);
-                            $('#dg').datagrid('getRowDetail',index).find('form').form('load',row);
-                        }
-                    });
-                    $('#dg').datagrid('fixDetailRowHeight',index);
-				},
-				rowStyler:function(index,row){
-				}  
-            });  
-        });
+                                        },
+                                        rowStyler:function(index,row){
+                                        }  
+                    });  
+                });
 		
 		function endEditing(){
 			if (editIndex == undefined){return true}
@@ -193,7 +193,7 @@ $id_professor  = isset($_SESSION['professor']) ? $_SESSION['professor'] : 0 ;
 		    var comentari = $('#comentari').val();
 		  
 		    endEditing();
-		  
+		   
 		    if (rows){ 
 			   var ss_fh        = [];
 			   var ss_grup      = [];
@@ -223,8 +223,7 @@ $id_professor  = isset($_SESSION['professor']) ? $_SESSION['professor'] : 0 ;
                                 $.messager.alert('Informaci&oacute;','Introducci&oacute; de dades efectuada correctament!','info');
                                 setTimeout(function () 
                                 {open1('./abs_prof/com_abs_prof_grid.php'); // the redirect goes here
-                                },2000); // 4 seconds
-                                //open1('./abs_prof/com_abs_prof_grid.php');
+                                },1000); 
 
                             } else { 
 				$.messager.alert('Error','Introducci&oacute; de dades efectuada erroniament!','error');	 

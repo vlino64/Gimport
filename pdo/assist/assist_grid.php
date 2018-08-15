@@ -41,7 +41,6 @@
 	else {
 	    echo "<h4>En aquesta hora no tens cap classe. Des del menú de la dreta podràs accedir a les teves classes
 	      i gu&agrave;rdies d'avui, a més d'altres opcions ... </h4>";
-            //exit();
 	}
 	
 	$db->exec("set names utf8");
@@ -205,13 +204,17 @@
         <form id="fm" method="post" novalidate>             	
             <div class="fitem">  
                 <label>Tipus</label>
-                <select id="id_tipus_incident" name="id_tipus_incident" class="easyui-combobox" data-options="
-		    width:600,
-                    url:'./incidents_tipus/incidents_tipus_getdata.php',
-		    idField:'idtipus_incident',
-                    valueField:'idtipus_incident',
-		    textField:'tipus_incident',
-		    panelHeight:'auto'
+                <select id="id_tipus_incident" name="id_tipus_incident" class="easyui-combogrid" style="width:600px" data-options="
+                    required: false,
+                    panelWidth: 600,
+                    idField: 'idtipus_incident',
+                    textField: 'tipus_incident',
+                    url: url,
+                    method: 'get',
+                    columns: [[
+                        {field:'tipus_incident',title:'Motiu',width:600}
+                    ]],
+                    fitColumns: true
                 ">
                 </select>
                 <br /><br />
@@ -240,13 +243,13 @@
                 
                 <label style="color:#666666">Tipus d'incidència</label>
                 <select id="id_falta" name="id_falta" class="easyui-combobox" data-options="
-					required:true,
+                    required:true,
                     width:250,
-                    url:'./ccc_tipus/ccc_tipus_getdata.php',
-					idField:'idccc_tipus',
+                    url:'./ccc/tipus_getdata.php',
+                    idField:'idccc_tipus',
                     valueField:'idccc_tipus',
-					textField:'nom_falta',
-					panelHeight:'auto'
+                    textField:'nom_falta',
+                    panelHeight:'auto'
                 ">
                 </select>
                 
@@ -608,7 +611,14 @@
 			textField:'nom_motiu',
 			editable:false
 	});
-	
+        
+        $('#id_tipus_incident').combogrid({
+			url:'./assist/incidents_tipus_getdata.php',
+			valueField:'idtipus_incident',
+			textField:'tipus_incident',
+			editable:false
+	});
+        
         function passarLlista(){
             url = './assist/assist_nou_log_passarllista.php';
             $.post(url,{
@@ -741,18 +751,18 @@
 					$('#dlg').dialog('close');
                 } 
             });  
-    }
+        }
 	
 	function cancelIncident(){  
-        $('#dlg').dialog('close');
-		var alum   = '#al'+idalum;
-		idgrups = <?=$idgrups?>;
-		idmateria = <?=$idmateria?>;
-		idfranges_horaries = <?=$idfranges_horaries?>;
+            $('#dlg').dialog('close');
+            var alum   = '#al'+idalum;
+            idgrups = <?=$idgrups?>;
+            idmateria = <?=$idmateria?>;
+            idfranges_horaries = <?=$idfranges_horaries?>;
 		
-		/*$(alum).css('background-color', 'whitesmoke');
-		$(alum).css('color', '#777');*/
-    }
+            /*$(alum).css('background-color', 'whitesmoke');
+            $(alum).css('color', '#777');*/
+        }
 	
 	function addCCC(clicked_id)
 	{
@@ -821,11 +831,11 @@
         	},'json');
             
             
-            $.post('./assist/assist_send_ccc.php',{id_ccc:id_ccc},function(result){ 
+            /*$.post('./assist/assist_send_ccc.php',{id_ccc:id_ccc},function(result){ 
                             if (result.success){
                             } else { 
                                    }  
-            },'json');
+            },'json');*/
         }
         
 	function cancelCCC(){  
@@ -849,7 +859,7 @@
 		
 		$.messager.confirm('Confirmar','Est&aacute;s segur de que vols esborrar aquesta entrada?',function(r){  
         	$(alum).css('background-color', '#fff');
-			$(alum).css('color', '#777');
+		$(alum).css('color', '#777');
         	$.post('./assist/assist_esborra.php',{id:idalum,idgrups:idgrups,idmateria:idmateria,idfranges_horaries:idfranges_horaries},function(result){  
                    if (result.success){  
                    } else {  
@@ -868,7 +878,7 @@
 		url = './assist/assist_see.php?idgrups='+idgrups+'&idmateria='+idmateria;
 		$('#dlg_inf').dialog('open').dialog('setTitle','Assist&egrave;ncia del grup '+nomgrup);
 		$('#dlg_inf').dialog('refresh', url);
-    }
+        }
 	
 	function addSeguiment(idgrups,idmateria,idfranges_horaries){
 				
@@ -894,13 +904,13 @@
     }
 	
 	function saveSeguiment(){		
-			$('#fm_seg').form('submit',{  
+		$('#fm_seg').form('submit',{  
                 url: url, 
                 onSubmit: function(){  
                     return $(this).form('validate');  
                 },  
                 success: function(result){
-					var result = eval('('+result+')');
+                    var result = eval('('+result+')');
                     if (result.msg){
                         $.messager.show({  
                             title: 'Error',  
@@ -911,7 +921,7 @@
                     }  
                 } 
             });  
-    }
+        }
 	
 	function imprimirPDF(idgrups,idmateria){  
 		d_inici  = $('#data_inici').datebox('getValue');
@@ -922,7 +932,7 @@
 		url = './assist/assist_print.php?idgrups='+idgrups+'&idmateria='+idmateria+'&data_inici='+d_inici+'&data_fi='+d_fi+'&c_alumne='+c_alumne+'&percent='+percent;
 		
 		$('#fitxer_pdf').attr('src', url);		
-    }
+        }
 	
 	function imprimirWord(idgrups,idmateria){  
 		d_inici  = $('#data_inici').datebox('getValue');
@@ -933,7 +943,7 @@
 		url = './assist/assist_print_word.php?idgrups='+idgrups+'&idmateria='+idmateria+'&data_inici='+d_inici+'&data_fi='+d_fi+'&c_alumne='+c_alumne+'&percent='+percent;
 		
 		$('#fitxer_pdf').attr('src', url);		
-    }
+        }
 	
 	function imprimirExcel(idgrups,idmateria){  
 		d_inici  = $('#data_inici').datebox('getValue');
@@ -944,7 +954,7 @@
 		url = './assist/assist_print_excel.php?idgrups='+idgrups+'&idmateria='+idmateria+'&data_inici='+d_inici+'&data_fi='+d_fi+'&c_alumne='+c_alumne+'&percent='+percent;
 		
 		$('#fitxer_pdf').attr('src', url);		
-    }
+        }
 	
 	function doReload(idgrups,idmateria){
                 d_inici  = $('#data_inici').datebox('getValue');
@@ -959,34 +969,33 @@
 	
 	function IndicadorsGrupMateria(idgrups,idmateria){
 	    d_inici  = $('#data_inici').datebox('getValue');
-		d_fi     = $('#data_fi').datebox('getValue');
+            d_fi     = $('#data_fi').datebox('getValue');
 		
-		$('#dlg_ind').dialog('open').dialog('setTitle','Indicadors');
+            $('#dlg_ind').dialog('open').dialog('setTitle','Indicadors');
 	    url = './assist/assist_ind.php?idgrup='+idgrups+'&idmateria='+idmateria+'&data_inici='+d_inici+'&data_fi='+d_fi;
-		$('#dlg_ind').dialog('refresh', url);
+            $('#dlg_ind').dialog('refresh', url);
 	}
 	
 	function IndicadorsAlumneGrupMateria(idgrups,idmateria){
 	    d_inici  = $('#data_inici').datebox('getValue');
-		d_fi     = $('#data_fi').datebox('getValue');
-		c_alumne = $('#c_alumne').combobox('getValue');
+            d_fi     = $('#data_fi').datebox('getValue');
+            c_alumne = $('#c_alumne').combobox('getValue');
 		
-		$('#dlg_ind').dialog('open').dialog('setTitle','Indicadors');
+            $('#dlg_ind').dialog('open').dialog('setTitle','Indicadors');
 	    url = './assist/assist_ind_alum.php?idgrup='+idgrups+'&idmateria='+idmateria+'&data_inici='+d_inici+'&data_fi='+d_fi+'&c_alumne='+c_alumne;
-		
-		$('#dlg_ind').dialog('refresh', url);
+            $('#dlg_ind').dialog('refresh', url);
 	}
 	
 	function enviarSMS(idgrups){  
-			url = './tutor/tutor_sms.php?idgrups='+idgrups;
-			$('#dlg_sms').dialog('open').dialog('setTitle','Enviar SMS');
-			$('#dlg_sms').dialog('refresh', url);
+		url = './tutor/tutor_sms.php?idgrups='+idgrups;
+		$('#dlg_sms').dialog('open').dialog('setTitle','Enviar SMS');
+		$('#dlg_sms').dialog('refresh', url);
 	}
 	
 	function tancar(grup,materia,professor,idfranges_horaries) {
-		    javascript:$('#dlg_sms').dialog('close');
-			open1('./assist/assist_grid.php?idgrups='+grup+'&idmateria='+materia+'&idprofessors='+professor+'&idfranges_horaries='+idfranges_horaries+'&act=0',this);
-			//$('#dg').datagrid('reload');
+	    javascript:$('#dlg_sms').dialog('close');
+            open1('./assist/assist_grid.php?idgrups='+grup+'&idmateria='+materia+'&idprofessors='+professor+'&idfranges_horaries='+idfranges_horaries+'&act=0',this);
+            //$('#dg').datagrid('reload');
 	}
 				
 	function myformatter(date){  
@@ -994,7 +1003,7 @@
             var m = date.getMonth()+1;  
             var d = date.getDate();  
             return (d<10?('0'+d):d)+'-'+(m<10?('0'+m):m)+'-'+y;
-    }  
+        }  
 	
     function myparser(s){  
             if (!s) return new Date();  
@@ -1009,17 +1018,16 @@
             }  
     }
     	
-	function importarAssistencia(data,idfranges_horaries,idfranges_horaries_ant,idgrups,
-								 idmateria,idprofessors,act,cp) {  
+    function importarAssistencia(data,idfranges_horaries,idfranges_horaries_ant,idgrups,idmateria,idprofessors,act,cp) {  
  	  url = './assist/assist_import.php';
       
 	  $.messager.confirm('Confirmar','Vols importar les dades d\'assist&egrave;ncia de la classe anterior? (NOTA: aix&ograve; implica esborrar el que hi havia pr&egrave;viament enregistrat)',function(r){  
         if (r){ 
           $.post(url,{data:data,
-					  idfranges_horaries:idfranges_horaries,
-					  idfranges_horaries_ant:idfranges_horaries_ant,
-					  idgrups:idgrups,
-					  idmateria:idmateria},function(result){  
+		  idfranges_horaries:idfranges_horaries,
+		  idfranges_horaries_ant:idfranges_horaries_ant,
+		  idgrups:idgrups,
+		  idmateria:idmateria},function(result){  
             if (result.success){  
                   $.messager.alert('Informaci&oacute;','Assist&egrave;ncia importada correctament!','info');
 				  

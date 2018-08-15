@@ -8,7 +8,7 @@ $db->exec("set names utf8");
 
 $id  = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0 ;
 
-$sql  = "DELETE FROM ccc_taula_principal WHERE idccc_taula_principal='$id'";
+$sql  = "DELETE FROM ccc_taula_principal WHERE idccc_taula_principal=$id";
 $result = $db->query($sql);
 
 $result = $db->query($sql);

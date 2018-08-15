@@ -22,5 +22,4 @@ foreach($rs->fetchAll() as $row) {
 echo json_encode($result);
 
 $rs->closeCursor();
-//mysql_close();
 ?>

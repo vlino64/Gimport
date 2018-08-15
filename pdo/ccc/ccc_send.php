@@ -12,7 +12,7 @@ require_once('../func/seguretat.php');
 		$header .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 		$header .= 'From: '.getDadesCentre($db)["nom"]."<no-reply@geisoft.cat>".'' . "\r\n";
 		
-                $footer  = "<br><br> ==============<br>";
+                $footer  = "\r\n ==============\r\n";
                 $footer .= "Nota: Aquest correu s'ha enviat des d'una adreça  de correu electrònic que no accepta correus entrants.\r\n";
                 $footer .= "Si us plau, no respongueu aquest missatge\r\n";
                 
@@ -47,9 +47,9 @@ require_once('../func/seguretat.php');
 				else if ($idgrup == 0) {
 				}
 				else if (isCarrecInGrup($db,$row_p['idprofessors'],$row_c['id_carrec'],$idgrup)) {
-					if ($row_p['idprofessors'] == getCarrecPrincipalGrup($row_c['id_carrec'],$idgrup)) {
+					if ($row_p['idprofessors'] == getCarrecPrincipalGrup($db,$row_c['id_carrec'],$idgrup)) {
 						$to = getProfessor($db,$row_p['idprofessors'],TIPUS_email);			
-						mail($to,$subject,$content.$rol.$footer,$header);                                                
+						mail($to,$subject,$content.$rol.$footer,$header);                                              
 					}
 				}
 			}

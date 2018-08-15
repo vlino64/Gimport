@@ -189,11 +189,12 @@ function sessions_grup_materia($db,$data_inici,$data_fi,$idgrups_materies,$perio
    $enddate     = strtotime($data_fi);
    $dates       = array();
    $count_dates = 0;
-   
+   //$fp = fopen("log.txt","w");
    if($startdate > $enddate){
         return false; 
    }
-   
+   // A enddate li sumen 5 hores per compensar els desfasament de fus horari 
+   $enddate = $enddate + 18000;
    while($startdate <= $enddate){
    	  if (!festiu($db,$data_fi,$periode)) {
 		$diasetmana         = date_format(date_create($data_fi), 'w');
@@ -233,6 +234,7 @@ function sessions_grup_materia($db,$data_inici,$data_fi,$idgrups_materies,$perio
 			   }
 			   
 			   $count_dates++;
+	//		   fwrite($fp,">>".$count_dates.">>".$datasortida.">>".$startdate.">>".$enddate.PHP_EOL);
 			   array_push( $dates,array(
 			   	"id_seguiment"    => $id_seguiment,
 				"data"		  => "$datasortida",
@@ -249,7 +251,7 @@ function sessions_grup_materia($db,$data_inici,$data_fi,$idgrups_materies,$perio
 	  $data_fi = date("Y-m-d", strtotime("$data_fi -1 day"));
 	  $startdate += 86400;
    }
-   
+   //fclose($fp);
    if (isset($rec)) {
    	//mysql_free_result($rec);
    }

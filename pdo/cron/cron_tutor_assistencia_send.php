@@ -18,6 +18,7 @@ require_once(dirname(dirname(__FILE__)).'/func/generic.php');
 	$subject  =	"[GEISoft] Informe alumnes de la teva tutoria (".$nomGrup.") ";
 		
         $to = $correuProf;
+        //$to = "vlino64@gmail.com";
                 
         $content = "<br><br>Tutor: ".$nomProf."<br><br>";
         $content .= "A continuació disposes d'un llistat dels alumnes de la teva tutoria i un recull numèric de les incidències d'aquesta setmana. <br><br>";    

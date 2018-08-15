@@ -62,7 +62,7 @@
 						editor:{
 							type:'combobox',
 							options:{
-                                                        url:'./incidents_tipus/incidents_tipus_getdata.php',
+                                                        url:'./tutor/tutor_it_getdata.php',
                                                         idField:'idtipus_incident',
                                                         valueField:'idtipus_incident',
                                                         textField:'tipus_incident',

@@ -65,7 +65,7 @@
                                 echo $link."<div style='border:1px dashed #162b48; background:url(./images/fons_quadre_classe_actual.png); width:214px; margin-bottom:2px;'>".substr($row['hora_inici'],0,5)."-".substr($row['hora_fi'],0,5)."";
                             }
                             else {
-                                $link    = "<a style='color:#333; font-weight:bold; text-decoration:none;' href='javascript:void(0)'>";
+                                $link    = "<a style='color:#333; font-weight:bold; text-decoration:none;' href='javascript:void(0)' onClick='open1(\"./guard/guard_grid.php?ad=1&act=1&idprofessors=".$idprofessors.'&hora='.$row['hora_inici']."\",this)'>";
                                 echo $link."<div style='border:1px dashed #162b48; background:url(./images/fons_quadre_guardia.png); width:214px; margin-bottom:2px;'>".substr($row['hora_inici'],0,5)."-".substr($row['hora_fi'],0,5)."";
                             }
 			}

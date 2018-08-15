@@ -1,0 +1,3 @@
+SELECT CONCAT(LEFT(fh.hora_inici,5),'-',LEFT(fh.hora_fi,5) AS dia_hora FROM franges_horaries fh  
+SELECT CONCAT(LEFT(fh.hora_inici,5),'-',LEFT(fh.hora_fi,5) AS dia_hora FROM franges_horaries fh  
+SELECT CONCAT(LEFT(fh.hora_inici,5),'-',LEFT(fh.hora_fi,5) AS dia_hora FROM franges_horaries fh  

@@ -89,7 +89,124 @@ $cognoms = isset($_REQUEST['cognoms']) ? $_REQUEST['cognoms'] : '' ;
             </div>
         	</form>
     </div>
+    
+    <div id="dlg_alum_nou" class="easyui-dialog" style="width:720px;height:540px;"  
+            closed="true" collapsible="true" resizable="true" modal="true" buttons="#dlg_alum_nou-buttons">
+            <form id="fm_alum_nou" method="post" novalidate>
+            
+            <div class="fitem"><label>Codi SAGA:</label> 
+            <input name="codi_alumnes_saga" class="easyui-numberbox validatebox-text" size="55"></div>
+            <hr>
+            
+            <div class="fitem" style="border-bottom:1px dashed #CCC; padding-bottom:1px; margin-bottom:1px; ">
+            <label><strong>Nom complet</strong></label> 
+            <input name="elem<?=TIPUS_nom_complet?>" class="easyui-validatebox validatebox-text" size="55"></div>
+            
+            <div class="fitem" style="border-bottom:1px dashed #CCC; padding-bottom:1px; margin-bottom:1px; ">
+            <label><strong>Identificador</strong></label> 
+            <input name="elem<?=TIPUS_iden_ref?>" class="easyui-validatebox validatebox-text" size="55"></div>
+            
+            <div class="fitem" style="border-bottom:1px dashed #CCC; padding-bottom:1px; margin-bottom:1px; ">
+            <label><strong>Nom</strong></label> 
+            <input name="elem<?=TIPUS_nom_alumne?>" class="easyui-validatebox validatebox-text" size="55"></div>
+
+            <div class="fitem" style="border-bottom:1px dashed #CCC; padding-bottom:1px; margin-bottom:1px; ">
+            <label><strong>1r Cog. Alumne</strong></label> 
+            <input name="elem<?=TIPUS_cognom1_alumne?>" class="easyui-validatebox validatebox-text" size="55"></div>
+            
+            <div class="fitem" style="border-bottom:1px dashed #CCC; padding-bottom:1px; margin-bottom:1px; ">
+            <label><strong>2n Cog. Alumne</strong></label> 
+            <input name="elem<?=TIPUS_cognom2_alumne?>" class="easyui-validatebox validatebox-text" size="55"></div>
+           
+            <div class="fitem" style="border-bottom:1px dashed #CCC; padding-bottom:1px; margin-bottom:1px; ">
+            <label><strong>Email</strong></label> 
+            <input name="elem<?=TIPUS_email?>" class="easyui-validatebox validatebox-text" size="55"></div>
+
+            <div class="fitem" style="border-bottom:1px dashed #CCC; padding-bottom:1px; margin-bottom:1px; ">
+            <label><strong>Data de naixement</strong></label> 
+            <input name="elem<?=TIPUS_data_naixement?>" class="easyui-validatebox validatebox-text" size="55">
+            <br>&nbsp;Format: DD/MM/AAAA</div>
+
+            <div class="fitem" style="border-bottom:1px dashed #CCC; padding-bottom:1px; margin-bottom:1px; ">
+            <label><strong>Login</strong></label> 
+            <input name="elem<?=TIPUS_login?>" class="easyui-validatebox validatebox-text" size="55"></div>
+            
+            <div class="fitem" style="border-bottom:1px dashed #CCC; padding-bottom:1px; margin-bottom:1px; ">
+            <label><strong>Contrasenya</strong></label> 
+            <input name="elem<?=TIPUS_contrasenya?>" type="password" class="easyui-validatebox" size="55"></div>
+
+            
+            <div class="fitem" style="border-bottom:1px dashed #CCC; padding-bottom:1px; margin-bottom:1px; ">
+            <label><strong>Nom pare/tutor</strong></label> 
+            <input name="elem<?=TIPUS_nom_pare?>" class="easyui-validatebox" size="55"></div>
+            
+            <div class="fitem" style="border-bottom:1px dashed #CCC; padding-bottom:1px; margin-bottom:1px; ">
+            <label><strong>1r Cog. pare</strong></label> 
+            <input name="elem<?=TIPUS_cognom1_pare?>" class="easyui-validatebox" size="55"></div>
+            
+            <div class="fitem" style="border-bottom:1px dashed #CCC; padding-bottom:1px; margin-bottom:1px; ">
+            <label><strong>2n Cog. pare</strong></label> 
+            <input name="elem<?=TIPUS_cognom2_pare?>" class="easyui-validatebox" size="55"></div>
+            
+            <div class="fitem" style="border-bottom:1px dashed #CCC; padding-bottom:1px; margin-bottom:1px; ">
+            <label><strong>Email tutor 1</strong></label> 
+            <input name="elem<?=TIPUS_email1?>" class="easyui-validatebox" size="55"></div>
+            
+            <div class="fitem" style="border-bottom:1px dashed #CCC; padding-bottom:1px; margin-bottom:1px; ">
+            <label><strong>Mòbil sms</strong></label> 
+            <input name="elem<?=TIPUS_mobil_sms?>" class="easyui-validatebox" size="55"></div>
+            
+            <div class="fitem" style="border-bottom:1px dashed #CCC; padding-bottom:1px; margin-bottom:1px; ">
+            <label><strong>Nom mare/tutora</strong></label> 
+            <input name="elem<?=TIPUS_nom_mare?>" class="easyui-validatebox" size="55"></div>
+            
+            <div class="fitem" style="border-bottom:1px dashed #CCC; padding-bottom:1px; margin-bottom:1px; ">
+            <label><strong>1r Cog. mare</strong></label> 
+            <input name="elem<?=TIPUS_cognom1_mare?>" class="easyui-validatebox" size="55"></div>
+            
+            <div class="fitem" style="border-bottom:1px dashed #CCC; padding-bottom:1px; margin-bottom:1px; ">
+            <label><strong>2n Cog. mare</strong></label> 
+            <input name="elem<?=TIPUS_cognom2_mare?>" class="easyui-validatebox" size="55"></div>
+            
+            <div class="fitem" style="border-bottom:1px dashed #CCC; padding-bottom:1px; margin-bottom:1px; ">
+            <label><strong>Email tutor 2</strong></label> 
+            <input name="elem<?=TIPUS_email2?>" class="easyui-validatebox" size="55"></div>
+            
+            <div class="fitem" style="border-bottom:1px dashed #CCC; padding-bottom:1px; margin-bottom:1px; ">
+            <label><strong>Mòbil sms tutor 2</strong></label> 
+            <input name="elem<?=TIPUS_mobil_sms2?>" class="easyui-validatebox" size="55"></div>
+
+            
+            <div class="fitem" style="border-bottom:1px dashed #CCC; padding-bottom:1px; margin-bottom:1px; ">
+            <label><strong>Adreça</strong></label> 
+            <input name="elem<?=TIPUS_adreca?>" class="easyui-validatebox validatebox-text" size="55"></div>
+
+            <div class="fitem" style="border-bottom:1px dashed #CCC; padding-bottom:1px; margin-bottom:1px; ">
+            <label><strong>Nom del municipi</strong></label> 
+            <input name="elem<?=TIPUS_nom_municipi?>" class="easyui-validatebox validatebox-text" size="55"></div>
+
+            <div class="fitem" style="border-bottom:1px dashed #CCC; padding-bottom:1px; margin-bottom:1px; ">
+            <label><strong>Codi postal</strong></label> 
+            <input name="elem<?=TIPUS_codi_postal?>" class="easyui-validatebox validatebox-text" size="55"></div>
+
+            <div class="fitem" style="border-bottom:1px dashed #CCC; padding-bottom:1px; margin-bottom:1px; ">
+            <label><strong>Telèfon</strong></label> 
+            <input name="elem<?=TIPUS_telefon?>" class="easyui-validatebox validatebox-text" size="55"></div>
+            
+            </form>
+    </div>
         
+    <div id="dlg_alum_nou-buttons">
+        <table cellpadding="0" cellspacing="0" style="width:100%">  
+            <tr>  
+                <td>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveAlumNou()">Acceptar</a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg_alum_nou').dialog('close')">Cancel.lar</a>
+                </td>
+            </tr>  
+        </table>  
+    </div> 
+
     <div id="dlg_contrasenya-buttons">
         <table cellpadding="0" cellspacing="0" style="width:100%">  
             <tr>  
@@ -358,7 +475,7 @@ $cognoms = isset($_REQUEST['cognoms']) ? $_REQUEST['cognoms'] : '' ;
 		function imprimirContrasenyesFamilies(){
 		    url = './alum/contrasenyes_families_print.php';
 		    $('#fitxer_pdf').attr('src', url);
-        }
+                }
 		
 		function onClickRow(index){ 
 			var row = $('#dg').datagrid('getSelected');
@@ -417,6 +534,28 @@ $cognoms = isset($_REQUEST['cognoms']) ? $_REQUEST['cognoms'] : '' ;
 			});
 		}
 		
+                function saveAlumNou(){
+		    $('#fm_alum_nou').form('submit',{
+                        url: url,
+                        onSubmit: function(){
+                            return $(this).form('validate');
+                        },
+                        success: function(result){                           
+                            var result = eval('('+result+')');
+                            if (result.msg){
+                                $.messager.show({
+                                    title: 'Error',
+                                    msg: result.msg
+                                });
+                            } else {
+                                $.messager.alert('Informaci&oacute;','Alumne donat d\'alta correctament!','info');
+                                $('#dlg_alum_nou').dialog('close');
+                                $('#dg').datagrid('reload');
+                            }
+                        }
+                    });
+                }
+                
 		function tancarFoto(){ 
 			$('#dlg_upload').dialog('close');
 			open1('./alum/alum_grid.php',this);
@@ -538,7 +677,7 @@ $cognoms = isset($_REQUEST['cognoms']) ? $_REQUEST['cognoms'] : '' ;
                 
                 function dona_acces(element){ 
 		    var row = $('#dg').datagrid('getSelected');
-            if (row){
+                    if (row){
 				$.messager.confirm('Confirmar','Est&aacute;s segur de que vols donar l\'acc&eacute;s?',function(r){  
 				if (r){
 					if (element=='alumne') {
@@ -572,7 +711,7 @@ $cognoms = isset($_REQUEST['cognoms']) ? $_REQUEST['cognoms'] : '' ;
 				});
 				$('#dlg_ge').dialog('open').dialog('setTitle','Rel.laci&oacute; de germans');
 			}
-        }
+                }
 		
 		function accioGerma(accio){		    
 			var id_germa = 0;
@@ -640,19 +779,23 @@ $cognoms = isset($_REQUEST['cognoms']) ? $_REQUEST['cognoms'] : '' ;
 	}
 		
 	function cancelItem(index){
-		var row = $('#dg').datagrid('getRows')[index];
-		if (row.isNewRecord){
-			$('#dg').datagrid('deleteRow',index);
-		} else {
-			$('#dg').datagrid('collapseRow',index);
-		}
+            var row = $('#dg').datagrid('getRows')[index];
+            if (row.isNewRecord){
+		$('#dg').datagrid('deleteRow',index);
+            } else {
+		$('#dg').datagrid('collapseRow',index);
+            }
 	}
 		
 	function newItem(){
-		$('#dg').datagrid('appendRow',{isNewRecord:true});
-		var index = $('#dg').datagrid('getRows').length - 1;
-		$('#dg').datagrid('expandRow', index);
-		$('#dg').datagrid('selectRow', index);
+            $('#fm_alum_nou').form('clear');
+            $('#dlg_alum_nou').dialog('open').dialog('setTitle','Alumne nou');
+            url = './alum/alum_nou.php';
+            
+            /*$('#dg').datagrid('appendRow',{isNewRecord:true});
+            var index = $('#dg').datagrid('getRows').length - 1;
+            $('#dg').datagrid('expandRow', index);
+            $('#dg').datagrid('selectRow', index);*/
 	}
 		
         function destroyUser(){  
@@ -663,7 +806,7 @@ $cognoms = isset($_REQUEST['cognoms']) ? $_REQUEST['cognoms'] : '' ;
                         $.post('./alum/alum_esborra.php',{id:row.id_alumne},function(result){  
                             if (result.success){  
                                 $('#dg').datagrid('reload');
-								editIndex = undefined;  
+				editIndex = undefined;  
                             } else {  
                                 $.messager.show({   
                                     title: 'Error',  
@@ -703,6 +846,10 @@ $cognoms = isset($_REQUEST['cognoms']) ? $_REQUEST['cognoms'] : '' ;
             margin:0;  
             padding:10px 30px;  
         }  
+        #fm_alum_nou{  
+            margin:0;  
+            padding:10px 30px;  
+        } 
         .ftitle{  
             font-size:14px;  
             font-weight:bold;  

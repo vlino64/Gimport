@@ -76,7 +76,7 @@ body {
 }
 
 hr {
-  page-break-after: always;
+  /*page-break-after: always;*/
   border: 0;
 }
 
@@ -132,7 +132,7 @@ hr {
   <table>
     <tr>
       <td>
-      <b><?= getDadesCentre($db)["nom"] ?></b><br />
+	  <b><?= getDadesCentre($db)["nom"] ?></b><br />
       <?= getDadesCentre($db)["adreca"] ?>&nbsp;&nbsp;
       <?= getDadesCentre($db)["cp"] ?>&nbsp;<?= getDadesCentre($db)["poblacio"] ?>
       </td>
@@ -197,7 +197,7 @@ hr {
 				   }
 				?>          
 		</table>
-        <hr />
+        
         <h5>MAT&Egrave;RIES</h5>
         <table>
          	<tr>
@@ -218,7 +218,7 @@ hr {
 				   }
 				?>          
 		</table>
-        <hr />
+        
         <h5>ALUMNES</h5>
         <table>
          	<tr>
@@ -241,7 +241,7 @@ hr {
 				   }
 				?>          
 		</table>
-        <hr />
+        
         <h5>PROFESSOR/ES</h5>
         <table>
          	<tr>
@@ -262,7 +262,7 @@ hr {
 				   }
 				?>          
 		</table>
-        <hr />
+        
         <h5>TIPUS CCC</h5>
         <table>
          	<tr>
@@ -283,7 +283,7 @@ hr {
 				   }
 				?>          
 		</table>
-        <hr />
+        
         <h5>SANCIONS</h5>
         <table>
          	<tr>
@@ -378,8 +378,8 @@ hr {
 				   $linea = 1;
 				   foreach($rs->fetchAll() as $row) {
 						  echo "<tr>";
-						  echo "<td valign='top' width='30'>".$linea."</td>";
-						  echo "<td valign='top' class='drop'>";
+						  echo "<td valign='top' width='10'>".$linea."</td>";
+						  echo "<td valign='top' width='300' class='drop'>";
 						  switch ($sub_criteri) {
 								case "idgrup":
 									echo (intval($row[$sub_criteri]!=0) ? getGrup($db,$row[$sub_criteri])["nom"] : '');
@@ -402,16 +402,16 @@ hr {
 						  }
 						  //$row->$sub_criteri
 						  echo "</td>";
-						  echo "<td valign='top' width='90' class='drop'>".$row["total"]."</td></tr>";
+						  echo "<td valign='top' width='50' class='drop'>".$row["total"]."</td></tr>";
 						  $linea++;
 				   }
 				?>          
 		</table>
         <?php
 			// Limpiamos pantalla
-			for ($i=0;$i<50;$i++) {
+			/*for ($i=0;$i<50;$i++) {
 				echo "<br>";
-			}
+			}*/
 		?>
  </div>
  
@@ -428,5 +428,4 @@ hr {
 
 <?php
 $rs->closeCursor();
-//mysql_close();
 ?>

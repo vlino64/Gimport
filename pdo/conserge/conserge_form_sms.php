@@ -3,6 +3,8 @@
 //require_once('../bbdd/connect.php');
 //require_once('../func/constants.php');
 require_once('../func/generic.php');
+require_once('../bbdd/connect_sms.php');
+require_once('../func/sms.php');
 //require_once('../func/seguretat.php');
 ?>
 
@@ -44,14 +46,14 @@ onKeyUp="limitText(this.form.contingut,this.form.countdown,140);">
 <br />
 
 <input style="font-size:24px; background-color:#FF0000; color:#FFFFFF" class="enviar" type="button" value="Enviar SMS" onClick="javascript:enviaSMS()" />
-      
+<div id="resultSMSDiv" style="position:absolute; left:540px; width:470px; color: #CC0000; font:16px bolder Geneva, Arial, Helvetica, sans-serif;">
+ Saldo actual de missatges: <strong> <?php echo extreu_saldo($dbSMS,USERNAME_SMS); ?> </strong> 
+</div>      
 </form>
 
 </div>
 
-<div id="resultSMSDiv" style="position:absolute; left:540px; width:470px; color: #CC0000; font:16px bolder Geneva, Arial, Helvetica, sans-serif;">
- 
-</div>
+
 
 <script type="text/javascript">
         function enviaSMS() {

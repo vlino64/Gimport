@@ -13,10 +13,10 @@
         
 	//Insert your cient ID and secret 
 	//You can get it from : https://console.developers.google.com/
-	$client_id = 'XXXXXXXXXXXXXXXXXXXXXXX'; 
-	$client_secret = 'XXXXXXXXXXXXXXXXXXXXXXX';
-	$redirect_uri = 'XXXXXXXXXXXXXXXXXXXXXXX';
-	$adrecaRetorn =  'XXXXXXXXXXXXXXXXXXXXXXX';
+	$client_id = 'XXXXXXXXXXXXXXXXXXXX'; 
+	$client_secret = 'XXXXXXXXXXXXXXXXXXXX';
+	$redirect_uri = 'XXXXXXXXXXXXXXXXXXXX';
+	$adrecaRetorn =  'XXXXXXXXXXXXXXXXXXXX';
 
 	//incase of logout request, just unset the session var
 	if (isset($_GET['logout'])) {
@@ -80,13 +80,13 @@
 			{
 			$sql = "SELECT idtipus_contacte FROM tipus_contacte WHERE Nom_info_contacte ='email';";
 			$result = $db->query($sql);
-			$fila = mysql_fetch_row($result); $idtipuscontacte = $fila[0];
+			$fila = $result->fetch(); $idtipuscontacte = $fila['idtipus_contacte'];
 			
-			$sql  = "SELECT A.idprofessors FROM professors A, contacte_professor B ";
+			$sql  = "SELECT A.idprofessors AS idprof FROM professors A, contacte_professor B ";
 			$sql .= "WHERE A.idprofessors=B.id_professor AND B.id_tipus_contacte = ".$idtipuscontacte." AND Valor = '".$user->email."' AND A.activat = 'S';";
 			$result = $db->query($sql);
-			$fila = mysql_fetch_row($result); $idprofessor = $fila[0];
-			$files = mysql_num_rows($result);
+			$fila = $result->fetch(); $idprofessor = $fila['idprof'];
+			$files = $result->rowCount();
 						
 			if (( $idprofessor != 0 ) AND ($files != 0))
 				{
@@ -94,7 +94,7 @@
 				$_SESSION['curs_escolar_literal'] = getCursActual($db)->Nom;
 				$_SESSION['professor']            = $idprofessor;
 				$_SESSION['usuari']               = $idprofessor;  
-				insertaLogProfessor($_SESSION['professor'],TIPUS_ACCIO_LOGIN);
+				insertaLogProfessor($db,$_SESSION['professor'],TIPUS_ACCIO_LOGIN);
                                 if(isMobile()){
                                         header('Location:mobi/home.php');
                                     }
@@ -105,18 +105,18 @@
 				}
 			else 
 				{
-				$sql  = "SELECT A.idalumnes FROM alumnes A, contacte_alumne B ";
+				$sql  = "SELECT A.idalumnes AS idalum FROM alumnes A, contacte_alumne B ";
 				$sql .= "WHERE A.idalumnes=B.id_alumne AND B.id_tipus_contacte = ".$idtipuscontacte." AND Valor = '".$user->email."' AND A.activat = 'S';";
 				$result = $db->query($sql);
-				$fila = mysql_fetch_row($result); $idalumne = $fila[0];
-				$files = mysql_num_rows($result);
+				$fila = $result->fetch(); $idalumne = $fila['idalum'];
+				$files = $result->rowCount();
 				if (( $idalumne != 0 ) AND ($files != 0))
 					{
 					$_SESSION['curs_escolar']         = getCursActual($db)["idperiodes_escolars"];
 					$_SESSION['curs_escolar_literal'] = getCursActual($db)->Nom;
 					$_SESSION['alumne']            = $idalumne;
 					$_SESSION['usuari']               = $idalumne;  
-					insertaLogAlumne($_SESSION['alumne'],TIPUS_ACCIO_LOGIN);
+					insertaLogAlumne($db,$_SESSION['alumne'],TIPUS_ACCIO_LOGIN);
                                         if(isMobile()){
                                                 header('Location:mobi/home.php');
                                             }

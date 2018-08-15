@@ -8,7 +8,7 @@ $db->exec("set names utf8");
 
 $codi_alumnes_saga = $_REQUEST['codi_alumnes_saga'];
 
-$sql               = "insert into alumnes(codi_alumnes_saga) values ('$codi_alumnes_saga')";
+$sql               = "insert into alumnes(codi_alumnes_saga,acces_alumne) values ('$codi_alumnes_saga','S')";
 $result            = $db->query($sql);
 $id_alumne         = $db->lastInsertId();
 
@@ -20,13 +20,17 @@ $sql               = "insert into alumnes_families(idalumnes,idfamilies) values 
 $result            = $db->query($sql);
 
 $dadesalumneArray  = array(TIPUS_nom_complet,TIPUS_iden_ref,TIPUS_cognom1_alumne,
-			   TIPUS_cognom2_alumne,TIPUS_nom_alumne,TIPUS_genere,
-			   TIPUS_a_determinar,TIPUS_nom_grup,TIPUS_login,TIPUS_contrasenya);	
-						   
+  			   TIPUS_cognom2_alumne,TIPUS_nom_alumne,TIPUS_email,
+			   TIPUS_login,TIPUS_contrasenya,TIPUS_data_naixement);
+
+$dadesocultesArray  = array(TIPUS_cognoms_profe,TIPUS_nom_profe,TIPUS_login2,TIPUS_contrasenya2,
+                            TIPUS_contrasenya_notifica2,TIPUS_login1);
+
 for ($tipus_contacte = 1; $tipus_contacte <= TOTAL_TIPUS_CONTACTE; $tipus_contacte++) {
-	$sql = '';
+    if ((! in_array($tipus_contacte, $dadesocultesArray)) && existsIDTipusContacte($db,$tipus_contacte)) {
+        $sql = '';
         if ($tipus_contacte != TIPUS_contrasenya_notifica) {
-		$valor  = str_replace("'","\'",$_REQUEST[$tipus_contacte]);
+		$valor  = str_replace("'","\'",$_REQUEST['elem'.$tipus_contacte]);
 	}
 	
 	if ($tipus_contacte == TIPUS_contrasenya ) {
@@ -47,17 +51,16 @@ for ($tipus_contacte = 1; $tipus_contacte <= TOTAL_TIPUS_CONTACTE; $tipus_contac
 			$result = $db->query($sql);
 		}
 	}
-	
+    }
 }
 
 if ($result){
 	echo json_encode(array(
-			'codi_alumnes_saga' => $codi_alumnes_saga,
-			'Valor' => $valor_mostrar
-		 ));
+		'codi_alumnes_saga' => $codi_alumnes_saga,
+		'Valor' => $valor_mostrar
+	 ));
 	} else {
 		echo json_encode(array('msg'=>'Algunos errores ocurrieron.'));
 	}
 	
-//mysql_close();
 ?>

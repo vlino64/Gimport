@@ -12,6 +12,7 @@ $sql .= "INNER JOIN alumnes_grup_materia agm ON agm.idalumnes = ca.id_alumne ";
 $sql .= "WHERE ca.id_tipus_contacte=".TIPUS_nom_complet." AND a.activat = 'S'" ;
 $sql .= " ORDER BY ca.Valor";
 
+
 $rs = $db->query($sql);
 $result = array();
 foreach($rs->fetchAll() as $row) {
@@ -20,5 +21,4 @@ foreach($rs->fetchAll() as $row) {
 echo json_encode($result);
 
 $rs->closeCursor();
-//mysql_close();
 ?>

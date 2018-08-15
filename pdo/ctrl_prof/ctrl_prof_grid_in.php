@@ -50,7 +50,7 @@
     <table cellpadding="0" cellspacing="0" style="width:100%">  
         <tr>  
             <td>
-                <form method="post">
+                <form id="fmINF" method="post">
                 Desde: <input id="data_inici_inf" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser,required:true"></input>&nbsp;
         	Fins a: <input id="data_fi_inf" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser,required:true"></input>&nbsp;
 		Per professor: 
@@ -121,8 +121,8 @@
 			if ($('#data_entrada').datebox('getValue') == '') {
 				var f = new Date();
 				var y = f.getFullYear();  
-           		var m = f.getMonth()+1;  
-            	var d = f.getDate();  
+                                var m = f.getMonth()+1;  
+                                var d = f.getDate();  
 				data = d+'-'+m+'-'+y;
 			}
 			else {
@@ -217,7 +217,7 @@
 			d_inici  = $('#data_inici_inf').datebox('getValue');
 			d_fi     = $('#data_fi_inf').datebox('getValue');
 			c_professor = $('#c_professor').combobox('getValue');
-			
+                        
                         if(d_inici!='' && d_fi!='') {
                             url = './ctrl_prof/ctrl_prof_reg_see.php?data_inici='+d_inici+'&data_fi='+d_fi+'&c_professor='+c_professor;
                             $('#dlg_inf').dialog('refresh', url);

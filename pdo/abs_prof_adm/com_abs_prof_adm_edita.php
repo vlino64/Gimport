@@ -25,8 +25,8 @@ foreach ($idfranges_horaries as $id_fh) {
 	
 	if ($id_fh != 0){
 		//esborrar incidencia per aquell professor i dia
-		$sql = "DELETE FROM incidencia_professor WHERE idprofessors='$idprofessors' AND data='$data' AND idfranges_horaries='$id_fh'";
-		$result = $db->query($sql);
+		/*$sql = "DELETE FROM incidencia_professor WHERE idprofessors='$idprofessors' AND data='$data' AND idfranges_horaries='$id_fh'";
+		$result = $db->query($sql);*/
 		
 		if ($afegir == 1) {
 			//insertar falta asistencia per aquell professor i dia

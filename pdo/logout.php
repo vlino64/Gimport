@@ -20,7 +20,7 @@
 	}
 	
 	session_unset();
-	$adrecaRetorn =  'https://www.XXXXX.XXX/tutoria/index.php?logout=1';
+	$adrecaRetorn =  'XXXXXXXXXXXXXXXXXXXX';
       if ($_GET['google'] == 1) {
 	header('Location: https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue='.$adrecaRetorn.'');
       }

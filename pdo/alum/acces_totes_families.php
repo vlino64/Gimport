@@ -28,11 +28,14 @@ $result = $db->query($sql);
 $sql = "delete from contacte_families where id_tipus_contacte=".TIPUS_contrasenya_notifica;
 $result = $db->query($sql);*/
 
-// Creem les noves dades de conexió per cada familia  
+// Creem les noves dades de conexió per cada familia
+
+
 foreach($rsAlumnes->fetchAll() as $row) {
 	$idalumnes           = $row["idalumnes"];
 	$idfamilies          = getFamiliaAlumne($db,$idalumnes);
 	
+
 	if ( (!existValorTipusContacteFamilies($db,$idalumnes,TIPUS_login)) && 
              (!existValorTipusContacteFamilies($db,$idalumnes,TIPUS_contrasenya)) ){
 	
@@ -45,32 +48,33 @@ foreach($rsAlumnes->fetchAll() as $row) {
 		$random_number       = rand(0,9).rand(0,9).rand(0,9).rand(0,9);
 		$contrasenya_familia = $ini_primer_cognom.$ini_segon_cognom.$random_number;
 	
-		// Esborrem dades previes en el cas d'haver algun altre fill
-		$sql = "delete from contacte_families where id_families=$idfamilies and id_tipus_contacte=".TIPUS_login;
-		$result = $db->query($sql);
-	   
-		$sql = "delete from contacte_families where id_families=$idfamilies and id_tipus_contacte=".TIPUS_contrasenya;
-		$result = $db->query($sql);
-	   
-		$sql = "delete from contacte_families where id_families=$idfamilies and id_tipus_contacte=".TIPUS_contrasenya_notifica;
-		$result = $db->query($sql);
-		
-		// Inserim dades de connexió per la familia
-		$sql = "insert into contacte_families(id_families,id_tipus_contacte,Valor) values ($idfamilies,".TIPUS_login.",'".$login_familia."')";
-		$result = $db->query($sql);
-	   
-		$sql = "insert into contacte_families(id_families,id_tipus_contacte,Valor) values ($idfamilies,".TIPUS_contrasenya.",'".MD5($contrasenya_familia)."')";
-		$result = $db->query($sql);
-	   
-		$sql = "insert into contacte_families(id_families,id_tipus_contacte,Valor) values ($idfamilies,".TIPUS_contrasenya_notifica.",'".$contrasenya_familia."')";
-		$result = $db->query($sql);
-		
-		$sql_al = "update alumnes set acces_familia='S' where idalumnes=".$idalumnes;
-		$result = $db->query($sql_al);
-		
-		echo "<b>$linia.</b> Processades dades de la familia <font color=blue><u>".utf8_encode(getValorTipusContacteAlumne($db,$idalumnes,TIPUS_cognom1_alumne))." ".utf8_encode(getValorTipusContacteAlumne($db,$idalumnes,TIPUS_cognom2_alumne))."</u></font><br>";
-		$linia++;
-
+		if ($idfamilies != 0){
+			// Esborrem dades previes en el cas d'haver algun altre fill
+			$sql = "delete from contacte_families where id_families=$idfamilies and id_tipus_contacte=".TIPUS_login;
+			$result = $db->query($sql);
+			
+			$sql = "delete from contacte_families where id_families=$idfamilies and id_tipus_contacte=".TIPUS_contrasenya;
+			$result = $db->query($sql);
+			
+			$sql = "delete from contacte_families where id_families=$idfamilies and id_tipus_contacte=".TIPUS_contrasenya_notifica;
+			$result = $db->query($sql);
+			
+			// Inserim dades de connexió per la familia
+			$sql = "insert into contacte_families(id_families,id_tipus_contacte,Valor) values ($idfamilies,".TIPUS_login.",'".$login_familia."')";
+			$result = $db->query($sql);
+			
+			$sql = "insert into contacte_families(id_families,id_tipus_contacte,Valor) values ($idfamilies,".TIPUS_contrasenya.",'".MD5($contrasenya_familia)."')";
+			$result = $db->query($sql);
+			
+			$sql = "insert into contacte_families(id_families,id_tipus_contacte,Valor) values ($idfamilies,".TIPUS_contrasenya_notifica.",'".$contrasenya_familia."')";
+			$result = $db->query($sql);
+			
+			$sql_al = "update alumnes set acces_familia='S' where idalumnes=".$idalumnes;
+			$result = $db->query($sql_al);
+			
+			echo "<b>$linia.</b> Processades dades de la familia <font color=blue><u>".utf8_encode(getValorTipusContacteAlumne($db,$idalumnes,TIPUS_cognom1_alumne))." ".utf8_encode(getValorTipusContacteAlumne($db,$idalumnes,TIPUS_cognom2_alumne))."</u></font><br>";
+			$linia++;
+		}
 	}
 	
 }

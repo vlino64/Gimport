@@ -7,7 +7,8 @@ function getCCC($db,$idccc_taula_principal) {
     $sql .= "FROM ccc_taula_principal ccc_tp ";
     $sql .= "WHERE ccc_tp.idccc_taula_principal = ".$idccc_taula_principal;
     $rec = $db->query($sql);
-         
+    
+    $count = 0;
     foreach($rec->fetchAll() as $row) {
 	$count++;
 	$result = $row;

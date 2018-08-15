@@ -1,0 +1,148 @@
+
+
+Llamada que devuelve el horario (horario de un alumno para un dia determinado de la semana)
+
+
+$data = isset($_REQUEST['data']) ? substr($_REQUEST['data'],6,4)."-".substr($_REQUEST['data'],3,2)."-".substr($_REQUEST['data'],0,2) : date("Y-m-d");
+$curs_actual = getCursActual($db)["idperiodes_escolars"];
+
+$any         = substr($data,0,4);
+$mes         = substr($data,5,2);
+$dia         = substr($data,8,2);
+$dia_setmana = diaSemana($any,$mes,$dia);
+
+
+
+SELECT uc.*,CONCAT(LEFT(fh.hora_inici,5),'-',LEFT(fh.hora_fi,5)) AS dia_hora,m.nom_materia,ec.descripcio,g.nom as grup,fh.idfranges_horaries 
+FROM unitats_classe uc
+INNER JOIN alumnes_grup_materia   agm ON uc.idgrups_materies   = agm.idgrups_materies 
+INNER JOIN dies_franges     df ON uc.id_dies_franges    = df.id_dies_franges 
+INNER JOIN dies_setmana     ds ON df.iddies_setmana     = ds.iddies_setmana 
+INNER JOIN franges_horaries fh ON df.idfranges_horaries = fh.idfranges_horaries 
+INNER JOIN espais_centre    ec ON uc.idespais_centre    = ec.idespais_centre 
+INNER JOIN grups_materies   gm ON uc.idgrups_materies   = gm.idgrups_materies 
+INNER JOIN grups             g ON gm.id_grups          = g.idgrups 
+INNER JOIN materia           m ON gm.id_mat_uf_pla      = m.idmateria 
+WHERE fh.esbarjo<>'S' AND ds.iddies_setmana=".$dia_setmana." AND df.idperiode_escolar=".$curs_actual." AND agm.idalumnes=".$idalumne." 
+
+UNION 
+
+SELECT uc.*,CONCAT(LEFT(fh.hora_inici,5),'-',LEFT(fh.hora_fi,5)) AS dia_hora,CONCAT(m.nom_modul,'-',uf.nom_uf) AS nom_materia,ec.descripcio,g.nom as grup,fh.idfranges_horaries 
+FROM unitats_classe uc 
+INNER JOIN alumnes_grup_materia   agm ON uc.idgrups_materies   = agm.idgrups_materies 
+INNER JOIN dies_franges     df ON uc.id_dies_franges    = df.id_dies_franges 
+INNER JOIN dies_setmana     ds ON df.iddies_setmana     = ds.iddies_setmana 
+INNER JOIN franges_horaries fh ON df.idfranges_horaries = fh.idfranges_horaries 
+INNER JOIN espais_centre    ec ON uc.idespais_centre    = ec.idespais_centre 
+INNER JOIN grups_materies   gm ON uc.idgrups_materies   = gm.idgrups_materies 
+INNER JOIN grups             g ON gm.id_grups          = g.idgrups 
+INNER JOIN unitats_formatives uf ON gm.id_mat_uf_pla     = uf.idunitats_formatives 
+INNER JOIN moduls_ufs         mu ON gm.id_mat_uf_pla     = mu.id_ufs 
+INNER JOIN moduls              m ON mu.id_moduls         = m.idmoduls 
+WHERE fh.esbarjo<>'S' AND ds.iddies_setmana=".$dia_setmana." AND df.idperiode_escolar=".$curs_actual." AND agm.idalumnes=".$idalumne." 
+AND gm.data_inici<='".date("y-m-d")."' AND gm.data_fi>='".date("y-m-d")."'
+
+ORDER BY 5 
+
+Llamada que devuelve incidencias (absencies d'un determinat alumne)
+
+function getIncidenciasAlumne($idalumnes,$id_tipus_incidencia,$data_inici,$data_fi) {
+ $sql  = "SELECT ia.* ";
+ $sql .= "FROM incidencia_alumne ia ";
+ $sql .= "WHERE ia.idalumnes = ".$idalumnes." AND ia.id_tipus_incidencia=".$id_tipus_incidencia;
+ $sql .= " AND ia.data BETWEEN '".$data_inici."' AND '".$data_fi."'";
+ $sql .= " ORDER BY ia.data,ia.id_tipus_incidencia,ia.id_tipus_incident ";
+ $rec = mysql_query($sql);
+ return $rec;
+		
+}
+
+
+
+Crida que extreu dades d'un alumne amb l'id. Ha d'extreure, Nom complet, correu tutors, login de tutors
+
+
+
+$nom = getAlumne($db,$idalumnes,TIPUS_nom_complet);
+
+$c_tut_1 = getAlumne($db,$idalumnes,TIPUS_email1);
+$c_tut_2 = getAlumne($db,$idalumnes,TIPUS_email2);
+$login_tut_1 = getAlumne($db,$idalumnes,TIPUS_login1);
+$login_tut_2 = getAlumne($db,$idalumnes,TIPUS_login2);
+
+--------------------------
+
+function getAlumne($db,$idalumnes,$tipusContacte) {
+   $sql  = "SELECT ca.Valor FROM contacte_alumne ca ";
+  $sql .= "WHERE ca.id_tipus_contacte=".$tipusContacte." AND ca.id_alumne=".$idalumnes;
+    
+   $rec = $db->query($sql);
+   $count = 0;
+   $result = "";
+   foreach($rec->fetchAll() as $row) {
+			$count++;
+			$result = $row;
+   }
+   if ($count == 0) {
+	return "";
+	}
+   else {
+	return $result["Valor"];
+   }
+}
+
+
+
+
+
+
+
+
+
+
+
+Crida que extreu el nom, correu, l'id del tutor i l'id del grup del que es tutor amb l'id de l'alumne
+
+Grup d’un alumne, id del tutor i id del grup:
+	 
+SELECT DISTINCT(gr.idgrups), gr.nom, gr.Descripcio, pc.idprofessors
+FROM alumnes_grup_materia agm 
+INNER JOIN grups_materies gm ON agm.idgrups_materies = gm.idgrups_materies 
+INNER JOIN materia        ma ON gm.id_mat_uf_pla     = ma.idmateria 
+INNER JOIN grups          gr ON gm.id_grups          = gr.idgrups 
+INNER JOIN professor_carrec pc  ON gr.idgrups        = pc.idgrups
+WHERE agm.idalumnes='".$alumne."' 
+
+UNION 
+
+SELECT DISTINCT(gr.idgrups), gr.nom, gr.Descripcio, pc.idprofessors 
+FROM alumnes_grup_materia agm 
+INNER JOIN grups_materies     gm ON agm.idgrups_materies = gm.idgrups_materies 
+INNER JOIN unitats_formatives uf ON gm.id_mat_uf_pla = uf.idunitats_formatives 
+INNER JOIN moduls_ufs         mu ON gm.id_mat_uf_pla = mu.id_ufs 
+INNER JOIN moduls              m ON mu.id_moduls     = m.idmoduls 
+INNER JOIN grups              gr ON gm.id_grups      = gr.idgrups 
+INNER JOIN professor_carrec   pc ON gr.idgrups       = pc.idgrups
+WHERE agm.idalumnes='".$alumne."' 
+	
+ORDER BY 1 LIMIT 1
+
+----------------------------------------------------------
+
+Dades d’un professor:
+
+function getProfessor($db,$idprofessors,$tipusContacte) {
+
+SELECT cp.Valor FROM contacte_professor cp 
+WHERE cp.id_tipus_contacte=$tipusContacte AND cp.id_professor=$idprofessors 
+
+
+
+
+Per definir el que es necessita per la nova característica. Que les famílies puguin comunicar una absència des de l'app i des  de l'aplicació
+
+
+
+PROPERAMENT A LES SEVES PANTALLES!!!
+
+

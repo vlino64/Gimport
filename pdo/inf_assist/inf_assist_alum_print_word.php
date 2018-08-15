@@ -1,12 +1,20 @@
 <?php
+  session_start();
   header("Content-type: application/vnd.ms-word");
   header("Content-Disposition: attachment;Filename=Informe.doc");
-  session_start();
+  header("Pragma: no-cache");
+  header("Expires: 0");
+  
   require_once('../bbdd/connect.php');
   require_once('../func/constants.php');
   require_once('../func/generic.php');
   require_once('../func/seguretat.php');
-  //$db->exec("set names utf8");
+  
+  if (strrpos($_SERVER['HTTP_USER_AGENT'], 'Linux') === false){
+  }
+  else {
+      $db->exec("set names utf8");
+  }
   
   $data_inici = isset($_REQUEST['data_inici']) ? substr($_REQUEST['data_inici'],6,4)."-".substr($_REQUEST['data_inici'],3,2)."-".substr($_REQUEST['data_inici'],0,2) : getCursActual($db)["data_inici"];
   if ($data_inici=='--') {
@@ -39,114 +47,6 @@
   $mode_impresio      = isset($_REQUEST['mode_impresio'])      ? $_REQUEST['mode_impresio']      : 0;
 ?>
 
-<style type="text/css">
-@page {
-	margin: 1cm;
-}
-
-body {
-  font-family: sans-serif;
-  margin: 1.5cm 0;
-}
-
-#header,
-#footer {
-  position: fixed;
-  left: 0;
-  right: 0;
-  color: #aaa;
-  font-size: 0.9em;
-}
-
-#header {
-  top: 0;
-  border-bottom: 0.1pt solid #aaa;
-  margin-bottom:15px;
-}
-
-#footer {
-  bottom: 0;
-  border-top: 0.1pt solid #aaa;
-}
-
-#header table,
-#footer table {
-  width: 100%;
-  border-collapse: collapse;
-  border: none;
-}
-
-#header td,
-#footer td {
-  padding: 0;
-  width: 50%;
-}
-
-.page-number {
-  text-align: right;
-}
-
-.page-number:before {
-  content: " " counter(page);
-}
-
-hr {
-  page-break-after: always;
-  border: 0;
-}
-
-</style>
-
-<style type="text/css">
-		.left{
-			width:2px;
-			float:left;
-		}
-		.left table{
-			background:#E0ECFF;
-		}
-		.left td{
-			background:#eee;
-		}
-		.right{
-			float:right;
-			width:890px;
-		}
-		.right table{
-			background:#E0ECFF;
-			width:100%;
-		}
-		.right td{
-			background:#fafafa;
-			text-align:left;
-			padding:2px;
-		}
-		.right td{
-			background:#E0ECFF;
-		}
-		.right td.drop{
-			background:#fafafa;
-			/*width:95px;*/
-		}
-		.right td.over{
-			background:#FBEC88;
-		}
-		.item{
-			text-align:center;
-			/*border:1px solid #499B33;*/
-			background:#fafafa;
-			/*width:100px;*/
-		}
-		.assigned{
-			border:1px solid #BC2A4D;
-		}
-		.alumne {
-			background:#FFFFFF;
-			text-align:left;
-			width:400px;
-		}	
-	</style>
-   
  <?php
   	if (! $mode_impresio) {
   ?>
@@ -158,11 +58,11 @@ hr {
                     panelWidth: 380
   ">
   <br /><br />
-  <input id="box_faltes" name="box_faltes" type="checkbox" value="falta" />&nbsp;Faltes&nbsp;
-  <input id="box_retards" name="box_retards" type="checkbox" value="retard" />&nbsp;Retards&nbsp;
-  <input id="box_justificacions" name="box_justificacions" type="checkbox" value="justificacio" />&nbsp;Justificacions&nbsp;
-  <input id="box_incidencies" name="box_incidencies" type="checkbox" value="incidencia" />&nbsp;Seguiments&nbsp;
-  <input id="box_CCC" name="box_CCC" type="checkbox" value="CCC" />&nbsp;CCC&nbsp;
+  <input id="box_faltes" name="box_faltes" type="checkbox" value="falta" /> Faltes 
+  <input id="box_retards" name="box_retards" type="checkbox" value="retard" /> Retards 
+  <input id="box_justificacions" name="box_justificacions" type="checkbox" value="justificacio" /> Justificacions 
+  <input id="box_incidencies" name="box_incidencies" type="checkbox" value="incidencia" /> Seguiments 
+  <input id="box_CCC" name="box_CCC" type="checkbox" value="CCC" /> CCC 
   <br />
   Desde <input id="data_inici" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser"></input>
   Fins a <input id="data_fi" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser"></input>
@@ -182,18 +82,18 @@ hr {
   	}
   ?>
   
- <div id="resultDiv" style="width:890px; margin-top:-5px;">
+ <div id="resultDiv">
   
-  <h2 style="margin-bottom:0px">
+  <h2>
   Informe d'assist&egrave;ncia
-  <a style=" color: #000066; border:0px dashed #CCCCCC; padding:2px 2px 2px 2px ">
+  <a>
   <?php 
   	if ($idalumne != 0) {
 		echo getAlumne($db,$idalumne,TIPUS_nom_complet);
 	}
    ?></a>
-   &nbsp;(<a style=' color: #000066; border:1px dashed #CCCCCC; padding:3px 3px 3px 3px '><?= $txt_inici ?></a>
-   -&nbsp;<a style=' color: #000066; border:1px dashed #CCCCCC; padding:3px 3px 3px 3px '><?= $txt_fi ?></a>)
+    (<a><?= $txt_inici ?></a>
+   - <a><?= $txt_fi ?></a>)
   </h2>
 
  <br />
@@ -229,7 +129,7 @@ hr {
  <h5>Relaci&oacute; de faltes</h5>
  <table>
             <tr>
-                <td>&nbsp;</td>
+                <td> </td>
                 <td><strong>DATA</strong></td>
                 <td><strong>F. HOR&Agrave;RIA</strong></td>
                 <td><strong>PROFESSOR/A</strong></td>
@@ -261,7 +161,7 @@ hr {
   <h5>Relaci&oacute; de retards</h5>
   <table>
             <tr>
-                <td>&nbsp;</td>
+                <td> </td>
                 <td><strong>DATA</strong></td>
                 <td><strong>F. HOR&Agrave;RIA</strong></td>
                 <td><strong>PROFESSOR/A</strong></td>
@@ -293,7 +193,7 @@ hr {
   <h5>Relaci&oacute; de justificacions</h5>
   <table>
             <tr>
-                <td>&nbsp;</td>
+                <td> </td>
                 <td><strong>DATA</strong></td>
                 <td><strong>F. HOR&Agrave;RIA</strong></td>
                 <td><strong>PROFESSOR/A</strong></td>
@@ -327,7 +227,7 @@ hr {
   <h5>Relaci&oacute; de seguiments</h5>
   <table>
             <tr>
-                <td>&nbsp;</td>
+                <td> </td>
                 <td><strong>TIPUS</strong></td>
                 <td><strong>DATA</strong></td>
                 <td><strong>F. HOR&Agrave;RIA</strong></td>
@@ -363,7 +263,7 @@ hr {
     <h5>Relaci&oacute; de CCC</h5>
  	<table>
             <tr>
-                <td>&nbsp;</td>
+                <td> </td>
                 <td><strong>TIPUS CCC</strong></td>
                 <td><strong>DATA</strong></td>
                 <td><strong>EXPULSI&Oacute;</strong></td>
@@ -519,7 +419,3 @@ hr {
 		textField:'alumne'
 	});
 </script>
-
-<?php
-//mysql_close();
-?>

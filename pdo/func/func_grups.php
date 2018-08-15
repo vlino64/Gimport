@@ -50,7 +50,7 @@ function getGrup($db,$idgrups) {
 /* ********************************************************************************************************* */
 function getCarrecPrincipalGrup($db,$idcarrecs,$idgrups) {
     $sql  = "SELECT idprofessors FROM professor_carrec ";
-    $sql .= "WHERE idcarrecs = '$idcarrecs' AND idgrups = '$idgrups' AND principal=1 ";
+    $sql .= "WHERE idcarrecs = $idcarrecs AND idgrups = $idgrups AND principal=1 ";
     $rec = $db->query($sql);
     $count = 0;
     $result = "";

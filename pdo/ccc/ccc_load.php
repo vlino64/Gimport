@@ -26,5 +26,4 @@ $result["rows"] = $items;
 echo json_encode($items);
 
 $rs->closeCursor();
-//mysql_close();
 ?>

@@ -73,6 +73,14 @@ foreach($rs->fetchAll() as $row) {
     if ($sms) {
         //$dada = $row["id_alumne"];
         // Indica si és major d'edat
+        
+        $idgrup = getGrupAlumne($db,$row["idalumnes"])["idgrups"];
+        $grup   = getGrupAlumne($db,$row["idalumnes"])["nom"];
+        $idtorn = getGrup($db,$idgrup)["idtorn"];
+        $torn   = getTorn($db,$idtorn)["nom_torn"];
+        
+        $row["alumne"] = $row["alumne"]." ".$torn." ".$grup;
+        
         if (getMajorEdat($db,$row["idalumnes"])) {
             $row["alumne"] = $row["alumne"]." (>=18)";
         }

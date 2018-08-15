@@ -44,8 +44,6 @@ if ($accio_inserir) {
 		echo json_encode(array('msg'=>'Algunos errores ocurrieron.'));
 	}
 }
-
-//mysql_close();
 ?>
 
 

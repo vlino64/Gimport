@@ -2,10 +2,19 @@
   session_start();  
   header("Content-type: application/vnd.ms-word");
   header("Content-Disposition: attachment;Filename=Informe.doc");
+  header("Pragma: no-cache");
+  header("Expires: 0");
+  
   require_once('../bbdd/connect.php');
   require_once('../func/constants.php');
   require_once('../func/generic.php');
-  require_once('../func/seguretat.php');  
+  require_once('../func/seguretat.php');
+  
+  if (strrpos($_SERVER['HTTP_USER_AGENT'], 'Linux') === false){
+  }
+  else {
+      $db->exec("set names utf8");
+  }
   
   $data_inici = isset($_REQUEST['data_inici']) ? substr($_REQUEST['data_inici'],6,4)."-".substr($_REQUEST['data_inici'],3,2)."-".substr($_REQUEST['data_inici'],0,2) : getCursActual($db)["data_inici"];
   if ($data_inici=='--') {
@@ -40,153 +49,6 @@
   $mode_impresio      = isset($_REQUEST['mode_impresio'])      ? $_REQUEST['mode_impresio']      : 0;
 ?>
 
-<style type="text/css">
-@page {
-	margin: 1cm;
-}
-
-body {
-  margin: 1.5cm 0;
-}
-
-#header,
-#footer {
-  position: fixed;
-  left: 0;
-  right: 0;
-  color: #aaa;
-  font-size: 0.9em;
-}
-
-#header {
-  top: 0;
-  border-bottom: 0.1pt solid #aaa;
-  margin-bottom:15px;
-}
-
-#footer {
-  bottom: 0;
-  border-top: 0.1pt solid #aaa;
-}
-
-#header table,
-#footer table {
-  width: 100%;
-  border-collapse: collapse;
-  border: none;
-}
-
-#header td,
-#footer td {
-  padding: 0;
-  width: 50%;
-}
-
-.page-number {
-  text-align: right;
-}
-
-.page-number:before {
-  content: " " counter(page);
-}
-
-hr {
-  page-break-after: always;
-  border: 0;
-}
-
-</style>
-
-<style type="text/css">
-		.left{
-			width:2px;
-			float:left;
-		}
-		.left table{
-			background:#E0ECFF;
-		}
-		.left td{
-			background:#eee;
-		}
-		.right{
-			float:right;
-			width:890px;
-		}
-		.right table{
-			background:#E0ECFF;
-			width:100%;
-		}
-		.right td{
-			background:#fafafa;
-			text-align:left;
-			padding:2px;
-		}
-		.right td{
-			background:#E0ECFF;
-		}
-		.right td.drop{
-			background:#fafafa;
-			/*width:95px;*/
-		}
-		.right td.over{
-			background:#FBEC88;
-		}
-		.item{
-			text-align:center;
-			/*border:1px solid #499B33;*/
-			background:#fafafa;
-			/*width:100px;*/
-		}
-		.assigned{
-			border:1px solid #BC2A4D;
-		}
-		.alumne {
-			background:#FFFFFF;
-			text-align:left;
-			width:400px;
-		}	
-</style>
- 
-<?php
-  	if ($mode_impresio) {
-?>
-
-<div id="header">
-  <table>
-    <tr>
-      <td>
-      <b><?= getDadesCentre($db)["nom"] ?></b><br />
-      <?= getDadesCentre($db)["adreca"] ?>&nbsp;&nbsp;
-      <?= getDadesCentre($db)["cp"] ?>&nbsp;<?= getDadesCentre($db)["poblacio"] ?>
-      </td>
-      <td style="text-align: right;">
-      		<?php
-		$img_logo = '../images/logo.jpg';
-                if (file_exists($img_logo)) {
-                	echo "<img src='".$img_logo."'>";
-		}
-		?>
-      </td>
-    </tr>
-  </table>
-</div>
-
-<div id="footer">
-  <table>
-    <tr>
-      <td>
-        <?= getDadesCentre($db)["tlf"] ?>&nbsp;&nbsp;<?= getDadesCentre($db)["email"] ?>
-      </td>
-      <td align="right">
-  		<div class="page-number"></div>
-      </td>
-    </tr>
-  </table>
-</div>
-<?php
-  	}
-?>
-
 <?php
   	if (! $mode_impresio) {
 ?>
@@ -196,13 +58,13 @@ hr {
   <table bgcolor="whitesmoke" width="100%">
   <tr>
   	<td>
-      <input id="box_dg" name="box_dg" type="checkbox" value="dg" checked="checked" />&nbsp;Dades globals&nbsp;
-      <input id="box_faltes" name="box_faltes" type="checkbox" value="falta" checked="checked" />&nbsp;Faltes&nbsp;
-      <input id="box_retards" name="box_retards" type="checkbox" value="retard" checked="checked" />&nbsp;Retards&nbsp;
-      <input id="box_justificacions" name="box_justificacions" type="checkbox" value="justificacio" checked="checked" />&nbsp;Justificacions&nbsp;
-      <input id="box_incidencies" name="box_incidencies" type="checkbox" value="incidencia" checked="checked" />&nbsp;Seguiments&nbsp;
-      <input id="box_CCC" name="box_CCC" type="checkbox" value="CCC" checked="checked" />&nbsp;CCC&nbsp;
-      &nbsp;&nbsp;&nbsp;
+      <input id="box_dg" name="box_dg" type="checkbox" value="dg" checked="checked" /> Dades globals 
+      <input id="box_faltes" name="box_faltes" type="checkbox" value="falta" checked="checked" /> Faltes 
+      <input id="box_retards" name="box_retards" type="checkbox" value="retard" checked="checked" /> Retards 
+      <input id="box_justificacions" name="box_justificacions" type="checkbox" value="justificacio" checked="checked" /> Justificacions 
+      <input id="box_incidencies" name="box_incidencies" type="checkbox" value="incidencia" checked="checked" /> Seguiments 
+      <input id="box_CCC" name="box_CCC" type="checkbox" value="CCC" checked="checked" /> CCC 
+         
       <br />Desde <input id="data_inici" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser"></input>
       Fins a <input id="data_fi" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser"></input>
     </td>
@@ -226,11 +88,10 @@ hr {
 ?>
 
 
- <div id="resultDiv" style="width:890px;">
+ <div id="resultDiv" style="">
   <br />
   <h5>
-  &nbsp;Informe de faltes de l'alumne <a style=" color: #000066; border:1px dashed #CCCCCC; padding:3px 3px 3px 3px ">
-  <?= getAlumne($db,$c_alumne,TIPUS_nom_complet) ?></a>
+   Informe de faltes de l'alumne <a><?= getAlumne($db,$c_alumne,TIPUS_nom_complet) ?></a>
  </h5>
  <div class="right">
  <table>
@@ -257,7 +118,7 @@ hr {
   <h5>Mat&egrave;ries cursades</h5>
  <table>
     <tr>
-    	<td>&nbsp;</td>
+    	<td> </td>
         <td><strong>Mat&egrave;ria</strong></td>
         <td><strong>DIES LECTIUS</strong></td>
         <td><strong>NUM. FALTES</strong></td>
@@ -299,31 +160,31 @@ hr {
 		  echo "<td valign='top' class='drop' width='50'>".$total_classes."</td>";
 		  echo "<td valign='top' width='90' class='drop'>";
 		  if ($total_absencies != 0) {
-			  echo "<strong>".$total_absencies."</strong>&nbsp;(".round(($total_absencies/$total_classes)*100,2).")%";
+			  echo "<strong>".$total_absencies."</strong> (".round(($total_absencies/$total_classes)*100,2).")%";
 		  }
 		  echo "</td>";
 		  
 		  echo "<td valign='top' width='90' class='drop'>";
 		  if ($total_retards != 0) {
-			  echo "<strong>".$total_retards."</strong>&nbsp;(".round(($total_retards/$total_classes)*100,2).")%";
+			  echo "<strong>".$total_retards."</strong> (".round(($total_retards/$total_classes)*100,2).")%";
 		  }
 		  echo "</td>";
 		  
 		  echo "<td valign='top' width='90' class='drop'>";
 		  if ($total_justificacions != 0) {
-			  echo "<strong>".$total_justificacions."</strong>&nbsp;(".round(($total_justificacions/$total_classes)*100,2).")%";
+			  echo "<strong>".$total_justificacions."</strong> (".round(($total_justificacions/$total_classes)*100,2).")%";
 		  }
 		  echo "</td>";
 		  
 		  echo "<td valign='top' width='90' class='drop'>";
 		  if ($total_seguiments != 0) {
-			  echo "<strong>".$total_seguiments."</strong>&nbsp;(".round(($total_seguiments/$total_classes)*100,2).")%";
+			  echo "<strong>".$total_seguiments."</strong> (".round(($total_seguiments/$total_classes)*100,2).")%";
 		  }
 		  echo "</td>";
 		  
 		  echo "<td valign='top' width='90' class='drop'>";
 		  if ($total_ccc != 0) {
-			  echo "<strong>".$total_ccc."</strong>&nbsp;(".round(($total_ccc/$total_classes)*100,2).")%";
+			  echo "<strong>".$total_ccc."</strong> (".round(($total_ccc/$total_classes)*100,2).")%";
 		  }
 		  echo "</td>";
 		  
@@ -334,9 +195,9 @@ hr {
     	<td colspan="8"><strong>Totals</strong></td>
     </tr>
     <tr>
-    	<td class='drop'>&nbsp;</td>
-        <td class='drop'>&nbsp;</td>
-        <td class='drop'>&nbsp;</td>
+    	<td class='drop'> </td>
+        <td class='drop'> </td>
+        <td class='drop'> </td>
         <td class='drop'><?=getTotalIncidenciasAlumne($db,$c_alumne,TIPUS_FALTA_ALUMNE_ABSENCIA,$data_inici,$data_fi)?></td>
         <td class='drop'><?=getTotalIncidenciasAlumne($db,$c_alumne,TIPUS_FALTA_ALUMNE_RETARD,$data_inici,$data_fi)?></td>
         <td class='drop'><?=getTotalIncidenciasAlumne($db,$c_alumne,TIPUS_FALTA_ALUMNE_JUSTIFICADA,$data_inici,$data_fi)?></td>
@@ -356,8 +217,9 @@ hr {
         <h5>Relaci&oacute; de faltes</h5>
  		<table>
             <tr>
-                <td>&nbsp;</td>
+                <td> </td>
                 <td><strong>DATA</strong></td>
+                <td><strong>HORA</strong></td>
                 <td><strong>PROFESSOR/A</strong></td>
                 <td><strong>MAT&Egrave;RIA</strong></td>
             </tr>
@@ -369,6 +231,7 @@ hr {
 						  echo "<tr>";
 						  echo "<td valign='top' width='30'>".$linea."</td>";
 						  echo "<td valign='top' width='90' class='drop'>".substr($row["data"],8,2)."-".substr($row["data"],5,2)."-".substr($row["data"],0,4)."</td>";
+                                                  echo "<td valign='top' width='80' class='drop'>".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_inici"],0,5)."-".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_fi"],0,5)."</td>";
 						  echo "<td valign='top' width='200' class='drop'>".getProfessor($db,$row["idprofessors"],TIPUS_nom_complet)."</td>";
 						  echo "<td valign='top' class='drop'>".getMateria($db,$row["id_mat_uf_pla"])["nom_materia"]."</td>";
 						  $linea++;
@@ -387,8 +250,9 @@ hr {
         <h5>Relaci&oacute; de retards</h5>
  		<table>
             <tr>
-                <td>&nbsp;</td>
+                <td> </td>
                 <td><strong>DATA</strong></td>
+                <td><strong>HORA</strong></td>
                 <td><strong>PROFESSOR/A</strong></td>
                 <td><strong>MAT&Egrave;RIA</strong></td>
             </tr>
@@ -400,6 +264,7 @@ hr {
 						  echo "<tr>";
 						  echo "<td valign='top' width='30'>".$linea."</td>";
 						  echo "<td valign='top' width='90' class='drop'>".substr($row["data"],8,2)."-".substr($row["data"],5,2)."-".substr($row["data"],0,4)."</td>";
+                                                  echo "<td valign='top' width='80' class='drop'>".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_inici"],0,5)."-".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_fi"],0,5)."</td>";
 						  echo "<td valign='top' width='200' class='drop'>".getProfessor($db,$row["idprofessors"],TIPUS_nom_complet)."</td>";
 						  echo "<td valign='top' class='drop'>".getMateria($db,$row["id_mat_uf_pla"])["nom_materia"]."</td>";
 						  $linea++;
@@ -417,8 +282,9 @@ hr {
         <h5>Relaci&oacute; de justificacions</h5>
  		<table>
             <tr>
-                <td>&nbsp;</td>
+                <td> </td>
                 <td><strong>DATA</strong></td>
+                <td><strong>HORA</strong></td>
                 <td><strong>PROFESSOR/A</strong></td>
                 <td><strong>MAT&Egrave;RIA</strong></td>
             </tr>
@@ -430,6 +296,7 @@ hr {
 						  echo "<tr>";
 						  echo "<td valign='top' width='30'>".$linea."</td>";
 						  echo "<td valign='top' width='90' class='drop'>".substr($row["data"],8,2)."-".substr($row["data"],5,2)."-".substr($row["data"],0,4)."</td>";
+                                                  echo "<td valign='top' width='80' class='drop'>".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_inici"],0,5)."-".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_fi"],0,5)."</td>";
 						  echo "<td valign='top' width='200' class='drop'>".getProfessor($db,$row["idprofessors"],TIPUS_nom_complet)."</td>";
 						  echo "<td valign='top' class='drop'>".getMateria($db,$row["id_mat_uf_pla"])["nom_materia"]."</td>";
 						  $linea++;
@@ -447,9 +314,10 @@ hr {
         <h5>Relaci&oacute; de seguiments</h5>
  		<table>
             <tr>
-                <td>&nbsp;</td>
+                <td> </td>
                 <td><strong>TIPUS</strong></td>
                 <td><strong>DATA</strong></td>
+                <td><strong>HORA</strong></td>
                 <td><strong>PROFESSOR/A</strong></td>
                 <td><strong>MAT&Egrave;RIA</strong></td>
                 <td><strong>OBSERVACIONS</strong></td>
@@ -463,6 +331,7 @@ hr {
 						  echo "<td valign='top' width='20'>".$linea."</td>";
 						  echo "<td valign='top' width='40' class='drop'>".getLiteralTipusIncident($db,$row["id_tipus_incident"])["tipus_incident"]."</td>";
 						  echo "<td valign='top' width='70' class='drop'>".substr($row["data"],8,2)."-".substr($row["data"],5,2)."-".substr($row["data"],0,4)."</td>";
+                                                  echo "<td valign='top' width='80' class='drop'>".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_inici"],0,5)."-".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_fi"],0,5)."</td>";
 						  echo "<td valign='top' width='50' class='drop'>".getProfessor($db,$row["idprofessors"],TIPUS_nom_complet)."</td>";
 						  echo "<td valign='top' width='50' class='drop'>".getMateria($db,$row["id_mat_uf_pla"])["nom_materia"]."</td>";
 						  echo "<td valign='top' width='300' class='drop'>".nl2br($row["comentari"])."</td>";
@@ -481,9 +350,10 @@ hr {
         <h5>Relaci&oacute; de CCC</h5>
  		<table>
             <tr>
-                <td>&nbsp;</td>
+                <td> </td>
                 <td><strong>TIPUS CCC</strong></td>
                 <td><strong>DATA</strong></td>
+                <td><strong>HORA</strong></td>
                 <td><strong>EXPULSI&Oacute;</strong></td>
                 <td><strong>PROFESSOR/A</strong></td>
                 <td><strong>MAT&Egrave;RIA</strong></td>
@@ -499,6 +369,7 @@ hr {
 						  echo "<td valign='top' width='20'>".$linea."</td>";
 						  echo "<td valign='top' width='40' class='drop'>".getLiteralTipusCCC($db,$row["id_falta"])["nom_falta"]."</td>";
 						  echo "<td valign='top' width='70' class='drop'>".substr($row["data"],8,2)."-".substr($row["data"],5,2)."-".substr($row["data"],0,4)."</td>";
+                                                  echo "<td valign='top' width='80' class='drop'>".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_inici"],0,5)."-".substr(getFranjaHoraria($db,$row["idfranges_horaries"])["hora_fi"],0,5)."</td>";
 						  echo "<td valign='top' width='40' class='drop'>".$row["expulsio"]."</td>";
 						  echo "<td valign='top' width='50' class='drop'>".getProfessor($db,$row["idprofessor"],TIPUS_nom_complet)."</td>";
 						  echo "<td valign='top' width='50' class='drop'>".(intval($row["idmateria"]!=0) ? getMateria($db,$row["idmateria"])["nom_materia"] : '')."</td>";
@@ -529,16 +400,16 @@ hr {
 <iframe id="fitxer_pdf" scrolling="yes" frameborder="0" style="width:10px;height:10px; visibility:hidden" src=""></iframe>
 
 <script type="text/javascript">  		
-		var url;
+	var url;
 		
-		function myformatter(date){  
+	function myformatter(date){  
             var y = date.getFullYear();  
             var m = date.getMonth()+1;  
             var d = date.getDate();  
             return (d<10?('0'+d):d)+'-'+(m<10?('0'+m):m)+'-'+y;
         }
 		
-		function myparser(s){  
+	function myparser(s){  
             if (!s) return new Date();  
             var ss = (s.split('-'));  
             var y = parseInt(ss[0],10);  
@@ -551,7 +422,7 @@ hr {
             }  
         }
 		
-		function doSearch(c_alumne){  
+	function doSearch(c_alumne){  
 			d_inici = $('#data_inici').datebox('getValue');
 			d_fi    = $('#data_fi').datebox('getValue');
 			
@@ -629,7 +500,3 @@ hr {
 	$('#header').css('visibility', 'hidden');
 	$('#footer').css('visibility', 'hidden');		
 </script>
-
-<?php
-//mysql_close();
-?>

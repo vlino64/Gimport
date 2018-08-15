@@ -21,7 +21,7 @@ $subject  = "[Geisoft] [".getDadesCentre($db)["nom"]."] Comunicació absència "
 $content  = "Hi ha una nova absència de professorat enregistrada. A continuació els detalls.<br><br>";
 $content .= "Professor:       ".getProfessor($db,$idprofessors,TIPUS_nom_complet)."<br>";
 $content .= "Data :   ".$_REQUEST['data']."<br>";
-$content .= "Motiu absència:   ".$comentari."<br>";
+$content .= "Motiu absència:   ".str_replace("'","\'",$comentari)."<br>";
 						
 $rsProfessorsCarrec = getProfessorsbyCargos($db,TIPUS_SUPERADMINISTRADOR);
 foreach($rsProfessorsCarrec->fetchAll() as $row_p) {    

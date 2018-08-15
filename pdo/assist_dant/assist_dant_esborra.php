@@ -30,6 +30,4 @@ if ($result){
 } else {
 	echo json_encode(array('msg'=>'Algunos errores ocurrieron.'));
 }
-
-//mysql_close();
 ?>

@@ -249,8 +249,11 @@
 								comentaris_tasca:ss_com},function(result){  
                             if (result.success){  
                                 $.messager.alert('Informaci&oacute;','Introducci&oacute; de dades efectuada correctament!','info');
+                                setTimeout(function () 
+                                {open1('./abs_prof/com_abs_prof_grid.php'); // the redirect goes here
+                                },1000);
                             } else { 
-							    $.messager.alert('Error','Introducci&oacute; de dades efectuada erroniament!','error');
+				$.messager.alert('Error','Introducci&oacute; de dades efectuada erroniament!','error');
 								 
                                 $.messager.show({  
                                     title: 'Error',  

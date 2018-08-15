@@ -12,7 +12,9 @@ $idgrups_materies       = getAlumneGrupMateria($db,$idalumnes_grup_materia)["idg
 $idgrups                = getGrupMateria($db,$idgrups_materies)["id_grups"];
 $idmateria              = getGrupMateria($db,$idgrups_materies)["id_mat_uf_pla"];
 $id_tipus_incidencia    = isset($_REQUEST['id_tipus_incidencia'])    ? $_REQUEST['id_tipus_incidencia']    : 0 ;
+//$id_tipus_incident = 0;
 $id_tipus_incident      = isset($_REQUEST['id_tipus_incident'])      ? $_REQUEST['id_tipus_incident']      : 0 ;
+if ($id_tipus_incident == ' ') $id_tipus_incident = 0;
 $idprofessors 		= isset($_SESSION['professor'])              ? $_SESSION['professor']              : 0 ;
 $data         		= isset($_REQUEST['data'])                   ? $_REQUEST['data']                   : 0 ;
 $idfranges_horaries     = isset($_REQUEST['idfranges_horaries'])     ? $_REQUEST['idfranges_horaries']     : 0 ;
@@ -24,6 +26,7 @@ $result = $db->query($sql);
 
 $sql     = "INSERT INTO incidencia_alumne (idalumnes,idgrups,id_mat_uf_pla,idprofessors,id_tipus_incidencia,id_tipus_incident,data,idfranges_horaries,comentari) ";
 $sql    .= "VALUES ('$idalumnes','$idgrups','$idmateria','$idprofessors','$id_tipus_incidencia','$id_tipus_incident','$data','$idfranges_horaries','$comentari')";
+
 $result = $db->query($sql);
 
 $sql    = "DELETE FROM incidencia_alumne WHERE id_tipus_incidencia=0";
@@ -34,6 +37,4 @@ if ($result){
 } else {
 	echo json_encode(array('msg'=>'Algunos errores ocurrieron.'));
 }
-
-//mysql_close();
 ?>

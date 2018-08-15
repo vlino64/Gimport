@@ -14,7 +14,8 @@ $grup_materia = existGrupMateria($db,$idgrups,$idmateria);
 //$data       = date("Y-m-d");
 $data = isset($_REQUEST['data']) ? substr($_REQUEST['data'],6,4)."-".substr($_REQUEST['data'],3,2)."-".substr($_REQUEST['data'],0,2) : date("Y-m-d");
 $data_llista = isset($_REQUEST['data_llista']) ? substr($_REQUEST['data_llista'],6,4)."-".substr($_REQUEST['data_llista'],3,2)."-".substr($_REQUEST['data_llista'],0,2) : date("Y-m-d");
-$dia          = date("w");
+$dia= date("w",mktime(0, 0, 0, substr($_REQUEST['data_llista'],3,2),substr($_REQUEST['data_llista'],0,2),substr($_REQUEST['data_llista'],6,4)));
+//$dia          = date("w");
 $franja       = isset($_REQUEST['idfranges_horaries']) ? $_REQUEST['idfranges_horaries'] : 0 ;
 $dia_franja   = existDiesFranges($db,$dia,$franja);
 
@@ -35,7 +36,7 @@ if ($modul) {
             $log = insertaLogProfessor($db,$idprofessors,TIPUS_ACCIO_ENTROALCENTRE);
         }
     }      
-    $log = insertaLogProfessorExtended($db,$idprofessors,TIPUS_ACCIO_PASALLISTA,$data_llista,$franja,$grup_materia);
+    $log = insertaLogProfessorExtended($db,$idprofessors,TIPUS_ACCIO_PASALLISTA,$data_llista,$franja,$grup_materia,'');
   }
 }
 

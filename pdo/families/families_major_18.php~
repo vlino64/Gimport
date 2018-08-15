@@ -1,0 +1,32 @@
+<?php
+include('../bbdd/connect.php');
+include_once('../func/constants.php');
+include_once('../func/generic.php');
+mysql_query("SET NAMES 'utf8'");
+
+// Al camp acces_families de la taula alumnes pot contenir 3 valors-
+// S - Si les famílies tenen accés, N - Si les famílies no tenen accès, 
+// F -Si les famĺies tenen accés tot i ser major de 18 anys
+
+$sql = "SELECT A.idalumnes, B.Valor, A.acces_familia ";
+$sql.= "FROM alumnes A, contacte_alumne B ";
+$sql.= "WHERE A.idalumnes = B.id_alumne AND ";
+$sql.= "B.id_tipus_contacte = '28' AND A.activat = 'S';";
+
+$result=mysql_query($sql);
+if (!$result) {die(_ERR_LOOK_FOR_ALUM1 . mysql_error());}
+while ($fila = mysql_fetch_row($result))
+    {
+    $age = date_diff(date_create($fila[1]), date_create('now'))->y;
+    //echo "<br>".$fila[0]." >> ".$fila[1]." >> ".$age." >> ".$fila[2];
+    if (( $age >= 18 ) AND ( $fila[2] == 'S' ) AND ( $fila[2] != 'F' ))
+        {
+        $sql = "UPDATE `alumnes` SET `acces_familia` = 'N' WHERE `alumnes`.`idalumnes` = '".$fila[0]."';";
+        $result=mysql_query($sql);
+        if (!$result) {die(_ERR_UPDATE_ALUM1 . mysql_error());}
+        }
+    }
+
+mysql_close();
+
+?>

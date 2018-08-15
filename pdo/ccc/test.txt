@@ -1,0 +1,1 @@
+SELECT id_falta,expulsio,id_motius,descripcio_detallada,id_tipus_sancio, CONCAT(SUBSTR(data,9,2),'-',SUBSTR(data,6,2),'-',SUBSTR(data,1,4)) AS data_incident FROM ccc_taula_principal WHERE idccc_taula_principal='0'

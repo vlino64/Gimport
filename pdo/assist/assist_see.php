@@ -379,7 +379,7 @@ hr {
 				?>          
 		</table>
         
-        <hr/>
+        <br/>
         <h5>Relaci&oacute; de retards</h5>
  		<table>
             <tr>
@@ -405,7 +405,7 @@ hr {
 				?>          
 		</table>
         
-        <hr/>
+        <br/>
         <h5>Relaci&oacute; de justificacions</h5>
  		<table>
             <tr>
@@ -433,7 +433,7 @@ hr {
 				?>          
 		</table>
 
-        <hr/>
+        <br/>
         <h5>Relaci&oacute; de seguiments</h5>
  		<table>
             <tr>
@@ -463,7 +463,7 @@ hr {
 				?>          
 		</table>
         
-        <hr/>
+        <br/>
         <h5>Relaci&oacute; de CCC</h5>
  		<table>
             <tr>
@@ -511,7 +511,3 @@ hr {
 	$('#header').css('visibility', 'hidden');
 	$('#footer').css('visibility', 'hidden');
 </script>
-
-<?php
-//mysql_close();
-?>

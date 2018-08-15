@@ -4,6 +4,10 @@
    require_once('../func/constants.php');
    require_once('../func/generic.php');
    require_once('../func/seguretat.php');
+   
+   require_once('../bbdd/connect_sms.php');
+   require_once('../func/sms.php');
+   
    $db->exec("set names utf8");
    
    $idgrups = $_REQUEST['idgrups'];

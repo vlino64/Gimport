@@ -23,8 +23,9 @@
             <tr>
 		<th field="data" width="140" sortable="true">Data</th>
                 <th field="grup" width="140" sortable="true">Grup</th>
-                <th field="materia" width="420" sortable="true">Mat&egrave;ria</th>
+                <th field="materia" width="320" sortable="true">Mat&egrave;ria</th>
                 <th data-options="field:'passa_llista',width:50,formatter:formatPassaLlista">&nbsp;</th>
+                <th field="profe_guardia" width="140" sortable="true">Professor Guàrdia</th>
             </tr>  
         </thead>  
     </table> 

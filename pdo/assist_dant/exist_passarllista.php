@@ -16,7 +16,7 @@ $dia          = date("w");
 $franja       = isset($_REQUEST['idfranges_horaries']) ? $_REQUEST['idfranges_horaries'] : 0 ;
 $dia_franja   = existDiesFranges($db,$dia,$franja);
 
-$modul_reg_prof = getModulsActius($db)["mod_reg_prof"];
+$modul_reg_prof = getModulsActius($db)["mod_ass_servei"];
 
 if ($modul_reg_prof) {
   if (existLogProfessorDataFranjaGrupMateria($db,$idprofessors,TIPUS_ACCIO_PASALLISTA,date("Y-m-d"),$franja,$grup_materia)) {
@@ -26,8 +26,4 @@ if ($modul_reg_prof) {
     echo json_encode(array('no_existeix'=>true));  
   }
 }
-
-
-
-//mysql_close();
 ?>

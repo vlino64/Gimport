@@ -68,5 +68,4 @@ else
 echo json_encode($result);
 
 $rs->closeCursor();
-//mysql_close();
 ?>
